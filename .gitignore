@@ -1,7 +1,9 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+.idea
+/.idea/workspace.xml
 /compiler.xml
+/uiDesigner.xml
 /jarRepositories.xml
 /misc.xml
 /vcs.xml
@@ -10,3 +12,4 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+**/[Tt]arget*
