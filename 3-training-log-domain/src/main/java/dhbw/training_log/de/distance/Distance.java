@@ -2,23 +2,28 @@ package dhbw.training_log.de.distance;
 
 import java.util.Objects;
 
+import static dhbw.training_log.de.round.Round.round;
+
 public final class Distance {
+
+    private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
 
     private final Double distance;
 
-    public Distance(final Double distance) {
+    public Distance(final Double distance, final DistanceUnit unit) {
+
         if(distance < 0) {
             throw new InvalidDistance("Distances must always be non-negative");
         }
-        this.distance = distance;
+        this.distance = round(distance * unit.ratioTo(DEFAULT_UNIT), 6);
     }
 
     public Distance add(final Distance newDistance) {
-        return new Distance(this.distance + newDistance.distance);
+        return new Distance(this.distance + newDistance.distance, DEFAULT_UNIT);
     }
 
-    public Double value() {
-        return distance;
+    public Double getIn(final DistanceUnit unit) {
+        return this.distance * DEFAULT_UNIT.ratioTo(unit);
     }
 
     @Override
