@@ -5,11 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 import static dhbw.training_log.de.distance.DistanceUnit.*;
 import static dhbw.training_log.de.distance.HasDistanceMatcher.hasDistance;
+import static dhbw.training_log.de.test_utils.ValueObjectTest.performValueObjectTest;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DistanceTest {
 
@@ -32,6 +35,7 @@ public class DistanceTest {
     }
 
     @Test
+    @DisplayName("Add distance to distance object")
     public void addDistance() {
         final Distance distance = new Distance(3.0, KILOMETERS);
         assertThat(distance.add(new Distance(2.0, KILOMETERS)), hasDistance(5.0, KILOMETERS, 1e-3));
@@ -57,26 +61,13 @@ public class DistanceTest {
     }
 
     @Test
-    @DisplayName("Distances with different values are unequal")
-    public void distancesWithDifferentValuesAreUnequal() {
-        assertNotEquals(new Distance(1.0, METERS), new Distance(0.0, METERS));
-        assertNotEquals(new Distance(3.0, METERS), new Distance(3.0, KILOMETERS));
-        assertNotEquals(new Distance(3.0, METERS), null);
-    }
-
-    @Test
-    @DisplayName("Distances with same values have same hash codes")
-    public void distancesWithSameValueHaveSameHashCodes() {
-        assertEquals(new Distance(3.0, METERS).hashCode(), new Distance(3.0, METERS).hashCode());
-        assertEquals(new Distance(5.43, KILOMETERS).hashCode(), new Distance(5.43 / 1.609344, MILES).hashCode());
-        assertEquals(new Distance(7.31, KILOMETERS).hashCode(), new Distance(7.31 / 1.609344, MILES).hashCode());
-    }
-
-    @Test
-    @DisplayName("Distances with different values have different hash codes")
-    public void distancesWithDifferentValueHaveDifferentHashCodes() {
-        assertNotEquals(new Distance(1.0, METERS).hashCode(), new Distance(0.0, METERS).hashCode());
-        assertNotEquals(new Distance(3.0, METERS).hashCode(), new Distance(3.0, KILOMETERS).hashCode());
+    @DisplayName("Correct Value Object Behavior of class Distance")
+    public void secondsValueObjectBehavior() {
+        final List<Supplier<Distance>> distances = Arrays.asList(
+                () -> new Distance(1.0, METERS),
+                () -> new Distance(3.0, METERS)
+        );
+        performValueObjectTest(distances);
     }
 
     private void compareToOtherUnits(final Double distanceValue, final DistanceUnit unit) {
@@ -92,9 +83,6 @@ public class DistanceTest {
     }
 
     private void checkConversionOfDistance(final Double distanceValue, final DistanceUnit baseUnit, final DistanceUnit newUnit) {
-        if(newUnit == null) {
-            throw new AssertionFailedError("No entry for this unit " + baseUnit + " in local distance unit map");
-        }
         final Distance distance = new Distance(distanceValue, baseUnit);
         final Double expectedDistance = distanceValue * DISTANCE_UNITS.get(baseUnit) / DISTANCE_UNITS.get(newUnit);
         assertThat(distance, hasDistance(expectedDistance, newUnit, 1e-3));

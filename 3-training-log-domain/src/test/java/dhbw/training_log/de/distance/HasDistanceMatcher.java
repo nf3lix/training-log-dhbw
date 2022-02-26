@@ -3,12 +3,9 @@ package dhbw.training_log.de.distance;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 class HasDistanceMatcher extends TypeSafeMatcher<Distance> {
 
-    public static HasDistanceMatcher hasDistance(final Double distanceValue, final DistanceUnit unit, final Double delta) {
+    static HasDistanceMatcher hasDistance(final Double distanceValue, final DistanceUnit unit, final Double delta) {
         return new HasDistanceMatcher(distanceValue, unit, delta);
     }
 
@@ -16,7 +13,7 @@ class HasDistanceMatcher extends TypeSafeMatcher<Distance> {
     private final DistanceUnit unit;
     private final Double delta;
 
-    public HasDistanceMatcher(final Double distance, final DistanceUnit unit, final Double delta) {
+    HasDistanceMatcher(final Double distance, final DistanceUnit unit, final Double delta) {
         this.distanceValue = distance;
         this.unit = unit;
         this.delta = delta;
@@ -25,7 +22,6 @@ class HasDistanceMatcher extends TypeSafeMatcher<Distance> {
     @Override
     protected boolean matchesSafely(final Distance distance) {
         return Math.abs(distance.getIn(unit) - distanceValue) <= delta;
-        // return distance.getIn(unit).equals(round(distanceValue, 6));
     }
 
     @Override
