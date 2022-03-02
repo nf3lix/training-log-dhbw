@@ -1,5 +1,6 @@
-package dhbw.training_log.de;
+package dhbw.training_log.de.training_session_id;
 
+import dhbw.training_log.de.training_session_id.TrainingSessionId;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

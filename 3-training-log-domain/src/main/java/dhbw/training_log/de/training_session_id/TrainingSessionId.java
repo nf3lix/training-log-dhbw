@@ -1,4 +1,4 @@
-package dhbw.training_log.de;
+package dhbw.training_log.de.training_session_id;
 
 import java.util.Objects;
 import java.util.UUID;
