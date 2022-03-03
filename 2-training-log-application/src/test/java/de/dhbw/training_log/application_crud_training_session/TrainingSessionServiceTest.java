@@ -32,7 +32,7 @@ public class TrainingSessionServiceTest {
 
     private TrainingSession sampleTrainingSession() {
         return new TrainingSession(
-                new TrainingSessionId(UUID.randomUUID()),
+                new TrainingSessionId(UUID.fromString("af2f909b-50cb-4fc5-aceb-c9fdc4699c27")),
                 new Distance(10.0, KILOMETERS),
                 new SessionTime(new Minutes(50), new Seconds(20)),
                 new Description(""),
