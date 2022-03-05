@@ -11,7 +11,6 @@ public final class Distance {
     private final Double distance;
 
     public Distance(final Double distance, final DistanceUnit unit) {
-
         if(distance < 0) {
             throw new InvalidDistance("Distances must always be non-negative");
         }

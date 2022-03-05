@@ -1,14 +1,17 @@
 package de.dhbw.training_log.plugins.usecases;
 
 import de.dhbw.training_log.adapters.TrainingSessionTypeAdapter;
+import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
 import dhbw.training_log.de.training_session_type.TrainingSessionType;
+
+import static de.dhbw.training_log.adapters.TrainingSessionResourceMapper.SessionTimeMapper;
 
 class CreateTrainingSession extends UseCaseInitializer {
 
     @Override
     void init() {
-        String distance = askForDistance();
-        String sessionTime = askForSessionTime();
+        final String distance = askForDistance();
+        final SessionTimeResource sessionTime = askForSessionTime();
         String sessionType = askForSessionType();
         String description = askForDescription();
     }
@@ -18,9 +21,10 @@ class CreateTrainingSession extends UseCaseInitializer {
         return CommandLine.readLine();
     }
 
-    private String askForSessionTime() {
+    private SessionTimeResource askForSessionTime() {
         System.out.print("Enter time (format: <mm>:<ss>): ");
-        return CommandLine.readLine();
+        final String input = CommandLine.readLine();
+        return new SessionTimeMapper().apply(input);
     }
 
     private String askForSessionType() {
