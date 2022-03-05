@@ -1,6 +1,6 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import de.dhbw.training_log.adapters.TrainingSessionTypeAdapter;
+import de.dhbw.training_log.adapters.training_session_ressource.TrainingSessionTypeMapper;
 import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
 import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
 import dhbw.training_log.de.training_session_type.TrainingSessionType;
@@ -14,7 +14,7 @@ class CreateTrainingSession extends UseCaseInitializer {
     void init() {
         final DistanceResource distance = askForDistance();
         final SessionTimeResource sessionTime = askForSessionTime();
-        String sessionType = askForSessionType();
+        TrainingSessionType type = askForSessionType();
         String description = askForDescription();
     }
 
@@ -30,10 +30,10 @@ class CreateTrainingSession extends UseCaseInitializer {
         return new SessionTimeMapper().apply(input);
     }
 
-    private String askForSessionType() {
+    private TrainingSessionType askForSessionType() {
         System.out.print("Enter type: ");
         System.out.println(sessionTypeOptions());
-        return CommandLine.readLine();
+        return TrainingSessionTypeMapper.mapToType(CommandLine.readLine());
     }
 
     private String askForDescription() {
@@ -46,7 +46,7 @@ class CreateTrainingSession extends UseCaseInitializer {
         for(final TrainingSessionType type : TrainingSessionType.values()) {
             typeOptions
                     .append("\n\t")
-                    .append(TrainingSessionTypeAdapter.mapToAbbreviation(type))
+                    .append(TrainingSessionTypeMapper.mapToAbbreviation(type))
                     .append(") ")
                     .append(type.name());
         }

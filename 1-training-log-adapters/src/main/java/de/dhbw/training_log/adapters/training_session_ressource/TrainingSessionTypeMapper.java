@@ -1,11 +1,11 @@
-package de.dhbw.training_log.adapters;
+package de.dhbw.training_log.adapters.training_session_ressource;
 
 import dhbw.training_log.de.training_session_type.TrainingSessionType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TrainingSessionTypeAdapter {
+public class TrainingSessionTypeMapper {
 
     private static final Map<String, TrainingSessionType> SESSION_TYPES = new HashMap<>();
 
