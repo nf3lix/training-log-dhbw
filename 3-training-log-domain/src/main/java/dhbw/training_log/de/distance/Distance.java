@@ -7,7 +7,6 @@ import static dhbw.training_log.de.round.Round.round;
 public final class Distance {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
-
     private final Double distance;
 
     public Distance(final Double distance, final DistanceUnit unit) {
