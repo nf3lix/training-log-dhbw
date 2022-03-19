@@ -1,6 +1,6 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import dhbw.training_log.de.TrainingSessionRepository;
+import dhbw.training_log.de.SessionRepository;
 
 import java.util.Optional;
 
@@ -8,7 +8,7 @@ import static java.util.Arrays.stream;
 
 public enum UseCase {
 
-    CREATE_TRAINING_SESSION("1","Create new training session", new CreateTrainingSession());
+    CREATE_SESSION("1","Create new training session", new CreateSession());
 
     private final String mnemonic;
     private final String useCaseDescription;
@@ -28,7 +28,7 @@ public enum UseCase {
         return useCaseDescription;
     }
 
-    void initialize(TrainingSessionRepository repository) {
+    void initialize(SessionRepository repository) {
         initializer.init(repository);
     }
 

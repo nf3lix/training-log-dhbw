@@ -3,11 +3,11 @@ package dhbw.training_log.de.training_session_id;
 import java.util.Objects;
 import java.util.UUID;
 
-public final class TrainingSessionId {
+public final class SessionId {
 
     private final UUID uuid;
 
-    public TrainingSessionId(final UUID uuid) {
+    public SessionId(final UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -19,7 +19,7 @@ public final class TrainingSessionId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TrainingSessionId that = (TrainingSessionId) o;
+        SessionId that = (SessionId) o;
         return Objects.equals(uuid, that.uuid);
     }
 

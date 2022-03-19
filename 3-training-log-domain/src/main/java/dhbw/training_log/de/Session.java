@@ -3,19 +3,19 @@ package dhbw.training_log.de;
 import dhbw.training_log.de.description.Description;
 import dhbw.training_log.de.distance.Distance;
 import dhbw.training_log.de.time.SessionTime;
-import dhbw.training_log.de.training_session_id.TrainingSessionId;
-import dhbw.training_log.de.training_session_type.TrainingSessionType;
+import dhbw.training_log.de.training_session_id.SessionId;
+import dhbw.training_log.de.training_session_type.SessionType;
 
-public class TrainingSession {
+public class Session {
 
-    private final TrainingSessionId id;
+    private final SessionId id;
     private Distance distance;
     private SessionTime time;
     private Description description;
-    private TrainingSessionType type;
+    private SessionType type;
 
-    public TrainingSession(final TrainingSessionId id, final Distance distance, final SessionTime time,
-                           final Description description, final TrainingSessionType type) {
+    public Session(final SessionId id, final Distance distance, final SessionTime time,
+                   final Description description, final SessionType type) {
         this.id = id;
         this.distance = distance;
         this.time = time;
@@ -23,7 +23,7 @@ public class TrainingSession {
         this.type = type;
     }
 
-    public TrainingSessionId id() {
+    public SessionId id() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class TrainingSession {
         return description;
     }
 
-    public TrainingSessionType type() {
+    public SessionType type() {
         return type;
     }
 }

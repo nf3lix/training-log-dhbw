@@ -2,22 +2,22 @@ package de.dhbw.training_log.adapters;
 
 import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
 import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
-import dhbw.training_log.de.TrainingSession;
+import dhbw.training_log.de.Session;
 import dhbw.training_log.de.description.Description;
 import dhbw.training_log.de.distance.Distance;
 import dhbw.training_log.de.distance.DistanceUnit;
 import dhbw.training_log.de.time.Minutes;
 import dhbw.training_log.de.time.Seconds;
 import dhbw.training_log.de.time.SessionTime;
-import dhbw.training_log.de.training_session_id.TrainingSessionId;
+import dhbw.training_log.de.training_session_id.SessionId;
 
 import java.util.function.Function;
 
-public class TrainingSessionResourceMapper {
+public class SessionResourceMapper {
 
-    public TrainingSession getEntity(final TrainingSessionResource resource) {
-        return new TrainingSession(
-                new TrainingSessionId(resource.id()),
+    public Session getEntity(final SessionResource resource) {
+        return new Session(
+                new SessionId(resource.id()),
                 new Distance(resource.distance().distance(), resource.distance().unit()),
                 new SessionTime(new Minutes(resource.sessionTime().minutes()), new Seconds(resource.sessionTime().seconds())),
                 new Description(resource.description()),
@@ -25,8 +25,8 @@ public class TrainingSessionResourceMapper {
         );
     }
 
-    public TrainingSessionResource getResource(final TrainingSession trainingSession) {
-        return new TrainingSessionResource(
+    public SessionResource getResource(final Session trainingSession) {
+        return new SessionResource(
                 trainingSession.id().uuid(),
                 new DistanceResource(trainingSession.distance().getIn(DistanceUnit.METERS) + " METERS"),
                 new SessionTimeResource(trainingSession.time().minutes() + ":" + trainingSession.time().seconds()),

@@ -1,35 +1,35 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import de.dhbw.training_log.adapters.TrainingSessionResource;
-import de.dhbw.training_log.adapters.TrainingSessionResourceMapper;
+import de.dhbw.training_log.adapters.SessionResource;
+import de.dhbw.training_log.adapters.SessionResourceMapper;
 import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
 import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
-import de.dhbw.training_log.adapters.training_session_ressource.TrainingSessionTypeMapper;
-import de.dhbw.training_log.application.crud_training_session.TrainingSessionService;
-import dhbw.training_log.de.TrainingSessionRepository;
-import dhbw.training_log.de.training_session_type.TrainingSessionType;
+import de.dhbw.training_log.adapters.training_session_ressource.SessionTypeMapper;
+import de.dhbw.training_log.application.crud_training_session.SessionService;
+import dhbw.training_log.de.SessionRepository;
+import dhbw.training_log.de.training_session_type.SessionType;
 
-import static de.dhbw.training_log.adapters.TrainingSessionResourceMapper.DistanceMapper;
-import static de.dhbw.training_log.adapters.TrainingSessionResourceMapper.SessionTimeMapper;
+import static de.dhbw.training_log.adapters.SessionResourceMapper.DistanceMapper;
+import static de.dhbw.training_log.adapters.SessionResourceMapper.SessionTimeMapper;
 
-class CreateTrainingSession extends UseCaseInitializer {
+class CreateSession extends UseCaseInitializer {
 
-    private final TrainingSessionResourceMapper resourceMapper = new TrainingSessionResourceMapper();
+    private final SessionResourceMapper resourceMapper = new SessionResourceMapper();
 
     @Override
-    void init(final TrainingSessionRepository repository) {
+    void init(final SessionRepository repository) {
         final DistanceResource distance = askForDistance();
         final SessionTimeResource sessionTime = askForSessionTime();
-        final TrainingSessionType type = askForSessionType();
+        final SessionType type = askForSessionType();
         final String description = askForDescription();
-        final TrainingSessionResource resource = new TrainingSessionResource(
+        final SessionResource resource = new SessionResource(
                 repository.nextId().uuid(),
                 distance,
                 sessionTime,
                 description,
                 type
         );
-        new TrainingSessionService(repository).createTrainingSession(resourceMapper.getEntity(resource));
+        new SessionService(repository).createTrainingSession(resourceMapper.getEntity(resource));
     }
 
     private DistanceResource askForDistance() {
@@ -44,10 +44,10 @@ class CreateTrainingSession extends UseCaseInitializer {
         return new SessionTimeMapper().apply(input);
     }
 
-    private TrainingSessionType askForSessionType() {
+    private SessionType askForSessionType() {
         System.out.print("Enter type: ");
         System.out.println(sessionTypeOptions());
-        return TrainingSessionTypeMapper.mapToType(CommandLine.readLine());
+        return SessionTypeMapper.mapToType(CommandLine.readLine());
     }
 
     private String askForDescription() {
@@ -57,10 +57,10 @@ class CreateTrainingSession extends UseCaseInitializer {
 
     private String sessionTypeOptions() {
         final StringBuilder typeOptions = new StringBuilder();
-        for(final TrainingSessionType type : TrainingSessionType.values()) {
+        for(final SessionType type : SessionType.values()) {
             typeOptions
                     .append("\n\t")
-                    .append(TrainingSessionTypeMapper.mapToAbbreviation(type))
+                    .append(SessionTypeMapper.mapToAbbreviation(type))
                     .append(") ")
                     .append(type.name());
         }
