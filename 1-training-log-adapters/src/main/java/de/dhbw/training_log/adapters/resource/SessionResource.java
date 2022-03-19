@@ -1,7 +1,5 @@
-package de.dhbw.training_log.adapters;
+package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
-import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
 import dhbw.training_log.de.training_session_type.SessionType;
 
 import java.util.UUID;

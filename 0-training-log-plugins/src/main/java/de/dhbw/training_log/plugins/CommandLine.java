@@ -1,10 +1,10 @@
-package de.dhbw.training_log.plugins.usecases;
+package de.dhbw.training_log.plugins;
 
 import java.util.Scanner;
 
 public class CommandLine {
 
-    static String readLine() {
+    public static String readLine() {
         final Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }

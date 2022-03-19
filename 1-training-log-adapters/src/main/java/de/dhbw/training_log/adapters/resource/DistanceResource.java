@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.training_session_ressource;
+package de.dhbw.training_log.adapters.resource;
 
 import dhbw.training_log.de.distance.DistanceUnit;
 

@@ -3,8 +3,8 @@ package de.dhbw.training_log.adapters;
 import dhbw.training_log.de.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 
-import static de.dhbw.training_log.adapters.training_session_ressource.SessionTypeMapper.mapToAbbreviation;
-import static de.dhbw.training_log.adapters.training_session_ressource.SessionTypeMapper.mapToType;
+import static de.dhbw.training_log.adapters.mapper.SessionTypeMapper.mapToAbbreviation;
+import static de.dhbw.training_log.adapters.mapper.SessionTypeMapper.mapToType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

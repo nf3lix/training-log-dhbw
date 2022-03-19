@@ -1,7 +1,7 @@
 package de.dhbw.training_log.adapters.training_session_resource;
 
-import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
-import de.dhbw.training_log.adapters.training_session_ressource.InvalidDistanceInput;
+import de.dhbw.training_log.adapters.resource.DistanceResource;
+import de.dhbw.training_log.adapters.resource.InvalidDistanceInput;
 import dhbw.training_log.de.distance.DistanceUnit;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
-package de.dhbw.training_log.plugins.usecases;
+package de.dhbw.training_log.plugins.persistence;
 
-import de.dhbw.training_log.adapters.SessionResource;
-import de.dhbw.training_log.adapters.SessionResourceMapper;
+import de.dhbw.training_log.adapters.resource.SessionResource;
+import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import dhbw.training_log.de.Session;
 
 import java.io.*;
@@ -13,7 +13,7 @@ public class CsvFileManipulator {
     private static final String PATH = "..\\training-log\\0-training-log-plugins\\src\\main\\resources\\sessions.csv";
     private static final String DELIMITER = ";";
 
-    private final SessionResourceMapper resourceMapper = new SessionResourceMapper();
+    private final SessionEntityMapper resourceMapper = new SessionEntityMapper();
 
     List<Session> readCsv() throws IOException {
         final List<Session> sessions = new ArrayList<>();
@@ -28,7 +28,7 @@ public class CsvFileManipulator {
 
     void addSession(final Session trainingSession) throws IOException {
         final BufferedWriter writer = new BufferedWriter(new FileWriter(PATH, true));
-        final String[] elements = resourceMapper.getResource(trainingSession).toCsvLine();
+        final String[] elements = resourceMapper.toResource(trainingSession).toCsvLine();
         final StringBuilder line = new StringBuilder();
         for(int i = 0; i < elements.length - 1; i++) {
             line.append(elements[i]).append(DELIMITER);
@@ -41,7 +41,7 @@ public class CsvFileManipulator {
 
     private Session sessionFromLine(final String line) {
         final String[] elements = line.split(DELIMITER);
-        return resourceMapper.getEntity(SessionResource.fromCsvLine(elements));
+        return resourceMapper.toDomainModel(SessionResource.fromCsvLine(elements));
     }
 
 }

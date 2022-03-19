@@ -1,7 +1,8 @@
 package de.dhbw.training_log.adapters;
 
-import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
-import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
+import de.dhbw.training_log.adapters.resource.DistanceResource;
+import de.dhbw.training_log.adapters.resource.SessionResource;
+import de.dhbw.training_log.adapters.resource.SessionTimeResource;
 import dhbw.training_log.de.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 

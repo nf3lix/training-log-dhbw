@@ -1,5 +1,6 @@
 package de.dhbw.training_log.plugins.usecases;
 
+import de.dhbw.training_log.plugins.usecases.create_session.CreateSession;
 import dhbw.training_log.de.SessionRepository;
 
 import java.util.Optional;
@@ -20,19 +21,19 @@ public enum UseCase {
         this.initializer = initializer;
     }
 
-    String mnemonic() {
+    public String mnemonic() {
         return mnemonic;
     }
 
-    String description() {
+    public String description() {
         return useCaseDescription;
     }
 
-    void initialize(SessionRepository repository) {
+    public void initialize(SessionRepository repository) {
         initializer.init(repository);
     }
 
-    static UseCase fromMnemonic(final String mnemonic) throws IllegalArgumentException {
+    public static UseCase fromMnemonic(final String mnemonic) throws IllegalArgumentException {
         final Optional<UseCase> useCase = stream(values()).filter(uc -> uc.mnemonic.equals(mnemonic)).findFirst();
         if(!useCase.isPresent()) {
             throw new IllegalArgumentException("There's no use case for this mnemonic");

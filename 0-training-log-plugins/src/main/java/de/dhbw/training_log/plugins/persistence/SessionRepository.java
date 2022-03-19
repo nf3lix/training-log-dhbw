@@ -1,4 +1,4 @@
-package de.dhbw.training_log.plugins.usecases;
+package de.dhbw.training_log.plugins.persistence;
 
 import dhbw.training_log.de.Session;
 import dhbw.training_log.de.training_session_id.SessionId;

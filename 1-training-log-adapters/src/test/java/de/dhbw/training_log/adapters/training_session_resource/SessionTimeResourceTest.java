@@ -1,6 +1,6 @@
 package de.dhbw.training_log.adapters.training_session_resource;
 
-import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
+import de.dhbw.training_log.adapters.resource.SessionTimeResource;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
