@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters;
+package de.dhbw.training_log.adapters.mapper;
 
 import dhbw.training_log.de.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;

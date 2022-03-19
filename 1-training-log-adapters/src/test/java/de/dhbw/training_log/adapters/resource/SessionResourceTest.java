@@ -1,14 +1,11 @@
-package de.dhbw.training_log.adapters;
+package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.adapters.resource.DistanceResource;
-import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.adapters.resource.SessionTimeResource;
 import dhbw.training_log.de.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SessionResourceTest {
 

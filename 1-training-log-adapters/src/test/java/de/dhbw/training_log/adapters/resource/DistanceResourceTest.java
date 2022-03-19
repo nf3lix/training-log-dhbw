@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.training_session_resource;
+package de.dhbw.training_log.adapters.resource;
 
 import de.dhbw.training_log.adapters.resource.DistanceResource;
 import de.dhbw.training_log.adapters.resource.InvalidDistanceInput;
