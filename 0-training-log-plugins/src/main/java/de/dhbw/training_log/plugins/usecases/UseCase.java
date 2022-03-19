@@ -1,5 +1,7 @@
 package de.dhbw.training_log.plugins.usecases;
 
+import dhbw.training_log.de.TrainingSessionRepository;
+
 import java.util.Optional;
 
 import static java.util.Arrays.stream;
@@ -26,8 +28,8 @@ public enum UseCase {
         return useCaseDescription;
     }
 
-    void initialize() {
-        initializer.init();
+    void initialize(TrainingSessionRepository repository) {
+        initializer.init(repository);
     }
 
     static UseCase fromMnemonic(final String mnemonic) throws IllegalArgumentException {

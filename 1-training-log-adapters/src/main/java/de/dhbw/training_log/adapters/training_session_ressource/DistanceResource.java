@@ -45,4 +45,8 @@ public final class DistanceResource {
         return unit;
     }
 
+    @Override
+    public String toString() {
+        return distance + " " + unit.name();
+    }
 }

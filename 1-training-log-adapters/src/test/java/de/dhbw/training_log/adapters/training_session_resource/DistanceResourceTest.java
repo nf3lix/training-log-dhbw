@@ -43,4 +43,18 @@ public class DistanceResourceTest {
         assertThrows(InvalidDistanceInput.class, () -> new DistanceResource("10 TEST"));
     }
 
+    @Test
+    public void displayText() {
+        for(DistanceUnit unit : DistanceUnit.values()) {
+            final DistanceResource distance1 = new DistanceResource("10 " + unit.name());
+            final DistanceResource distance2 = new DistanceResource("10 " + unit.name().toLowerCase());
+            final DistanceResource distance3 = new DistanceResource("12 " + unit.name());
+            final DistanceResource distance4 = new DistanceResource("12.0 " + unit.name().toLowerCase());
+            assertEquals(distance1.toString(), "10.0 " + unit.name());
+            assertEquals(distance2.toString(), "10.0 " + unit.name());
+            assertEquals(distance3.toString(), "12.0 " + unit.name());
+            assertEquals(distance4.toString(), "12.0 " + unit.name());
+        }
+    }
+
 }

@@ -1,8 +1,12 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import de.dhbw.training_log.adapters.training_session_ressource.TrainingSessionTypeMapper;
+import de.dhbw.training_log.adapters.TrainingSessionResource;
+import de.dhbw.training_log.adapters.TrainingSessionResourceMapper;
 import de.dhbw.training_log.adapters.training_session_ressource.DistanceResource;
 import de.dhbw.training_log.adapters.training_session_ressource.SessionTimeResource;
+import de.dhbw.training_log.adapters.training_session_ressource.TrainingSessionTypeMapper;
+import de.dhbw.training_log.application.crud_training_session.TrainingSessionService;
+import dhbw.training_log.de.TrainingSessionRepository;
 import dhbw.training_log.de.training_session_type.TrainingSessionType;
 
 import static de.dhbw.training_log.adapters.TrainingSessionResourceMapper.DistanceMapper;
@@ -10,12 +14,22 @@ import static de.dhbw.training_log.adapters.TrainingSessionResourceMapper.Sessio
 
 class CreateTrainingSession extends UseCaseInitializer {
 
+    private final TrainingSessionResourceMapper resourceMapper = new TrainingSessionResourceMapper();
+
     @Override
-    void init() {
+    void init(final TrainingSessionRepository repository) {
         final DistanceResource distance = askForDistance();
         final SessionTimeResource sessionTime = askForSessionTime();
-        TrainingSessionType type = askForSessionType();
-        String description = askForDescription();
+        final TrainingSessionType type = askForSessionType();
+        final String description = askForDescription();
+        final TrainingSessionResource resource = new TrainingSessionResource(
+                repository.nextId().uuid(),
+                distance,
+                sessionTime,
+                description,
+                type
+        );
+        new TrainingSessionService(repository).createTrainingSession(resourceMapper.getEntity(resource));
     }
 
     private DistanceResource askForDistance() {

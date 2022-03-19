@@ -23,4 +23,23 @@ public class TrainingSession {
         this.type = type;
     }
 
+    public TrainingSessionId id() {
+        return id;
+    }
+
+    public Distance distance() {
+        return distance;
+    }
+
+    public SessionTime time() {
+        return time;
+    }
+
+    public Description description() {
+        return description;
+    }
+
+    public TrainingSessionType type() {
+        return type;
+    }
 }

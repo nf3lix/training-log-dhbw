@@ -11,6 +11,7 @@ public class SessionTimeResourceTest {
     @Test
     public void throwExceptionWhenStringInputHasNoValidFormat() {
         assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("TEST"));
+        assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("TEST:"));
         assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("TEST:TEST:"));
         assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("TEST:TEST:TEST"));
     }
@@ -45,6 +46,16 @@ public class SessionTimeResourceTest {
         assertEquals(10, t1.seconds());
         assertEquals(30, t2.seconds());
         assertEquals(59, t3.seconds());
+    }
+
+    @Test
+    public void displayText() {
+        final SessionTimeResource t1 = new SessionTimeResource("0:10");
+        final SessionTimeResource t2 = new SessionTimeResource("2:00");
+        final SessionTimeResource t3 = new SessionTimeResource("10:59");
+        assertEquals(t1.toString(), "0:10");
+        assertEquals(t2.toString(), "2:00");
+        assertEquals(t3.toString(), "10:59");
     }
 
 }

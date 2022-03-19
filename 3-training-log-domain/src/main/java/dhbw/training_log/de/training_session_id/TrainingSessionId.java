@@ -11,6 +11,10 @@ public final class TrainingSessionId {
         this.uuid = uuid;
     }
 
+    public UUID uuid() {
+        return uuid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

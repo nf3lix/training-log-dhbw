@@ -37,4 +37,14 @@ public class SessionTimeResource {
         return count;
     }
 
+    @Override
+    public String toString() {
+        String displayedSeconds;
+        if(seconds > 9) {
+            displayedSeconds = seconds.toString();
+        } else {
+            displayedSeconds = "0" + seconds;
+        }
+        return minutes + ":" + displayedSeconds;
+    }
 }
