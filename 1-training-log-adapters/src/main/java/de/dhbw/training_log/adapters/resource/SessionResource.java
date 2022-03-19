@@ -64,4 +64,12 @@ public final class SessionResource {
         );
     }
 
+    @Override
+    public String toString() {
+        return id().toString() + " - "
+                + distance().toString() + " - "
+                + sessionTime().toString() + " - "
+                + description() + " - "
+                + type().name();
+    }
 }

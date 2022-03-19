@@ -1,4 +1,4 @@
-package de.dhbw.training_log.application_crud_training_session;
+package de.dhbw.training_log.application.crud_training_session;
 
 import de.dhbw.training_log.application.crud_training_session.CreateSessionService;
 import dhbw.training_log.de.Session;
