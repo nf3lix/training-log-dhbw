@@ -15,6 +15,10 @@ public class CsvFileManipulator implements FileManipulator {
 
     private final SessionEntityMapper resourceMapper = new SessionEntityMapper();
 
+    public CsvFileManipulator() {
+        createFileIfNotExisting();
+    }
+
     public List<Session> readSessions() throws IOException {
         final List<Session> sessions = new ArrayList<>();
         String line = "";
@@ -42,6 +46,18 @@ public class CsvFileManipulator implements FileManipulator {
     private Session sessionFromLine(final String line) {
         final String[] elements = line.split(DELIMITER);
         return resourceMapper.toDomainModel(SessionResource.fromCsvLine(elements));
+    }
+
+    private void createFileIfNotExisting() {
+        final File file = new File(PATH);
+        if(file.exists()) {
+            return;
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

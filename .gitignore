@@ -13,3 +13,4 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 **/[Tt]arget*
+/0-training-log-plugins/src/main/resources/sessions.csv
