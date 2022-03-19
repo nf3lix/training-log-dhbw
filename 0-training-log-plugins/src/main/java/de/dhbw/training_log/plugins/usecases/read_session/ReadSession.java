@@ -1,7 +1,7 @@
 package de.dhbw.training_log.plugins.usecases.read_session;
 
 import de.dhbw.training_log.plugins.usecases.UseCaseInitializer;
-import dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.SessionRepository;
 
 public class ReadSession extends UseCaseInitializer {
 

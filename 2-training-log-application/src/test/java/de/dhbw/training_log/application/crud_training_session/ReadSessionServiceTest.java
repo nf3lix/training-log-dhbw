@@ -1,21 +1,21 @@
 package de.dhbw.training_log.application.crud_training_session;
 
-import dhbw.training_log.de.Session;
-import dhbw.training_log.de.SessionRepository;
-import dhbw.training_log.de.description.Description;
-import dhbw.training_log.de.distance.Distance;
-import dhbw.training_log.de.time.Minutes;
-import dhbw.training_log.de.time.Seconds;
-import dhbw.training_log.de.time.SessionTime;
-import dhbw.training_log.de.training_session_id.SessionId;
-import dhbw.training_log.de.training_session_type.SessionType;
+import de.dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.description.Description;
+import de.dhbw.training_log.de.distance.Distance;
+import de.dhbw.training_log.de.time.Minutes;
+import de.dhbw.training_log.de.time.Seconds;
+import de.dhbw.training_log.de.time.SessionTime;
+import de.dhbw.training_log.de.training_session_id.SessionId;
+import de.dhbw.training_log.de.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static dhbw.training_log.de.distance.DistanceUnit.KILOMETERS;
+import static de.dhbw.training_log.de.distance.DistanceUnit.KILOMETERS;
 import static org.mockito.Mockito.*;
 
 public class ReadSessionServiceTest {

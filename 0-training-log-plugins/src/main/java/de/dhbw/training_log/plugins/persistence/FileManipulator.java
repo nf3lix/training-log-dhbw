@@ -1,6 +1,6 @@
 package de.dhbw.training_log.plugins.persistence;
 
-import dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.Session;
 
 import java.io.IOException;
 import java.util.List;

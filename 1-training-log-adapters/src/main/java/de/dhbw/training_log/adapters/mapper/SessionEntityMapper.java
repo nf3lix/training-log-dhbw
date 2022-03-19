@@ -1,9 +1,9 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
-import dhbw.training_log.de.Session;
-import dhbw.training_log.de.description.Description;
-import dhbw.training_log.de.training_session_id.SessionId;
+import de.dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.description.Description;
+import de.dhbw.training_log.de.training_session_id.SessionId;
 
 public class SessionEntityMapper implements SessionResourceMapper<SessionResource, Session> {
 

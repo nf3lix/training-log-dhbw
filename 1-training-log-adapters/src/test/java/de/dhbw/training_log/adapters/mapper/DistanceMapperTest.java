@@ -1,11 +1,11 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.DistanceResource;
-import dhbw.training_log.de.distance.Distance;
+import de.dhbw.training_log.de.distance.Distance;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static dhbw.training_log.de.distance.DistanceUnit.*;
+import static de.dhbw.training_log.de.distance.DistanceUnit.*;
 
 public class DistanceMapperTest {
 
