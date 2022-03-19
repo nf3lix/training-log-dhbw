@@ -21,7 +21,7 @@ public final class Distance {
     }
 
     public Double getIn(final DistanceUnit unit) {
-        return this.distance * DEFAULT_UNIT.ratioTo(unit);
+        return round(this.distance * DEFAULT_UNIT.ratioTo(unit), 6);
     }
 
     @Override

@@ -8,7 +8,7 @@ import static de.dhbw.training_log.adapters.mapper.SessionTypeMapper.mapToType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SessionTypeAdapterTest {
+public class SessionTypeMapperTest {
 
     @Test
     public void mapToAbbreviationTest() {

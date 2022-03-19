@@ -8,14 +8,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvFileManipulator {
+public class CsvFileManipulator implements FileManipulator {
 
     private static final String PATH = "..\\training-log\\0-training-log-plugins\\src\\main\\resources\\sessions.csv";
     private static final String DELIMITER = ";";
 
     private final SessionEntityMapper resourceMapper = new SessionEntityMapper();
 
-    List<Session> readCsv() throws IOException {
+    public List<Session> readSessions() throws IOException {
         final List<Session> sessions = new ArrayList<>();
         String line = "";
         final BufferedReader reader = new BufferedReader(new FileReader(PATH));
@@ -26,9 +26,9 @@ public class CsvFileManipulator {
         return sessions;
     }
 
-    void addSession(final Session trainingSession) throws IOException {
+    public void addSession(final Session session) throws IOException {
         final BufferedWriter writer = new BufferedWriter(new FileWriter(PATH, true));
-        final String[] elements = resourceMapper.toResource(trainingSession).toCsvLine();
+        final String[] elements = resourceMapper.toResource(session).toCsvLine();
         final StringBuilder line = new StringBuilder();
         for(int i = 0; i < elements.length - 1; i++) {
             line.append(elements[i]).append(DELIMITER);

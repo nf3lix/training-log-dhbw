@@ -9,19 +9,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class SessionRepository implements dhbw.training_log.de.SessionRepository {
+public class SessionRepositoryImpl implements dhbw.training_log.de.SessionRepository {
 
-    private final CsvFileManipulator reader = new CsvFileManipulator();
-
+    private final FileManipulator fileManipulator;
     private final List<Session> sessionsList = new ArrayList<>();
 
-    public SessionRepository() {
+    public SessionRepositoryImpl(final FileManipulator fileManipulator) {
+        this.fileManipulator = fileManipulator;
         try {
-            sessionsList.addAll(reader.readCsv());
+            sessionsList.addAll(this.fileManipulator.readSessions());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -35,10 +34,10 @@ public class SessionRepository implements dhbw.training_log.de.SessionRepository
     }
 
     @Override
-    public void insert(final Session trainingSession) {
-        sessionsList.add(trainingSession);
+    public void insert(final Session session) {
+        sessionsList.add(session);
         try {
-            reader.addSession(trainingSession);
+            fileManipulator.addSession(session);
         } catch (IOException e) {
             e.printStackTrace();
         }
