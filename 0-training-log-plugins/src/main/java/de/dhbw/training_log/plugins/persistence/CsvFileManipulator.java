@@ -10,7 +10,9 @@ import java.util.List;
 
 public class CsvFileManipulator implements FileManipulator {
 
-    private static final String PATH = "..\\training-log\\0-training-log-plugins\\src\\main\\resources\\sessions.csv";
+    private static final String DIR = "..\\training-log-dhbw\\0-training-log-plugins\\src\\main\\resources\\";
+    private static final String FILE_NAME = "sessions.csv";
+    private static final String PATH = DIR + FILE_NAME;
     private static final String DELIMITER = ";";
 
     private final SessionEntityMapper resourceMapper = new SessionEntityMapper();
@@ -49,11 +51,13 @@ public class CsvFileManipulator implements FileManipulator {
     }
 
     private void createFileIfNotExisting() {
+        final File directory = new File(DIR);
         final File file = new File(PATH);
         if(file.exists()) {
             return;
         }
         try {
+            directory.mkdirs();
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
