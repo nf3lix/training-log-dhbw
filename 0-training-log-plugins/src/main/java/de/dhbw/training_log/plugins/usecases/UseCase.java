@@ -2,7 +2,7 @@ package de.dhbw.training_log.plugins.usecases;
 
 import de.dhbw.training_log.plugins.usecases.create_session.CreateSession;
 import de.dhbw.training_log.plugins.usecases.read_session.ReadSession;
-import de.dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.session.SessionRepository;
 
 import java.util.Optional;
 

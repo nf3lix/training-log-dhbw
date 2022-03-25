@@ -1,8 +1,8 @@
 package de.dhbw.training_log.plugins.persistence;
 
-import de.dhbw.training_log.de.SessionRepository;
-import de.dhbw.training_log.de.Session;
-import de.dhbw.training_log.de.training_session_id.SessionId;
+import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.de.session.Session;
+import de.dhbw.training_log.de.session.training_session_id.SessionId;
 
 import java.io.IOException;
 import java.util.ArrayList;

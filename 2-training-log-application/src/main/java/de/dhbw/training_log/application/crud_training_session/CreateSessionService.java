@@ -1,12 +1,12 @@
 package de.dhbw.training_log.application.crud_training_session;
 
-import de.dhbw.training_log.de.Session;
-import de.dhbw.training_log.de.SessionRepository;
-import de.dhbw.training_log.de.description.Description;
-import de.dhbw.training_log.de.distance.Distance;
-import de.dhbw.training_log.de.session_date.SessionDate;
-import de.dhbw.training_log.de.time.SessionTime;
-import de.dhbw.training_log.de.training_session_type.SessionType;
+import de.dhbw.training_log.de.session.Session;
+import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.de.session.description.Description;
+import de.dhbw.training_log.de.session.distance.Distance;
+import de.dhbw.training_log.de.session.session_date.SessionDate;
+import de.dhbw.training_log.de.session.time.SessionTime;
+import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
 public abstract class CreateSessionService {
 

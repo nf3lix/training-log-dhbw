@@ -2,7 +2,7 @@ package de.dhbw.training_log.plugins.persistence;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
-import de.dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.session.Session;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.SessionTimeResource;
-import de.dhbw.training_log.de.time.Minutes;
-import de.dhbw.training_log.de.time.Seconds;
-import de.dhbw.training_log.de.time.SessionTime;
+import de.dhbw.training_log.de.session.time.Minutes;
+import de.dhbw.training_log.de.session.time.Seconds;
+import de.dhbw.training_log.de.session.time.SessionTime;
 
 public class SessionTimeMapper implements SessionResourceMapper<SessionTimeResource, SessionTime> {
 
