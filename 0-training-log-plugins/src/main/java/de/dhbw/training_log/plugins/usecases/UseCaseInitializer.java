@@ -1,6 +1,6 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.SessionRepository;
 
 public abstract class UseCaseInitializer {
 

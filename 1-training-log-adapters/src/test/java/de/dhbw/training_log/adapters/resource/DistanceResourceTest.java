@@ -1,8 +1,6 @@
 package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.adapters.resource.DistanceResource;
-import de.dhbw.training_log.adapters.resource.InvalidDistanceInput;
-import dhbw.training_log.de.distance.DistanceUnit;
+import de.dhbw.training_log.de.distance.DistanceUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

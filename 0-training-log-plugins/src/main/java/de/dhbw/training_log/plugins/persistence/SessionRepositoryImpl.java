@@ -1,7 +1,8 @@
 package de.dhbw.training_log.plugins.persistence;
 
-import dhbw.training_log.de.Session;
-import dhbw.training_log.de.training_session_id.SessionId;
+import de.dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.training_session_id.SessionId;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class SessionRepositoryImpl implements dhbw.training_log.de.SessionRepository {
+public class SessionRepositoryImpl implements SessionRepository {
 
     private final FileManipulator fileManipulator;
     private final List<Session> sessionsList = new ArrayList<>();

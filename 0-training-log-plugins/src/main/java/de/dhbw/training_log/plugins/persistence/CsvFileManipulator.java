@@ -2,7 +2,7 @@ package de.dhbw.training_log.plugins.persistence;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
-import dhbw.training_log.de.Session;
+import de.dhbw.training_log.de.Session;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,10 +10,16 @@ import java.util.List;
 
 public class CsvFileManipulator implements FileManipulator {
 
-    private static final String PATH = "..\\training-log\\0-training-log-plugins\\src\\main\\resources\\sessions.csv";
+    private static final String DIR = "..\\training-log-data\\";
+    private static final String FILE_NAME = "sessions.csv";
+    private static final String PATH = DIR + FILE_NAME;
     private static final String DELIMITER = ";";
 
     private final SessionEntityMapper resourceMapper = new SessionEntityMapper();
+
+    public CsvFileManipulator() {
+        createFileIfNotExisting();
+    }
 
     public List<Session> readSessions() throws IOException {
         final List<Session> sessions = new ArrayList<>();
@@ -42,6 +48,20 @@ public class CsvFileManipulator implements FileManipulator {
     private Session sessionFromLine(final String line) {
         final String[] elements = line.split(DELIMITER);
         return resourceMapper.toDomainModel(SessionResource.fromCsvLine(elements));
+    }
+
+    private void createFileIfNotExisting() {
+        final File directory = new File(DIR);
+        final File file = new File(PATH);
+        if(file.exists()) {
+            return;
+        }
+        try {
+            directory.mkdirs();
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

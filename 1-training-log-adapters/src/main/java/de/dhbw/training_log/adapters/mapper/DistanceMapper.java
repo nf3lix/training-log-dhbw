@@ -1,8 +1,8 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.DistanceResource;
-import dhbw.training_log.de.distance.Distance;
-import dhbw.training_log.de.distance.DistanceUnit;
+import de.dhbw.training_log.de.distance.Distance;
+import de.dhbw.training_log.de.distance.DistanceUnit;
 
 public class DistanceMapper implements SessionResourceMapper<DistanceResource, Distance> {
 
