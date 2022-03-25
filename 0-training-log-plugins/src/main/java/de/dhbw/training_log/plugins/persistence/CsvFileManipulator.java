@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CsvFileManipulator implements FileManipulator {
 
-    private static final String DIR = "..\\training-log-dhbw\\0-training-log-plugins\\src\\main\\resources\\";
+    private static final String DIR = "..\\training-log\\0-training-log-plugins\\\\src\\main\\resources\\";
     private static final String FILE_NAME = "sessions.csv";
     private static final String PATH = DIR + FILE_NAME;
     private static final String DELIMITER = ";";
