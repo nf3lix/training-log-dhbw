@@ -4,6 +4,7 @@ import de.dhbw.training_log.de.Session;
 import de.dhbw.training_log.de.SessionRepository;
 import de.dhbw.training_log.de.description.Description;
 import de.dhbw.training_log.de.distance.Distance;
+import de.dhbw.training_log.de.session_date.SessionDate;
 import de.dhbw.training_log.de.time.Minutes;
 import de.dhbw.training_log.de.time.Seconds;
 import de.dhbw.training_log.de.time.SessionTime;
@@ -15,6 +16,7 @@ import org.mockito.ArgumentCaptor;
 import java.util.UUID;
 
 import static de.dhbw.training_log.de.distance.DistanceUnit.KILOMETERS;
+import static de.dhbw.training_log.de.session_date.SessionDate.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -23,6 +25,7 @@ public class CreateSessionServiceTest {
     private final SessionRepository repository = mock(SessionRepository.class);
     private final CreateSessionService service = new CreateSessionService(repository) {
         protected Distance askForDistance() { return new Distance(10.0, KILOMETERS); }
+        protected SessionDate askForSessionDate() { return new SessionDate(new Year(2020), new Month(1), new DayOfMonth(1)); }
         protected SessionTime askForSessionTime() { return new SessionTime(new Minutes(45), new Seconds(30)); }
         protected SessionType askForSessionType() { return SessionType.OTHER; }
         protected Description askForDescription() { return new Description("DESCRIPTION"); }

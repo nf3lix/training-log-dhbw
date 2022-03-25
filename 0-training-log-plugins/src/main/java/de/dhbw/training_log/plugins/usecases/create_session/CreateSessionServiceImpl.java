@@ -1,11 +1,14 @@
 package de.dhbw.training_log.plugins.usecases.create_session;
 
+import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
 import de.dhbw.training_log.adapters.resource.DistanceResource;
+import de.dhbw.training_log.adapters.resource.SessionDateResource;
 import de.dhbw.training_log.adapters.resource.SessionTimeResource;
 import de.dhbw.training_log.adapters.mapper.DistanceMapper;
 import de.dhbw.training_log.adapters.mapper.SessionTimeMapper;
 import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
 import de.dhbw.training_log.application.crud_training_session.CreateSessionService;
+import de.dhbw.training_log.de.session_date.SessionDate;
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.de.SessionRepository;
 import de.dhbw.training_log.de.description.Description;
@@ -25,6 +28,14 @@ public class CreateSessionServiceImpl extends CreateSessionService {
         final String input = CommandLine.readLine();
         final DistanceResource distanceResource = new DistanceResource(input);
         return new DistanceMapper().toDomainModel(distanceResource);
+    }
+
+    @Override
+    protected SessionDate askForSessionDate() {
+        System.out.print("Enter the date of session (format: " + SessionDateResource.DATE_FORMAT + "): ");
+        final String input = CommandLine.readLine();
+        final SessionDateResource sessionDateResource = new SessionDateResource(input);
+        return new SessionDateMapper().toDomainModel(sessionDateResource);
     }
 
     @Override

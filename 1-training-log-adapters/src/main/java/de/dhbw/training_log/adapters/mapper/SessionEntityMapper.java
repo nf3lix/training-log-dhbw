@@ -9,11 +9,13 @@ public class SessionEntityMapper implements SessionResourceMapper<SessionResourc
 
     private final DistanceMapper distanceMapper = new DistanceMapper();
     private final SessionTimeMapper sessionTimeMapper = new SessionTimeMapper();
+    private final SessionDateMapper sessionDateMapper = new SessionDateMapper();
 
     @Override
     public SessionResource toResource(Session session) {
         return new SessionResource(
                 session.id().uuid(),
+                sessionDateMapper.toResource(session.date()),
                 distanceMapper.toResource(session.distance()),
                 sessionTimeMapper.toResource(session.time()),
                 session.description().stringValue(),
@@ -25,6 +27,7 @@ public class SessionEntityMapper implements SessionResourceMapper<SessionResourc
     public Session toDomainModel(SessionResource resource) {
         return new Session(
                 new SessionId(resource.id()),
+                sessionDateMapper.toDomainModel(resource.sessionDate()),
                 distanceMapper.toDomainModel(resource.distance()),
                 sessionTimeMapper.toDomainModel(resource.sessionTime()),
                 new Description(resource.description()),
