@@ -2,7 +2,6 @@ package de.dhbw.training_log.de.metric;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
@@ -31,15 +30,7 @@ public abstract class AggregateFunction<T> {
             if(list.size() == 0) {
                 throw new IllegalArgumentException("List must have at least one item");
             }
-            final Iterator<T> iterator = list.iterator();
-            T currentMin = iterator.next();
-            while (iterator.hasNext()) {
-                final T nextItem = iterator.next();
-                if(currentMin.compareTo(nextItem) > 0) {
-                    currentMin = nextItem;
-                }
-            }
-            return currentMin;
+            return list.stream().min(Comparable::compareTo).get();
         }
     }
 
