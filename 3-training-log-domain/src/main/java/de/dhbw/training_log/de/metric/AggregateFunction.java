@@ -1,5 +1,7 @@
 package de.dhbw.training_log.de.metric;
 
+import de.dhbw.training_log.de.metric.AggregateSubject.Averageable;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +43,14 @@ public abstract class AggregateFunction<T> {
                 throw new IllegalArgumentException("List must have at least one item");
             }
             return list.stream().max(Comparable::compareTo).get();
+        }
+    }
+
+    public static final class AVG<T extends Averageable<T>> extends AggregateFunction<T> {
+        @Override
+        public T compute(List<T> list) {
+            final T sum = new SUM<T>().compute(list);
+            return sum.divideBy((double) list.size());
         }
     }
 

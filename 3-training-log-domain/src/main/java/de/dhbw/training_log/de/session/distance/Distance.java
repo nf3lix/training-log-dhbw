@@ -1,12 +1,13 @@
 package de.dhbw.training_log.de.session.distance;
 
+import de.dhbw.training_log.de.metric.AggregateSubject;
 import de.dhbw.training_log.de.round.Round;
 
 import java.util.Objects;
 
 import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
-public final class Distance implements Summable<Distance> {
+public final class Distance implements Summable<Distance>, AggregateSubject.Averageable<Distance> {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
     private final Double distance;
@@ -18,8 +19,14 @@ public final class Distance implements Summable<Distance> {
         this.distance = Round.round(distance * unit.ratioTo(DEFAULT_UNIT), 6);
     }
 
-    public Distance add(final Distance newDistance) {
+    @Override
+    public Distance sum(final Distance newDistance) {
         return new Distance(this.distance + newDistance.distance, DEFAULT_UNIT);
+    }
+
+    @Override
+    public Distance divideBy(Double divisor) {
+        return new Distance(this.distance / divisor, DEFAULT_UNIT);
     }
 
     public Double getIn(final DistanceUnit unit) {
@@ -37,11 +44,6 @@ public final class Distance implements Summable<Distance> {
     @Override
     public int hashCode() {
         return Objects.hash(distance);
-    }
-
-    @Override
-    public Distance sum(Distance summable) {
-        return add(summable);
     }
 
 }
