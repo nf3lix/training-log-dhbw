@@ -2,6 +2,7 @@ package de.dhbw.training_log.de.metric;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
@@ -39,6 +40,16 @@ public abstract class AggregateFunction<T> {
                 }
             }
             return currentMin;
+        }
+    }
+
+    public static final class MAX<T extends Comparable<T>> extends AggregateFunction<T> {
+        @Override
+        public T compute(List<T> list) {
+            if(list.size() == 0) {
+                throw new IllegalArgumentException("List must have at least one item");
+            }
+            return list.stream().max(Comparable::compareTo).get();
         }
     }
 
