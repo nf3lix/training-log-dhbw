@@ -7,11 +7,11 @@ import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
 public abstract class AggregateFunction<T> {
 
-    public abstract T apply(final List<T> list);
+    public abstract T compute(final List<T> list);
 
-    public static class SUM<T extends Summable<T>> extends AggregateFunction<T> {
+    public static final class SUM<T extends Summable<T>> extends AggregateFunction<T> {
         @Override
-        public T apply(List<T> list) {
+        public T compute(List<T> list) {
             if(list.size() == 0) {
                 throw new IllegalArgumentException("List must have at least one item");
             }
@@ -21,6 +21,24 @@ public abstract class AggregateFunction<T> {
                 summable = summable.sum(iterator.next());
             }
             return summable;
+        }
+    }
+
+    public static final class MIN<T extends Comparable<T>> extends AggregateFunction<T> {
+        @Override
+        public T compute(List<T> list) {
+            if(list.size() == 0) {
+                throw new IllegalArgumentException("List must have at least one item");
+            }
+            final Iterator<T> iterator = list.iterator();
+            T currentMin = iterator.next();
+            while (iterator.hasNext()) {
+                final T nextItem = iterator.next();
+                if(currentMin.compareTo(nextItem) > 0) {
+                    currentMin = nextItem;
+                }
+            }
+            return currentMin;
         }
     }
 

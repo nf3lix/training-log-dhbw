@@ -15,7 +15,7 @@ public class AggregateSumTest {
         summables.add(new SummableMock(3));
         summables.add(new SummableMock(5));
         summables.add(new SummableMock(10));
-        final SummableMock all = sum.apply(summables);
+        final SummableMock all = sum.compute(summables);
         Assertions.assertEquals(all.value, 18);
     }
 
