@@ -17,6 +17,10 @@ public abstract class AggregateFunction<T, K> {
             if(list.size() == 0) {
                 throw new IllegalArgumentException("List must have at least one item");
             }
+            return sum(list);
+        }
+
+        private T sum(List<T> list) {
             final Iterator<T> iterator = list.iterator();
             T summable = iterator.next();
             while (iterator.hasNext()) {
