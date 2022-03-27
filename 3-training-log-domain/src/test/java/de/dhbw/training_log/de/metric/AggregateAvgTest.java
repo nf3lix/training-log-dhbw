@@ -30,7 +30,7 @@ public class AggregateAvgTest {
         }
 
         @Override
-        public AvgMock sum(AvgMock summable) {
+        public AvgMock add(AvgMock summable) {
             return new AvgMock(this.value + summable.value);
         }
 

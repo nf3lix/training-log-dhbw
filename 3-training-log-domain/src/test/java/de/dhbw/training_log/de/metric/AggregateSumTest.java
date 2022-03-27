@@ -26,7 +26,7 @@ public class AggregateSumTest {
         }
 
         @Override
-        public SummableMock sum(SummableMock summable) {
+        public SummableMock add(SummableMock summable) {
             return new SummableMock(this.value + summable.value);
         }
     }

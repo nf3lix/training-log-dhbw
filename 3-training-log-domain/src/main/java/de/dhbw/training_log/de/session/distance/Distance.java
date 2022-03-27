@@ -20,7 +20,7 @@ public final class Distance implements Summable<Distance>, AggregateSubject.Aver
     }
 
     @Override
-    public Distance sum(final Distance newDistance) {
+    public Distance add(final Distance newDistance) {
         return new Distance(this.distance + newDistance.distance, DEFAULT_UNIT);
     }
 

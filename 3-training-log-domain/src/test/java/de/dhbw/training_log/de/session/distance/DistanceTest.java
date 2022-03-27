@@ -38,8 +38,8 @@ public class DistanceTest {
     @DisplayName("Add distance to distance object")
     public void addDistance() {
         final Distance distance = new Distance(3.0, KILOMETERS);
-        MatcherAssert.assertThat(distance.sum(new Distance(2.0, KILOMETERS)), HasDistanceMatcher.hasDistance(5.0, KILOMETERS, 1e-3));
-        MatcherAssert.assertThat(distance.sum(new Distance(100.0, METERS)), HasDistanceMatcher.hasDistance(3.1, KILOMETERS, 1e-3));
+        MatcherAssert.assertThat(distance.add(new Distance(2.0, KILOMETERS)), HasDistanceMatcher.hasDistance(5.0, KILOMETERS, 1e-3));
+        MatcherAssert.assertThat(distance.add(new Distance(100.0, METERS)), HasDistanceMatcher.hasDistance(3.1, KILOMETERS, 1e-3));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class DistanceTest {
     public void throwExceptionWhenDistanceIsNegative() {
         final Distance distance = new Distance(1.0, METERS);
         assertThrows(InvalidDistance.class, () -> new Distance(-1.0, METERS));
-        assertThrows(InvalidDistance.class, () -> distance.sum(new Distance(-2.0, METERS)));
+        assertThrows(InvalidDistance.class, () -> distance.add(new Distance(-2.0, METERS)));
     }
 
     @Test

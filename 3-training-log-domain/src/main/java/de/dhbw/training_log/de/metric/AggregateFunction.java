@@ -20,7 +20,7 @@ public abstract class AggregateFunction<T, K> {
             final Iterator<T> iterator = list.iterator();
             T summable = iterator.next();
             while (iterator.hasNext()) {
-                summable = summable.sum(iterator.next());
+                summable = summable.add(iterator.next());
             }
             return summable;
         }
