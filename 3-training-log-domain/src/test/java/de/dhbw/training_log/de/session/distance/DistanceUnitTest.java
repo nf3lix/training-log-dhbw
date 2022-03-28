@@ -1,10 +1,7 @@
 package de.dhbw.training_log.de.session.distance;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistanceUnitTest {
 
@@ -12,7 +9,6 @@ public class DistanceUnitTest {
     private static final Double MILES_IN_METERS = 1.609344e3;
 
     @Test
-    @DisplayName("Calculate correct ratios between two given units")
     public void calculateCorrectRatioBetweenUnits() {
         Assertions.assertEquals(DistanceUnit.METERS.ratioTo(DistanceUnit.METERS), 1);
         Assertions.assertEquals(DistanceUnit.METERS.ratioTo(DistanceUnit.KILOMETERS), 1 / KILOMETERS_IN_METERS);

@@ -1,21 +1,17 @@
 package de.dhbw.training_log.de;
 
-import de.dhbw.training_log.de.round.Round;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static de.dhbw.training_log.de.HasDecimalPlacesMatcher.hasPlaces;
-import static de.dhbw.training_log.de.round.Round.*;
+import static de.dhbw.training_log.de.round.Round.round;
+import static de.dhbw.training_log.de.round.Round.roundToInt;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoundTest {
 
     @Test
-    @DisplayName("Round doubles to given number of places")
     public void roundToPlaces() {
         assertThat(round(1.111, 2), hasPlaces(2));
         assertThat(round(1.111111, 2), hasPlaces(2));
@@ -25,7 +21,6 @@ public class RoundTest {
     }
 
     @Test
-    @DisplayName("Round positive numbers up if last digit is greater than 4")
     public void roundHalfUpPositiveNumbers() {
         assertEquals(round(1.005, 2), 1.01);
         assertEquals(round(1.006, 2), 1.01);
@@ -35,7 +30,6 @@ public class RoundTest {
     }
 
     @Test
-    @DisplayName("Round negative numbers up if last digit is less than 5")
     public void roundHalfUpNegativeNumbers() {
         assertEquals(round(-0.804, 2), -0.80);
         assertEquals(round(-0.803, 2), -0.80);
@@ -46,7 +40,6 @@ public class RoundTest {
     }
 
     @Test
-    @DisplayName("Round positive numbers down if last digit is less than 5")
     public void roundHalfDownPositiveNumbers() {
         assertEquals(round(1.004, 2), 1.0);
         assertEquals(round(1.003, 2), 1.0);
@@ -56,7 +49,6 @@ public class RoundTest {
     }
 
     @Test
-    @DisplayName("Round negative numbers down if last digit is greater than 5")
     public void roundHalfDownNegativeNumbers() {
         assertEquals(round(-0.805, 2), -0.81);
         assertEquals(round(-0.806, 2), -0.81);

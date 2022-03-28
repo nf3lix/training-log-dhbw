@@ -2,8 +2,6 @@ package de.dhbw.training_log.de.session.distance;
 
 import de.dhbw.training_log.de.test_utils.ValueObjectTest;
 import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -12,8 +10,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DistanceTest {
 
@@ -24,7 +22,6 @@ public class DistanceTest {
     }};
 
     @Test
-    @DisplayName("Convert distance to a other units")
     public void convertDistanceToUnit() {
         for(final DistanceUnit testedUnit : values()) {
             compareToOtherUnits(0.0, testedUnit);
@@ -36,7 +33,6 @@ public class DistanceTest {
     }
 
     @Test
-    @DisplayName("Add distance to distance object")
     public void addDistance() {
         final Distance distance = new Distance(3.0, KILOMETERS);
         MatcherAssert.assertThat(distance.add(new Distance(2.0, KILOMETERS)), HasDistanceMatcher.hasDistance(5.0, KILOMETERS, 1e-3));
@@ -44,7 +40,6 @@ public class DistanceTest {
     }
 
     @Test
-    @DisplayName("Exception is thrown when constructing Distance Object with negative distance")
     public void throwExceptionWhenDistanceIsNegative() {
         final Distance distance = new Distance(1.0, METERS);
         assertThrows(InvalidDistance.class, () -> new Distance(-1.0, METERS));
@@ -52,7 +47,6 @@ public class DistanceTest {
     }
 
     @Test
-    @DisplayName("Distances with same values are equal")
     public void distancesWithSameValuesAreEqual() {
         final Distance distance = new Distance(1.0, METERS);
         assertEquals(distance, distance);
@@ -62,7 +56,6 @@ public class DistanceTest {
     }
 
     @Test
-    @DisplayName("Correct Value Object Behavior of class Distance")
     public void secondsValueObjectBehavior() {
         final List<Supplier<Distance>> distances = Arrays.asList(
                 () -> new Distance(1.0, METERS),
