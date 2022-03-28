@@ -56,6 +56,16 @@ public class SessionTimeTest {
     }
 
     @Test
+    public void divideSessionTime() {
+        final SessionTime sessionTime1 = new SessionTime(new Minutes(2), new Seconds(20));
+        final SessionTime sessionTime2 = new SessionTime(new Minutes(3), new Seconds(20));
+        final SessionTime sessionTime3 = new SessionTime(new Minutes(4), new Seconds(40));
+        assertThat(sessionTime1.divideBy(20.0), hasTime(0, 7));
+        assertThat(sessionTime2.divideBy(2.0), hasTime(1, 40));
+        assertThat(sessionTime3.divideBy(4.0), hasTime(1, 10));
+    }
+
+    @Test
     public void compareSessionTimes() {
         final List<SessionTime> sessionTimes = new ArrayList<>();
         sessionTimes.add(new SessionTime(new Minutes(3), new Seconds(20)));

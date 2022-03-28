@@ -48,6 +48,18 @@ public final class StandardMetrics {
         }
     }
 
+    public static final class MinSessionTimeMetric extends Metric<SessionTime, SessionTime> {
+        public MinSessionTimeMetric() {
+            super(new MIN<>());
+        }
+    }
+
+    public static final class AvgSessionTimeMetric extends Metric<SessionTime, SessionTime> {
+        public AvgSessionTimeMetric() {
+            super(new AVG<>());
+        }
+    }
+
     public static final class AvgTimePerKilometer extends Metric<Session, SessionTime> {
         public AvgTimePerKilometer() {
             super(new Pace());

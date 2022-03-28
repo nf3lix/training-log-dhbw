@@ -1,10 +1,11 @@
 package de.dhbw.training_log.de.session.time;
 
 import de.dhbw.training_log.de.metric.AggregateSubject;
+import de.dhbw.training_log.de.round.Round;
 
 import java.util.Objects;
 
-public final class SessionTime implements AggregateSubject.Summable<SessionTime>, Comparable<SessionTime> {
+public final class SessionTime implements AggregateSubject.Summable<SessionTime>, Comparable<SessionTime>, AggregateSubject.Averageable<SessionTime> {
 
     private final Integer minutes;
     private final Integer seconds;
@@ -31,10 +32,10 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
 
     @Override
     public int compareTo(SessionTime o) {
-        return this.totalSessions() - o.totalSessions();
+        return this.totalSeconds() - o.totalSeconds();
     }
 
-    public Integer totalSessions() {
+    public Integer totalSeconds() {
         return minutes * 60 + seconds;
     }
 
@@ -49,6 +50,12 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
     @Override
     public int hashCode() {
         return Objects.hash(minutes, seconds);
+    }
+
+    @Override
+    public SessionTime divideBy(Double divisor) {
+        final Integer seconds = Round.roundToInt(totalSeconds() / divisor);
+        return new SessionTime(new Minutes(0), new Seconds(seconds));
     }
 
 }
