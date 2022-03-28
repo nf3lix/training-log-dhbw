@@ -1,4 +1,17 @@
 package de.dhbw.training_log.de.metric;
 
-public class Metric {
+import java.util.List;
+
+public class Metric<T, K> {
+
+    private final AggregateFunction<T, K> aggregateFunction;
+
+    public Metric(AggregateFunction<T, K> aggregateFunction) {
+        this.aggregateFunction = aggregateFunction;
+    }
+
+    public final K compute(final List<T> list) {
+        return aggregateFunction.compute(list);
+    }
+
 }

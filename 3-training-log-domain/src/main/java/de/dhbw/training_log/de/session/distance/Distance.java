@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
-public final class Distance implements Summable<Distance>, AggregateSubject.Averageable<Distance> {
+public final class Distance implements Summable<Distance>, AggregateSubject.Averageable<Distance>, Comparable<Distance> {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
     private final Double distance;
@@ -31,6 +31,11 @@ public final class Distance implements Summable<Distance>, AggregateSubject.Aver
 
     public Double getIn(final DistanceUnit unit) {
         return Round.round(this.distance * DEFAULT_UNIT.ratioTo(unit), 6);
+    }
+
+    @Override
+    public int compareTo(Distance o) {
+        return (int) (this.getIn(DEFAULT_UNIT) - o.getIn(DEFAULT_UNIT));
     }
 
     @Override

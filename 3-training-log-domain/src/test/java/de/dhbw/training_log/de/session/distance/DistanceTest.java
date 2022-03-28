@@ -2,17 +2,18 @@ package de.dhbw.training_log.de.session.distance;
 
 import de.dhbw.training_log.de.test_utils.ValueObjectTest;
 import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DistanceTest {
 
@@ -75,6 +76,22 @@ public class DistanceTest {
         final Distance distance1 = new Distance(10.0, KILOMETERS);
         final Distance distance2 = distance1.divideBy(10.0);
         assertEquals(distance2.getIn(KILOMETERS), 1.0);
+    }
+
+    @Test
+    public void compareDistances() {
+        final List<Distance> distances = new ArrayList<>();
+        distances.add(new Distance(10.0, KILOMETERS));
+        distances.add(new Distance(11.0, KILOMETERS));
+        distances.add(new Distance(9000.0, METERS));
+        distances.add(new Distance(10000.0, METERS));
+        distances.add(new Distance(2.0, MILES));
+        final List<Distance> sortedList = distances.stream().sorted().collect(Collectors.toList());
+        assertEquals(sortedList.get(0), new Distance(2.0, MILES));
+        assertEquals(sortedList.get(1), new Distance(9000.0, METERS));
+        assertEquals(sortedList.get(2), new Distance(10.0, KILOMETERS));
+        assertEquals(sortedList.get(3), new Distance(10.0, KILOMETERS));
+        assertEquals(sortedList.get(4), new Distance(11.0, KILOMETERS));
     }
 
     private void compareToOtherUnits(final Double distanceValue, final DistanceUnit unit) {
