@@ -1,8 +1,10 @@
 package de.dhbw.training_log.de.session.time;
 
+import de.dhbw.training_log.de.metric.AggregateSubject;
+
 import java.util.Objects;
 
-public final class SessionTime {
+public final class SessionTime implements AggregateSubject.Summable<SessionTime> {
 
     private final Integer minutes;
     private final Integer seconds;
