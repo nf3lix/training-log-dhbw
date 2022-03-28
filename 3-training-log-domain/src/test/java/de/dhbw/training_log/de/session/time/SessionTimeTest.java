@@ -4,9 +4,11 @@ import de.dhbw.training_log.de.test_utils.ValueObjectTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.time.SessionTimeMatcher.hasTime;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -51,6 +53,20 @@ public class SessionTimeTest {
         final SessionTime sessionTime3 = new SessionTime(new Minutes(4), new Seconds(40));
         assertThat(sessionTime1.add(sessionTime2), hasTime(5, 40));
         assertThat(sessionTime1.add(sessionTime3), hasTime(7, 0));
+    }
+
+    @Test
+    public void compareSessionTimes() {
+        final List<SessionTime> sessionTimes = new ArrayList<>();
+        sessionTimes.add(new SessionTime(new Minutes(3), new Seconds(20)));
+        sessionTimes.add(new SessionTime(new Minutes(2), new Seconds(20)));
+        sessionTimes.add(new SessionTime(new Minutes(5), new Seconds(10)));
+        sessionTimes.add(new SessionTime(new Minutes(4), new Seconds(40)));
+        final List<SessionTime> sortedList = sessionTimes.stream().sorted().collect(Collectors.toList());
+        assertEquals(sortedList.get(0), new SessionTime(new Minutes(2), new Seconds(20)));
+        assertEquals(sortedList.get(1), new SessionTime(new Minutes(3), new Seconds(20)));
+        assertEquals(sortedList.get(2), new SessionTime(new Minutes(4), new Seconds(40)));
+        assertEquals(sortedList.get(3), new SessionTime(new Minutes(5), new Seconds(10)));
     }
 
     @Test

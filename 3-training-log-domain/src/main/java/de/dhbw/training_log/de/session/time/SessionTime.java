@@ -4,7 +4,7 @@ import de.dhbw.training_log.de.metric.AggregateSubject;
 
 import java.util.Objects;
 
-public final class SessionTime implements AggregateSubject.Summable<SessionTime> {
+public final class SessionTime implements AggregateSubject.Summable<SessionTime>, Comparable<SessionTime> {
 
     private final Integer minutes;
     private final Integer seconds;
@@ -27,6 +27,15 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
 
     public Integer seconds() {
         return seconds;
+    }
+
+    @Override
+    public int compareTo(SessionTime o) {
+        return this.totalSessions() - o.totalSessions();
+    }
+
+    public Integer totalSessions() {
+        return minutes * 60 + seconds;
     }
 
     @Override

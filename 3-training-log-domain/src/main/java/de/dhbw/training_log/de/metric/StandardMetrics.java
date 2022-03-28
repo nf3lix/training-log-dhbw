@@ -42,6 +42,12 @@ public final class StandardMetrics {
         }
     }
 
+    public static final class MaxSessionTimeMetric extends Metric<SessionTime, SessionTime> {
+        public MaxSessionTimeMetric() {
+            super(new MAX<>());
+        }
+    }
+
     public static final class AvgTimePerKilometer extends Metric<Session, SessionTime> {
         public AvgTimePerKilometer() {
             super(new Pace());
