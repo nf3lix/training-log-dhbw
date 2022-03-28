@@ -7,8 +7,15 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static de.dhbw.training_log.de.test_utils.ValueObjectTest.performValueObjectTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DescriptionTest {
+
+    @Test
+    public void stringValue() {
+        final Description description = new Description("TEST_DESCRIPTION");
+        assertEquals(description.stringValue(), "TEST_DESCRIPTION");
+    }
 
     @Test
     public void valueObjectBehavior() {
