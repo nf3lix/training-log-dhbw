@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AggregateAvgTest {
 
@@ -19,6 +20,13 @@ public class AggregateAvgTest {
         list.add(new AvgMock(6.0));
         final AvgMock avg = avgFunction.compute(list);
         assertEquals(avg.value, 5.0);
+    }
+
+    @Test
+    public void throwExceptionOnEmptyList() {
+        final AggregateFunction.AVG<AvgMock> avgFunction = new AggregateFunction.AVG<>();
+        final List<AvgMock> list = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> avgFunction.compute(list));
     }
 
     private static class AvgMock implements AggregateSubject.Averageable<AvgMock> {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AggregateMinTest {
 
@@ -39,6 +40,13 @@ public class AggregateMinTest {
         comparableList.add(new ComparableMock(3));
         final ComparableMock comparable = min.compute(comparableList);
         assertEquals(comparable.value, -3);
+    }
+
+    @Test
+    public void throwExceptionOnEmptyList() {
+        final AggregateFunction.MIN<ComparableMock> min = new AggregateFunction.MIN<>();
+        final List<ComparableMock> comparableList = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> min.compute(comparableList));
     }
 
     private static class ComparableMock implements Comparable<ComparableMock> {

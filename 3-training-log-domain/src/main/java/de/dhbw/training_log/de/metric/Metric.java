@@ -2,7 +2,7 @@ package de.dhbw.training_log.de.metric;
 
 import java.util.List;
 
-public class Metric<T, K> {
+public abstract class Metric<T, K> {
 
     private final AggregateFunction<T, K> aggregateFunction;
 

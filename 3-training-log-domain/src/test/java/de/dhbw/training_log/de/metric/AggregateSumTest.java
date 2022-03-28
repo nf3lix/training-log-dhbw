@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class AggregateSumTest {
 
     @Test
@@ -16,7 +18,14 @@ public class AggregateSumTest {
         summables.add(new SummableMock(5));
         summables.add(new SummableMock(10));
         final SummableMock all = sum.compute(summables);
-        Assertions.assertEquals(all.value, 18);
+        assertEquals(all.value, 18);
+    }
+
+    @Test
+    public void throwExceptionOnEmptyList() {
+        final AggregateFunction.SUM<SummableMock> sum = new AggregateFunction.SUM<>();
+        final List<SummableMock> summables = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> sum.compute(summables));
     }
 
     private static class SummableMock implements AggregateSubject.Summable<SummableMock> {
