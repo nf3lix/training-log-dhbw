@@ -1,17 +1,27 @@
 package de.dhbw.training_log.de.metric;
 
+import de.dhbw.training_log.de.session.Session;
+
 import java.util.List;
 
-public abstract class Metric<T, K> {
+public abstract class Metric {
 
-    private final AggregateFunction<T, K> aggregateFunction;
-
-    public Metric(AggregateFunction<T, K> aggregateFunction) {
-        this.aggregateFunction = aggregateFunction;
+    public Metric() {
     }
 
-    public final K compute(final List<T> list) {
-        return aggregateFunction.compute(list);
+    public abstract MetricResult compute(final List<Session> list);
+
+    public static class MetricResult {
+        private final Class<?> valueClass;
+        private final Object value;
+        public MetricResult(final Class<?> valueClass, final Object value) {
+            this.valueClass = valueClass;
+            this.value = value;
+        }
+
+        public Object getValue() {
+            return value;
+        }
     }
 
 }
