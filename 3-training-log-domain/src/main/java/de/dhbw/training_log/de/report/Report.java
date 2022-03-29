@@ -1,6 +1,5 @@
 package de.dhbw.training_log.de.report;
 
-import de.dhbw.training_log.de.metric.AggregateSubject;
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.session.Session;
 
@@ -12,7 +11,7 @@ public class Report {
     private final List<Session> sessionList;
     private final List<Metric> metrics;
 
-    public Report(List<Session> sessionList, List<Metric> metrics) {
+    private Report(List<Session> sessionList, List<Metric> metrics) {
         this.sessionList = sessionList;
         this.metrics = metrics;
     }
@@ -24,9 +23,6 @@ public class Report {
 
         private List<Session> sessionList;
         private final List<Metric> metrics = new ArrayList<>();
-
-        public ReportBuilder() {
-        }
 
         public CreatableReport setSessionList(final List<Session> sessionList) {
             this.sessionList = sessionList;
