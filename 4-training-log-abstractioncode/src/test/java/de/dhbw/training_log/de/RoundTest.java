@@ -3,8 +3,7 @@ package de.dhbw.training_log.de;
 import org.junit.jupiter.api.Test;
 
 import static de.dhbw.training_log.de.HasDecimalPlacesMatcher.hasPlaces;
-import static de.dhbw.training_log.de.round.Round.round;
-import static de.dhbw.training_log.de.round.Round.roundToInt;
+import static de.dhbw.training_log.de.round.Round.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -98,6 +97,20 @@ public class RoundTest {
         assertEquals(roundToInt(-1.2), -1);
         assertEquals(roundToInt(-1.1), -1);
         assertEquals(roundToInt(-1.0), -1);
+    }
+
+    @Test
+    public void roundUpToPositiveInt() {
+        for(double positiveNumber = 0.1; positiveNumber <= 1.0; positiveNumber += 0.1) {
+            assertEquals(roundUpToInt(positiveNumber), 1);
+        }
+    }
+
+    @Test
+    public void roundUpToNegativeInt() {
+        for(double positiveNumber = -0.1; positiveNumber >= -1.0; positiveNumber -= 0.1) {
+            assertEquals(roundUpToInt(positiveNumber), -1);
+        }
     }
 
 }
