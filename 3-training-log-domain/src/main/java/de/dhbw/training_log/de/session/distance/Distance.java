@@ -35,7 +35,8 @@ public final class Distance implements Summable<Distance>, AggregateSubject.Aver
 
     @Override
     public int compareTo(Distance o) {
-        return (int) (this.getIn(DEFAULT_UNIT) - o.getIn(DEFAULT_UNIT));
+        final Double diff = (this.getIn(DEFAULT_UNIT) - o.getIn(DEFAULT_UNIT));
+        return Round.roundUpToInt(diff);
     }
 
     @Override

@@ -10,8 +10,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DistanceTest {
 
@@ -85,6 +84,13 @@ public class DistanceTest {
         assertEquals(sortedList.get(2), new Distance(10.0, KILOMETERS));
         assertEquals(sortedList.get(3), new Distance(10.0, KILOMETERS));
         assertEquals(sortedList.get(4), new Distance(11.0, KILOMETERS));
+    }
+
+    @Test
+    public void compareDistancesWithDecimalShareOnly() {
+        final Distance distance1 = new Distance(0.1, METERS);
+        final Distance distance2 = new Distance(0.05, METERS);
+        assertNotEquals(0, distance1.compareTo(distance2));
     }
 
     private void compareToOtherUnits(final Double distanceValue, final DistanceUnit unit) {
