@@ -14,13 +14,17 @@ public abstract class Metric {
     public static class MetricResult {
         private final Class<?> valueClass;
         private final Object value;
-        public MetricResult(final Class<?> valueClass, final Object value) {
-            this.valueClass = valueClass;
+        public MetricResult(final Object value) {
+            this.valueClass = value.getClass();
             this.value = value;
         }
 
         public Object getValue() {
             return value;
+        }
+
+        public Class<?> getValueClass() {
+            return valueClass;
         }
     }
 

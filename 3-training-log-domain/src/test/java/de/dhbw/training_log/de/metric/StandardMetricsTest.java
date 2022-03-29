@@ -23,8 +23,10 @@ public class StandardMetricsTest {
         final TotalSessionsMetric metric = new TotalSessionsMetric();
         final List<Session> sessionList = new ArrayList<>();
         for(int listCount = 0; listCount <= 5; listCount++) {
-            assertEquals(metric.compute(sessionList).getValue(), listCount);
+            final Metric.MetricResult result = metric.compute(sessionList);
+            assertEquals(result.getValue(), listCount);
             sessionList.add(mock(Session.class));
+
         }
     }
 
