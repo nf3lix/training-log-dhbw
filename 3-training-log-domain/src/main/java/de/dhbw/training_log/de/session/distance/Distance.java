@@ -1,20 +1,20 @@
 package de.dhbw.training_log.de.session.distance;
 
-import de.dhbw.training_log.de.metric.AggregateSubject;
+import de.dhbw.training_log.de.metric.AggregateSubject.Averageable;
 import de.dhbw.training_log.de.round.Round;
 
 import java.util.Objects;
 
 import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
 
-public final class Distance implements Summable<Distance>, AggregateSubject.Averageable<Distance>, Comparable<Distance> {
+public final class Distance implements Summable<Distance>, Averageable<Distance>, Comparable<Distance> {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
     private final Double distance;
 
     public Distance(final Double distance, final DistanceUnit unit) {
         if(distance < 0) {
-            throw new InvalidDistance("Distances must always be non-negative");
+            throw new InvalidDistance("Distances must be zero or positive");
         }
         this.distance = Round.round(distance * unit.ratioTo(DEFAULT_UNIT), 6);
     }
