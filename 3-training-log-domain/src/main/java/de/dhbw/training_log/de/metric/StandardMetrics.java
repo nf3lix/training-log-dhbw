@@ -78,7 +78,7 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
-            final SessionTime maxSessionTime = new AggregateFunction.MAX<SessionTime>().compute(sessionTimes);
+            final SessionTime maxSessionTime = new AggregateFunction.MIN<SessionTime>().compute(sessionTimes);
             return new MetricResult(SessionTime.class, maxSessionTime);
         }
     }
