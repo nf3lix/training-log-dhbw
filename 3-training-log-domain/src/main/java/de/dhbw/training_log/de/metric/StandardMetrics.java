@@ -12,6 +12,7 @@ import de.dhbw.training_log.de.session.time.SessionTime;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -107,9 +108,13 @@ public final class StandardMetrics {
 
     private static <T extends Comparable<T>> Metric.MetricResult computeAggregateFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper, final AggregateFunction<T, T> aggregateFunction) {
         final List<T> itemList = sessionList.stream().map(mapper).collect(Collectors.toList());
-        final Map<T, Session> sessions = sessionList.stream().collect(Collectors.toMap(mapper, Function.identity()));
+        final Map<T, Session> sessions = sessionList.stream().collect(Collectors.toMap(mapper, Function.identity(), ignoreDuplicates()));
         final T selectedItem = aggregateFunction.compute(itemList);
         return new Metric.MetricResult(sessions.get(selectedItem));
+    }
+
+    private static <T> BinaryOperator<T> ignoreDuplicates() {
+        return (t1, t2) -> t1;
     }
 
 }

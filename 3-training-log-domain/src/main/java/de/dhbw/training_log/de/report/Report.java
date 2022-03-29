@@ -16,7 +16,12 @@ public class Report {
         this.metrics = metrics;
     }
 
-    public void compute() {
+    public List<Metric.MetricResult> generate() {
+        final List<Metric.MetricResult> results = new ArrayList<>();
+        for(Metric metric : metrics) {
+            results.add(metric.compute(sessionList));
+        }
+        return results;
     }
 
     public static class ReportBuilder {
@@ -29,7 +34,7 @@ public class Report {
             return new CreatableReport();
         }
 
-        public class CreatableReport {
+        class CreatableReport {
             private CreatableReport() { }
 
             public CreatableReport addMetric(final Metric metric) {

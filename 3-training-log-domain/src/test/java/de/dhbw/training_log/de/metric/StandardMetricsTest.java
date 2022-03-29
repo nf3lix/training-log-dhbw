@@ -46,6 +46,21 @@ public class StandardMetricsTest {
     }
 
     @Test
+    public void ignoreDuplicatesInMinMaxDistanceMetric() {
+        final MaxDistanceMetric maxMetric = new MaxDistanceMetric();
+        final MinDistanceMetric minMetric = new MinDistanceMetric();
+        final List<Session> sessions = new ArrayList<>();
+        sessions.add(sessionMockWithDistance(new Distance(900.0, METERS)));
+        sessions.add(sessionMockWithDistance(new Distance(900.0, METERS)));
+        sessions.add(sessionMockWithDistance(new Distance(800.0, METERS)));
+        sessions.add(sessionMockWithDistance(new Distance(800.0, METERS)));
+        final Session maxResult = ((Session) maxMetric.compute(sessions).getValue());
+        final Session minResult = ((Session) minMetric.compute(sessions).getValue());
+        assertEquals(maxResult.distance(), new Distance(900.0, METERS));
+        assertEquals(minResult.distance(), new Distance(800.0, METERS));
+    }
+
+    @Test
     public void computeAvgDistanceMetric() {
         final AvgDistanceMetric avgDistanceMetric = new AvgDistanceMetric();
         final List<Session> sessions = new ArrayList<>();
@@ -68,6 +83,21 @@ public class StandardMetricsTest {
         final Session maxResult = (Session) maxMetric.compute(sessions).getValue();
         assertEquals(minResult.time(), new SessionTime(new Minutes(1), new Seconds(20)));
         assertEquals(maxResult.time(), new SessionTime(new Minutes(2), new Seconds(0)));
+    }
+
+    @Test
+    public void ignoreDuplicatesInMinMaxSessionTimeMetric() {
+        final MinSessionTimeMetric minMetric = new MinSessionTimeMetric();
+        final MaxSessionTimeMetric maxMetric = new MaxSessionTimeMetric();
+        final List<Session> sessions = new ArrayList<>();
+        sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(40))));
+        sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(40))));
+        sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(20))));
+        sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(20))));
+        final Session minResult = (Session) minMetric.compute(sessions).getValue();
+        final Session maxResult = (Session) maxMetric.compute(sessions).getValue();
+        assertEquals(minResult.time(), new SessionTime(new Minutes(1), new Seconds(20)));
+        assertEquals(maxResult.time(), new SessionTime(new Minutes(1), new Seconds(40)));
     }
 
     @Test
