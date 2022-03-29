@@ -1,5 +1,8 @@
 package de.dhbw.training_log.de.metric;
 
+import de.dhbw.training_log.de.metric.AggregateFunction.AVG;
+import de.dhbw.training_log.de.metric.AggregateFunction.MAX;
+import de.dhbw.training_log.de.metric.AggregateFunction.MIN;
 import de.dhbw.training_log.de.round.Round;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;
@@ -7,12 +10,12 @@ import de.dhbw.training_log.de.session.time.Minutes;
 import de.dhbw.training_log.de.session.time.Seconds;
 import de.dhbw.training_log.de.session.time.SessionTime;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.KILOMETERS;
-import static de.dhbw.training_log.de.session.distance.DistanceUnit.METERS;
 
 public final class StandardMetrics {
 
@@ -23,27 +26,13 @@ public final class StandardMetrics {
         }
     }
 
-    public static final class MaxDistanceSession extends Metric {
-        @Override
-        public MetricResult compute(List<Session> list) {
-            final Iterator<Session> iterator = list.iterator();
-            Session currentMaxSession = iterator.next();
-            while (iterator.hasNext()) {
-                final Session nextSession = iterator.next();
-                if(currentMaxSession.distance().getIn(METERS) < nextSession.distance().getIn(METERS)) {
-                    currentMaxSession = nextSession;
-                }
-            }
-            return new MetricResult(currentMaxSession);
-        }
-    }
-
     public static final class MaxDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<Distance> distances = list.stream().map(Session::distance).collect(Collectors.toList());
-            final Distance maxDistance = new AggregateFunction.MAX<Distance>().compute(distances);
-            return new MetricResult(maxDistance);
+            final Map<Distance, Session> map = list.stream().collect(Collectors.toMap(Session::distance, Function.identity()));
+            final Distance maxDistance = new MAX<Distance>().compute(distances);
+            return new MetricResult(map.get(maxDistance));
         }
     }
 
@@ -51,8 +40,9 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<Distance> distances = list.stream().map(Session::distance).collect(Collectors.toList());
-            final Distance maxDistance = new AggregateFunction.MIN<Distance>().compute(distances);
-            return new MetricResult(maxDistance);
+            final Map<Distance, Session> sessions = list.stream().collect(Collectors.toMap(Session::distance, Function.identity()));
+            final Distance minDistance = new MIN<Distance>().compute(distances);
+            return new MetricResult(sessions.get(minDistance));
         }
     }
 
@@ -60,7 +50,7 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<Distance> distances = list.stream().map(Session::distance).collect(Collectors.toList());
-            final Distance avgDistance = new AggregateFunction.AVG<Distance>().compute(distances);
+            final Distance avgDistance = new AVG<Distance>().compute(distances);
             return new MetricResult(avgDistance);
         }
     }
@@ -69,8 +59,9 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
-            final SessionTime maxSessionTime = new AggregateFunction.MAX<SessionTime>().compute(sessionTimes);
-            return new MetricResult(maxSessionTime);
+            final Map<SessionTime, Session> sessions = list.stream().collect(Collectors.toMap(Session::time, Function.identity()));
+            final SessionTime maxSessionTime = new MAX<SessionTime>().compute(sessionTimes);
+            return new MetricResult(sessions.get(maxSessionTime));
         }
     }
 
@@ -78,8 +69,9 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
-            final SessionTime maxSessionTime = new AggregateFunction.MIN<SessionTime>().compute(sessionTimes);
-            return new MetricResult(maxSessionTime);
+            final Map<SessionTime, Session> sessions = list.stream().collect(Collectors.toMap(Session::time, Function.identity()));
+            final SessionTime minSessionTime = new MIN<SessionTime>().compute(sessionTimes);
+            return new MetricResult(sessions.get(minSessionTime));
         }
     }
 
@@ -87,7 +79,7 @@ public final class StandardMetrics {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
-            final SessionTime avgSessionTime = new AggregateFunction.AVG<SessionTime>().compute(sessionTimes);
+            final SessionTime avgSessionTime = new AVG<SessionTime>().compute(sessionTimes);
             return new MetricResult(avgSessionTime);
         }
     }

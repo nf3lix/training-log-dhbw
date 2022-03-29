@@ -39,8 +39,10 @@ public class StandardMetricsTest {
         sessions.add(sessionMockWithDistance(new Distance(800.0, METERS)));
         sessions.add(sessionMockWithDistance(new Distance(1.0, MILES)));
         sessions.add(sessionMockWithDistance(new Distance(1.0, KILOMETERS)));
-        assertEquals(maxMetric.compute(sessions).getValue(), new Distance(1.0, MILES));
-        assertEquals(minMetric.compute(sessions).getValue(), new Distance(800.0, METERS));
+        final Session maxResult = ((Session) maxMetric.compute(sessions).getValue());
+        final Session minResult = ((Session) minMetric.compute(sessions).getValue());
+        assertEquals(maxResult.distance(), new Distance(1.0, MILES));
+        assertEquals(minResult.distance(), new Distance(800.0, METERS));
     }
 
     @Test
@@ -62,8 +64,10 @@ public class StandardMetricsTest {
         sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(20))));
         sessions.add(sessionMockWithTime(new SessionTime(new Minutes(2), new Seconds(0))));
         sessions.add(sessionMockWithTime(new SessionTime(new Minutes(1), new Seconds(50))));
-        assertEquals(minMetric.compute(sessions).getValue(), new SessionTime(new Minutes(1), new Seconds(20)));
-        assertEquals(maxMetric.compute(sessions).getValue(), new SessionTime(new Minutes(2), new Seconds(0)));
+        final Session minResult = (Session) minMetric.compute(sessions).getValue();
+        final Session maxResult = (Session) maxMetric.compute(sessions).getValue();
+        assertEquals(minResult.time(), new SessionTime(new Minutes(1), new Seconds(20)));
+        assertEquals(maxResult.time(), new SessionTime(new Minutes(2), new Seconds(0)));
     }
 
     @Test
