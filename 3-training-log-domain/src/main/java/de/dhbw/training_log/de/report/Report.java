@@ -10,17 +10,21 @@ public class Report {
 
     private final List<Session> sessionList;
     private final List<Metric> metrics;
+    private final List<Metric.MetricResult> results = new ArrayList<>();
 
     private Report(List<Session> sessionList, List<Metric> metrics) {
         this.sessionList = sessionList;
         this.metrics = metrics;
+        generateResults();
     }
 
-    public List<Metric.MetricResult> generate() {
-        final List<Metric.MetricResult> results = new ArrayList<>();
+    private void generateResults() {
         for(Metric metric : metrics) {
             results.add(metric.compute(sessionList));
         }
+    }
+
+    public List<Metric.MetricResult> results() {
         return results;
     }
 
