@@ -30,8 +30,8 @@ public class ReadSessionServiceTest {
     @Test
     public void displayEachSessionInRepository() {
         final List<Session> sessionList = new ArrayList<>();
-        final Session session1 = sessionWithId("af2f909b-50cb-4fc5-aceb-c9fdc4699c27");
-        final Session session2 = sessionWithId("569e2f72-f0f6-4a88-b701-af38e948742b");
+        final Session session1 = mock(Session.class);
+        final Session session2 = mock(Session.class);
         sessionList.add(session1);
         sessionList.add(session2);
         when(repository.getAll()).thenReturn(sessionList.listIterator());
