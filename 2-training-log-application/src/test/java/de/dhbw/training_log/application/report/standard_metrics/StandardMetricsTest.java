@@ -1,6 +1,6 @@
-package de.dhbw.training_log.application.report;
+package de.dhbw.training_log.application.report.standard_metrics;
 
-import de.dhbw.training_log.application.report.StandardMetrics.*;
+import de.dhbw.training_log.application.report.standard_metrics.BasicSessionMetrics.AvgTimePerKilometer;
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;
@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.dhbw.training_log.application.report.standard_metrics.BasicSessionMetrics.*;
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
+import static de.dhbw.training_log.de.session.distance.DistanceUnit.KILOMETERS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

@@ -8,8 +8,6 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.dhbw.training_log.application.report.StandardMetrics.*;
-
 public class GenerateReportService {
 
     private final SessionRepository repository;
@@ -22,7 +20,7 @@ public class GenerateReportService {
         final List<Session> sessionList = new ArrayList<>();
         repository.getAll().forEachRemaining(sessionList::add);
         final Report report = new Report.ReportBuilder()
-                .setSessionList(sessionList)
+                .setSessionList(sessionList).build(); /*
                 .addMetric(new TotalSessionsMetric())
                 .addMetric(new MaxDistanceMetric())
                 .addMetric(new MinDistanceMetric())
@@ -31,7 +29,7 @@ public class GenerateReportService {
                 .addMetric(new MinSessionTimeMetric())
                 .addMetric(new AvgSessionTimeMetric())
                 .addMetric(new AvgTimePerKilometer())
-                .build();
+                .build();*/
         return report.results();
     }
 

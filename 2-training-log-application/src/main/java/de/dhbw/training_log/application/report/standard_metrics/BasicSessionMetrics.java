@@ -1,12 +1,9 @@
-package de.dhbw.training_log.application.report;
+package de.dhbw.training_log.application.report.standard_metrics;
 
 import de.dhbw.training_log.application.report.metric_result.DistanceMetricResult;
 import de.dhbw.training_log.application.report.metric_result.SessionMetricResult;
 import de.dhbw.training_log.application.report.metric_result.SessionTimeMetricResult;
 import de.dhbw.training_log.de.aggregate_function.AggregateFunction;
-import de.dhbw.training_log.de.aggregate_function.AggregateFunction.AVG;
-import de.dhbw.training_log.de.aggregate_function.AggregateFunction.MAX;
-import de.dhbw.training_log.de.aggregate_function.AggregateFunction.MIN;
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.round.Round;
 import de.dhbw.training_log.de.session.Session;
@@ -23,62 +20,63 @@ import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.KILOMETERS;
 
-public final class StandardMetrics {
+class BasicSessionMetrics {
 
-    public static final class TotalSessionsMetric extends Metric {
+
+    static final class TotalSessionsMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return list::size;
         }
     }
 
-    public static final class MaxDistanceMetric extends Metric {
+    static final class MaxDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return computeMaximumFor(list, Session::distance);
         }
     }
 
-    public static final class MinDistanceMetric extends Metric {
+    static final class MinDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return computeMinimumFor(list, Session::distance);
         }
     }
 
-    public static final class AvgDistanceMetric extends Metric {
+    static final class AvgDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<Distance> distances = list.stream().map(Session::distance).collect(Collectors.toList());
-            final Distance avgDistance = new AVG<Distance>().compute(distances);
+            final Distance avgDistance = new AggregateFunction.AVG<Distance>().compute(distances);
             return new DistanceMetricResult("Average distance", avgDistance);
         }
     }
 
-    public static final class MaxSessionTimeMetric extends Metric {
+    static final class MaxSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return computeMaximumFor(list, Session::time);
         }
     }
 
-    public static final class MinSessionTimeMetric extends Metric {
+    static final class MinSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return computeMinimumFor(list, Session::time);
         }
     }
 
-    public static final class AvgSessionTimeMetric extends Metric {
+    static final class AvgSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
-            final SessionTime avgSessionTime = new AVG<SessionTime>().compute(sessionTimes);
+            final SessionTime avgSessionTime = new AggregateFunction.AVG<SessionTime>().compute(sessionTimes);
             return new SessionTimeMetricResult("Average session time", avgSessionTime);
         }
     }
 
-    public static final class AvgTimePerKilometer extends Metric {
+    static final class AvgTimePerKilometer extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
             return new SessionTimeMetricResult("Avg time per kilometer", timePerKilometer(list));
@@ -104,11 +102,11 @@ public final class StandardMetrics {
     }
 
     private static <T extends Comparable<T>> Metric.MetricResult computeMaximumFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
-        return computeAggregateFor(sessionList, mapper, new MAX<>());
+        return computeAggregateFor(sessionList, mapper, new AggregateFunction.MAX<>());
     }
 
     private static <T extends Comparable<T>> Metric.MetricResult computeMinimumFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
-        return computeAggregateFor(sessionList, mapper, new MIN<>());
+        return computeAggregateFor(sessionList, mapper, new AggregateFunction.MIN<>());
     }
 
     private static <T extends Comparable<T>> Metric.MetricResult computeAggregateFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper, final AggregateFunction<T, T> aggregateFunction) {
@@ -121,5 +119,6 @@ public final class StandardMetrics {
     private static <T> BinaryOperator<T> ignoreDuplicates() {
         return (t1, t2) -> t1;
     }
+
 
 }
