@@ -8,7 +8,7 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.dhbw.training_log.de.metric.StandardMetrics.*;
+import static de.dhbw.training_log.application.report.StandardMetrics.*;
 
 public class GenerateReportService {
 

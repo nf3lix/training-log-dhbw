@@ -1,5 +1,7 @@
-package de.dhbw.training_log.de.metric;
+package de.dhbw.training_log.application.report;
 
+import de.dhbw.training_log.application.report.StandardMetrics.*;
+import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;
 import de.dhbw.training_log.de.session.time.Minutes;
@@ -10,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.dhbw.training_log.de.metric.StandardMetrics.*;
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
