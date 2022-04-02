@@ -1,5 +1,6 @@
-package de.dhbw.training_log.de.metric;
+package de.dhbw.training_log.de.aggregate_function;
 
+import de.dhbw.training_log.de.aggregate_function.AggregateFunction;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

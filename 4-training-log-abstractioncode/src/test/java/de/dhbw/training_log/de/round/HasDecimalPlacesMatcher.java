@@ -1,4 +1,4 @@
-package de.dhbw.training_log.de;
+package de.dhbw.training_log.de.round;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;

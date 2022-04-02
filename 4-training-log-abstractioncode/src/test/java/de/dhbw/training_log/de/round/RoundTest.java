@@ -1,8 +1,8 @@
-package de.dhbw.training_log.de;
+package de.dhbw.training_log.de.round;
 
 import org.junit.jupiter.api.Test;
 
-import static de.dhbw.training_log.de.HasDecimalPlacesMatcher.hasPlaces;
+import static de.dhbw.training_log.de.round.HasDecimalPlacesMatcher.hasPlaces;
 import static de.dhbw.training_log.de.round.Round.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;

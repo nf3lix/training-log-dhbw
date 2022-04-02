@@ -1,8 +1,9 @@
 package de.dhbw.training_log.de.metric;
 
-import de.dhbw.training_log.de.metric.AggregateFunction.AVG;
-import de.dhbw.training_log.de.metric.AggregateFunction.MAX;
-import de.dhbw.training_log.de.metric.AggregateFunction.MIN;
+import de.dhbw.training_log.de.aggregate_function.AggregateFunction;
+import de.dhbw.training_log.de.aggregate_function.AggregateFunction.AVG;
+import de.dhbw.training_log.de.aggregate_function.AggregateFunction.MAX;
+import de.dhbw.training_log.de.aggregate_function.AggregateFunction.MIN;
 import de.dhbw.training_log.de.round.Round;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;

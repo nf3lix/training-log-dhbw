@@ -32,6 +32,7 @@ public class GenerateReportService {
                 .addMetric(new AvgSessionTimeMetric())
                 .addMetric(new AvgTimePerKilometer())
                 .build();
+        return report.results();
     }
 
 }

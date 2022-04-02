@@ -1,11 +1,11 @@
 package de.dhbw.training_log.de.session.distance;
 
-import de.dhbw.training_log.de.metric.AggregateSubject.Averageable;
+import de.dhbw.training_log.de.aggregate_function.AggregateSubject.Averageable;
 import de.dhbw.training_log.de.round.Round;
 
 import java.util.Objects;
 
-import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
+import static de.dhbw.training_log.de.aggregate_function.AggregateSubject.Summable;
 
 public final class Distance implements Summable<Distance>, Averageable<Distance>, Comparable<Distance> {
 

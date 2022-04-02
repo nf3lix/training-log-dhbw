@@ -1,4 +1,4 @@
-package de.dhbw.training_log.de.metric;
+package de.dhbw.training_log.de.aggregate_function;
 
 public interface AggregateSubject {
 

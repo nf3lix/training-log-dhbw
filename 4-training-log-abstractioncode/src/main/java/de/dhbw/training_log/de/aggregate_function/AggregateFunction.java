@@ -1,11 +1,11 @@
-package de.dhbw.training_log.de.metric;
+package de.dhbw.training_log.de.aggregate_function;
 
-import de.dhbw.training_log.de.metric.AggregateSubject.Averageable;
+import de.dhbw.training_log.de.aggregate_function.AggregateSubject.Averageable;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static de.dhbw.training_log.de.metric.AggregateSubject.Summable;
+import static de.dhbw.training_log.de.aggregate_function.AggregateSubject.Summable;
 
 public abstract class AggregateFunction<T, K> {
 

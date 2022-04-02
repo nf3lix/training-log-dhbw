@@ -1,6 +1,6 @@
 package de.dhbw.training_log.de.session.time;
 
-import de.dhbw.training_log.de.metric.AggregateSubject;
+import de.dhbw.training_log.de.aggregate_function.AggregateSubject;
 import de.dhbw.training_log.de.round.Round;
 
 import java.util.Objects;
