@@ -38,7 +38,7 @@ public class Report {
             return new CreatableReport();
         }
 
-        class CreatableReport {
+        public class CreatableReport {
             private CreatableReport() { }
 
             public CreatableReport addMetric(final Metric metric) {

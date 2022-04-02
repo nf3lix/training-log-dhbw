@@ -41,14 +41,4 @@ public class ReadSessionServiceTest {
         spy(service).displaySession(session2);
     }
 
-    private Session sessionWithId(final String uuid) {
-        return new Session(
-                new SessionId(UUID.fromString(uuid)),
-                new SessionDate(new Year(2020), new Month(1), new DayOfMonth(1)),
-                new Distance(10.0, KILOMETERS),
-                new SessionTime(new Minutes(35), new Seconds(30)),
-                new Description("DESCRIPTION"),
-                SessionType.OTHER);
-    }
-
 }
