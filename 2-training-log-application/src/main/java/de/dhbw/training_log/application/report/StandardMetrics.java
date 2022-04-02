@@ -1,5 +1,8 @@
 package de.dhbw.training_log.application.report;
 
+import de.dhbw.training_log.application.report.metric_result.DistanceMetricResult;
+import de.dhbw.training_log.application.report.metric_result.SessionMetricResult;
+import de.dhbw.training_log.application.report.metric_result.SessionTimeMetricResult;
 import de.dhbw.training_log.de.aggregate_function.AggregateFunction;
 import de.dhbw.training_log.de.aggregate_function.AggregateFunction.AVG;
 import de.dhbw.training_log.de.aggregate_function.AggregateFunction.MAX;
@@ -25,7 +28,7 @@ public final class StandardMetrics {
     public static final class TotalSessionsMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return new MetricResult(list.size());
+            return list::size;
         }
     }
 
@@ -48,7 +51,7 @@ public final class StandardMetrics {
         public MetricResult compute(List<Session> list) {
             final List<Distance> distances = list.stream().map(Session::distance).collect(Collectors.toList());
             final Distance avgDistance = new AVG<Distance>().compute(distances);
-            return new MetricResult(avgDistance);
+            return new DistanceMetricResult("Average distance", avgDistance);
         }
     }
 
@@ -71,14 +74,14 @@ public final class StandardMetrics {
         public MetricResult compute(List<Session> list) {
             final List<SessionTime> sessionTimes = list.stream().map(Session::time).collect(Collectors.toList());
             final SessionTime avgSessionTime = new AVG<SessionTime>().compute(sessionTimes);
-            return new MetricResult(avgSessionTime);
+            return new SessionTimeMetricResult("Average session time", avgSessionTime);
         }
     }
 
     public static final class AvgTimePerKilometer extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return new MetricResult(timePerKilometer(list));
+            return new SessionTimeMetricResult("Avg time per kilometer", timePerKilometer(list));
         }
 
         private SessionTime timePerKilometer(final List<Session> sessionList) {
@@ -112,7 +115,7 @@ public final class StandardMetrics {
         final List<T> itemList = sessionList.stream().map(mapper).collect(Collectors.toList());
         final Map<T, Session> sessions = sessionList.stream().collect(Collectors.toMap(mapper, Function.identity(), ignoreDuplicates()));
         final T selectedItem = aggregateFunction.compute(itemList);
-        return new Metric.MetricResult(sessions.get(selectedItem));
+        return new SessionMetricResult("TODO", sessions.get(selectedItem));
     }
 
     private static <T> BinaryOperator<T> ignoreDuplicates() {
