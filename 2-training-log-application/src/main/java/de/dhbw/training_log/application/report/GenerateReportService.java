@@ -1,5 +1,6 @@
 package de.dhbw.training_log.application.report;
 
+import de.dhbw.training_log.application.report.standard_metrics.StandardMetrics;
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.report.Report;
 import de.dhbw.training_log.de.session.Session;
@@ -20,16 +21,8 @@ public class GenerateReportService {
         final List<Session> sessionList = new ArrayList<>();
         repository.getAll().forEachRemaining(sessionList::add);
         final Report report = new Report.ReportBuilder()
-                .setSessionList(sessionList).build(); /*
-                .addMetric(new TotalSessionsMetric())
-                .addMetric(new MaxDistanceMetric())
-                .addMetric(new MinDistanceMetric())
-                .addMetric(new AvgDistanceMetric())
-                .addMetric(new MaxSessionTimeMetric())
-                .addMetric(new MinSessionTimeMetric())
-                .addMetric(new AvgSessionTimeMetric())
-                .addMetric(new AvgTimePerKilometer())
-                .build();*/
+                .setSessionList(sessionList)
+                .addAllMetrics(StandardMetrics.all()).build();
         return report.results();
     }
 

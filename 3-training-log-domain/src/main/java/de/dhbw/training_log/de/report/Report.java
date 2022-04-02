@@ -4,6 +4,7 @@ import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.session.Session;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Report {
@@ -38,11 +39,16 @@ public class Report {
             return new CreatableReport();
         }
 
-        public class CreatableReport {
+        public class CreatableReport extends ReportBuilder {
             private CreatableReport() { }
 
             public CreatableReport addMetric(final Metric metric) {
                 ReportBuilder.this.metrics.add(metric);
+                return this;
+            }
+
+            public CreatableReport addAllMetrics(final Collection<Metric> metricList) {
+                ReportBuilder.this.metrics.addAll(metricList);
                 return this;
             }
 

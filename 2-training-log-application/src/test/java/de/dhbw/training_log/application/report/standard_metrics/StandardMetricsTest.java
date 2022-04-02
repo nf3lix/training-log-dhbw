@@ -10,7 +10,9 @@ import de.dhbw.training_log.de.session.time.SessionTime;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static de.dhbw.training_log.application.report.standard_metrics.BasicSessionMetrics.*;
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
@@ -29,7 +31,6 @@ public class StandardMetricsTest {
             final Metric.MetricResult result = metric.compute(sessionList);
             assertEquals(result.result(), listCount);
             sessionList.add(mock(Session.class));
-
         }
     }
 
