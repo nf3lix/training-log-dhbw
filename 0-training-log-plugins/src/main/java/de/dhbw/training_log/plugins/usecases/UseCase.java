@@ -1,6 +1,7 @@
 package de.dhbw.training_log.plugins.usecases;
 
 import de.dhbw.training_log.plugins.usecases.create_session.CreateSession;
+import de.dhbw.training_log.plugins.usecases.generate_report.GenerateReport;
 import de.dhbw.training_log.plugins.usecases.read_session.ReadSession;
 import de.dhbw.training_log.de.session.SessionRepository;
 
@@ -11,7 +12,8 @@ import static java.util.Arrays.stream;
 public enum UseCase {
 
     CREATE_SESSION("1","Create new training session", new CreateSession()),
-    READ_SESSION("2", "Show all training sessions", new ReadSession());
+    READ_SESSION("2", "Show all training sessions", new ReadSession()),
+    GENERATE_REPORT("3", "Generate Report", new GenerateReport());
 
     private final String mnemonic;
     private final String useCaseDescription;

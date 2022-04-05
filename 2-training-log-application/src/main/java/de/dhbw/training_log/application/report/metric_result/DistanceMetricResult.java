@@ -14,6 +14,11 @@ public class DistanceMetricResult implements Metric.MetricResult {
     }
 
     @Override
+    public String name() {
+        return metricName;
+    }
+
+    @Override
     public Distance result() {
         return distance;
     }

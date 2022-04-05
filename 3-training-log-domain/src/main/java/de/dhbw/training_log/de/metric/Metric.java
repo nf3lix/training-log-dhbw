@@ -9,6 +9,7 @@ public abstract class Metric {
     public abstract MetricResult compute(final List<Session> list);
 
     public interface MetricResult {
+        String name();
         Object result();
     }
 

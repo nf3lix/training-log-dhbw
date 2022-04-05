@@ -26,7 +26,17 @@ class BasicSessionMetrics {
     static final class TotalSessionsMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return list::size;
+            return new MetricResult() {
+                @Override
+                public String name() {
+                    return "Number of sessions";
+                }
+
+                @Override
+                public Object result() {
+                    return list.size();
+                }
+            };
         }
     }
 

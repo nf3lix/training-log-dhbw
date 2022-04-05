@@ -14,6 +14,11 @@ public class SessionTimeMetricResult implements Metric.MetricResult {
     }
 
     @Override
+    public String name() {
+        return metricName;
+    }
+
+    @Override
     public SessionTime result() {
         return sessionTime;
     }
