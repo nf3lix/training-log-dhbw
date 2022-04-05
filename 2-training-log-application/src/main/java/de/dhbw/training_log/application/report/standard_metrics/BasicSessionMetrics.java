@@ -43,14 +43,14 @@ class BasicSessionMetrics {
     static final class MaxDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMaximumFor(list, Session::distance);
+            return computeMaximumFor("Max distance", list, Session::distance);
         }
     }
 
     static final class MinDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMinimumFor(list, Session::distance);
+            return computeMinimumFor("Min distance", list, Session::distance);
         }
     }
 
@@ -66,14 +66,14 @@ class BasicSessionMetrics {
     static final class MaxSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMaximumFor(list, Session::time);
+            return computeMaximumFor("Max session time", list, Session::time);
         }
     }
 
     static final class MinSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMinimumFor(list, Session::time);
+            return computeMinimumFor("Min session time", list, Session::time);
         }
     }
 
@@ -111,19 +111,19 @@ class BasicSessionMetrics {
 
     }
 
-    private static <T extends Comparable<T>> Metric.MetricResult computeMaximumFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
-        return computeAggregateFor(sessionList, mapper, new AggregateFunction.MAX<>());
+    private static <T extends Comparable<T>> Metric.MetricResult computeMaximumFor(final String metricName, final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
+        return computeAggregateFor(metricName, sessionList, mapper, new AggregateFunction.MAX<>());
     }
 
-    private static <T extends Comparable<T>> Metric.MetricResult computeMinimumFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
-        return computeAggregateFor(sessionList, mapper, new AggregateFunction.MIN<>());
+    private static <T extends Comparable<T>> Metric.MetricResult computeMinimumFor(final String metricName, final List<Session> sessionList, final Function<? super Session, ? extends T> mapper) {
+        return computeAggregateFor(metricName, sessionList, mapper, new AggregateFunction.MIN<>());
     }
 
-    private static <T extends Comparable<T>> Metric.MetricResult computeAggregateFor(final List<Session> sessionList, final Function<? super Session, ? extends T> mapper, final AggregateFunction<T, T> aggregateFunction) {
+    private static <T extends Comparable<T>> Metric.MetricResult computeAggregateFor(final String metricName, final List<Session> sessionList, final Function<? super Session, ? extends T> mapper, final AggregateFunction<T, T> aggregateFunction) {
         final List<T> itemList = sessionList.stream().map(mapper).collect(Collectors.toList());
         final Map<T, Session> sessions = sessionList.stream().collect(Collectors.toMap(mapper, Function.identity(), ignoreDuplicates()));
         final T selectedItem = aggregateFunction.compute(itemList);
-        return new SessionMetricResult("TODO", sessions.get(selectedItem));
+        return new SessionMetricResult(metricName, sessions.get(selectedItem));
     }
 
     private static <T> BinaryOperator<T> ignoreDuplicates() {
