@@ -37,7 +37,7 @@ class BasicSessionMetrics {
     static final class MinDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMinimumFor("Min distance", list, Session::distance);
+            return computeMinimumFor("Session with min distance", list, Session::distance);
         }
     }
 
@@ -53,14 +53,14 @@ class BasicSessionMetrics {
     static final class MaxSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMaximumFor("Max session time", list, Session::time);
+            return computeMaximumFor("Session with max session time", list, Session::time);
         }
     }
 
     static final class MinSessionTimeMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMinimumFor("Min session time", list, Session::time);
+            return computeMinimumFor("Session with min session time", list, Session::time);
         }
     }
 
