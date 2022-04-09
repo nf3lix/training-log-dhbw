@@ -1,9 +1,9 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.de.Session;
-import de.dhbw.training_log.de.description.Description;
-import de.dhbw.training_log.de.training_session_id.SessionId;
+import de.dhbw.training_log.de.session.Session;
+import de.dhbw.training_log.de.session.description.Description;
+import de.dhbw.training_log.de.session.training_session_id.SessionId;
 
 public class SessionEntityMapper implements SessionResourceMapper<SessionResource, Session> {
 
@@ -12,7 +12,8 @@ public class SessionEntityMapper implements SessionResourceMapper<SessionResourc
     private final SessionDateMapper sessionDateMapper = new SessionDateMapper();
 
     @Override
-    public SessionResource toResource(Session session) {
+    public SessionResource toResource(Object domainModelObject) {
+        final Session session = (Session) domainModelObject;
         return new SessionResource(
                 session.id().uuid(),
                 sessionDateMapper.toResource(session.date()),

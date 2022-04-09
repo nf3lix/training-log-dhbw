@@ -1,10 +1,10 @@
 package de.dhbw.training_log.adapters.mapper;
 
 import de.dhbw.training_log.adapters.resource.SessionDateResource;
-import de.dhbw.training_log.de.session_date.SessionDate;
+import de.dhbw.training_log.de.session.session_date.SessionDate;
 import org.junit.jupiter.api.Test;
 
-import static de.dhbw.training_log.de.session_date.SessionDate.*;
+import static de.dhbw.training_log.de.session.session_date.SessionDate.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SessionDateMapperTest {

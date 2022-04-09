@@ -1,6 +1,6 @@
 package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.de.training_session_type.SessionType;
+import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

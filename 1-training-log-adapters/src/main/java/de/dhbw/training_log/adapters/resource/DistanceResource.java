@@ -1,6 +1,6 @@
 package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.de.distance.DistanceUnit;
+import de.dhbw.training_log.de.session.distance.DistanceUnit;
 
 public final class DistanceResource {
 

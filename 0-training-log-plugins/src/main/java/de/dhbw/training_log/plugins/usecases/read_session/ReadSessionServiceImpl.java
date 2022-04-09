@@ -3,8 +3,8 @@ package de.dhbw.training_log.plugins.usecases.read_session;
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.application.crud_training_session.ReadSessionService;
-import de.dhbw.training_log.de.Session;
-import de.dhbw.training_log.de.SessionRepository;
+import de.dhbw.training_log.de.session.Session;
+import de.dhbw.training_log.de.session.SessionRepository;
 
 public class ReadSessionServiceImpl extends ReadSessionService {
 

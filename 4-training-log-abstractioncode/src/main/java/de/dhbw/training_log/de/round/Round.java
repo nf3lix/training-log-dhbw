@@ -19,4 +19,14 @@ public final class Round {
         return decimal.setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 
+    public static Integer roundToInt(final Double value) {
+        BigDecimal decimal = new BigDecimal(Double.toString(value));
+        return (int) decimal.setScale(0, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    public static Integer roundUpToInt(final Double value) {
+        BigDecimal decimal = new BigDecimal(Double.toString(value));
+        return (int) decimal.setScale(0, RoundingMode.UP).doubleValue();
+    }
+
 }

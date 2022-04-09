@@ -1,8 +1,7 @@
 package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.de.training_session_type.SessionType;
+import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 public final class SessionResource {
