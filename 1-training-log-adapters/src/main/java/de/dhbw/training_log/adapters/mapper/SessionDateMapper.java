@@ -11,11 +11,12 @@ import static de.dhbw.training_log.de.session.session_date.SessionDate.*;
 public class SessionDateMapper implements SessionResourceMapper<SessionDateResource, SessionDate> {
 
     @Override
-    public SessionDateResource toResource(SessionDate domainModelObject) {
+    public SessionDateResource toResource(Object domainModelObject) {
+        final SessionDate sessionDate = (SessionDate) domainModelObject;
         final LocalDate localDate = LocalDate.of(
-                domainModelObject.year().value(),
-                domainModelObject.month().value(),
-                domainModelObject.day().value());
+                sessionDate.year().value(),
+                sessionDate.month().value(),
+                sessionDate.day().value());
         final String formattedDate = localDate.format(DateTimeFormatter.ofPattern(SessionDateResource.DATE_FORMAT));
         return new SessionDateResource(formattedDate);
     }

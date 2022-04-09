@@ -9,7 +9,8 @@ public class DistanceMapper implements SessionResourceMapper<DistanceResource, D
     private static final DistanceUnit RESOURCE_UNIT = DistanceUnit.METERS;
 
     @Override
-    public DistanceResource toResource(Distance distance) {
+    public DistanceResource toResource(Object domainModelObject) {
+        final Distance distance = (Distance) domainModelObject;
         return new DistanceResource(distance.getIn(RESOURCE_UNIT) + " " + RESOURCE_UNIT.name());
     }
 
