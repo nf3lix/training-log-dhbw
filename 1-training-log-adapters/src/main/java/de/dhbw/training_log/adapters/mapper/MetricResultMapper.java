@@ -12,7 +12,7 @@ public class MetricResultMapper implements SessionResourceMapper<MetricResultRes
 
     @Override
     public Metric.MetricResult toDomainModel(MetricResultResource resource) {
-        return null; // TODO
+        return new Metric.MetricResult(resource.getMetricName(), resource.getResult());
     }
 
 }

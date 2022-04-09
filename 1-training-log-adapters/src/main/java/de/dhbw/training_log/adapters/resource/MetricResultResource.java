@@ -14,6 +14,14 @@ public class MetricResultResource {
         this.result = result;
     }
 
+    public String getMetricName() {
+        return metricName;
+    }
+
+    public Object getResult() {
+        return result;
+    }
+
     @Override
     public String toString() {
         String output = result.toString();
