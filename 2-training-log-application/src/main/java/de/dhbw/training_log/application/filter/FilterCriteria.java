@@ -26,7 +26,7 @@ public class FilterCriteria<T extends Comparable<T>> {
         final List<Session> resultList = new ArrayList<>();
         for(Session currentSession : sessionList) {
             final T currentObject = mapper.apply(currentSession);
-            if(operator.matches(currentObject, comparedObject)) {
+            if(operator.matches(comparedObject, currentObject)) {
                 resultList.add(currentSession);
             }
         }
