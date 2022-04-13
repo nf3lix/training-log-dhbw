@@ -7,7 +7,8 @@ public class FilterSessions extends UseCaseInitializer {
 
     @Override
     public void init(SessionRepository repository) {
-
+        final FilterSessionsServiceImp service = new FilterSessionsServiceImp(repository);
+        service.run();
     }
 
 }

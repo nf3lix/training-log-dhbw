@@ -9,8 +9,13 @@ import java.util.List;
 public abstract class FilterSessionsService {
 
     private List<Session> filteredList = new ArrayList<>();
+    private final SessionRepository repository;
 
     public FilterSessionsService(final SessionRepository repository) {
+        this.repository = repository;
+    }
+
+    public final void run() {
         repository.getAll().forEachRemaining(session -> filteredList.add(session));
         for(FilterCriteria<?> criteria : getCriteria()) {
             filteredList = criteria.apply(filteredList);
