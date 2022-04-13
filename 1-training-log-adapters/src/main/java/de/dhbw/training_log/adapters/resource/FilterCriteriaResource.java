@@ -1,8 +1,17 @@
 package de.dhbw.training_log.adapters.resource;
 
+import de.dhbw.training_log.de.comparison_operator.ComparisonOperator;
+
 public class FilterCriteriaResource {
 
+    private final String input;
+    private final String className;
+    private final ComparisonOperator comparisonOperator;
+
     public FilterCriteriaResource(final String input) {
+        this.input = input;
+        this.className = readClassName(input);
+        this.comparisonOperator = readComparisonOperator();
     }
 
     private String readClassName(final String input) {
@@ -19,6 +28,19 @@ public class FilterCriteriaResource {
             className.append(currentChar);
         }
         return className.toString();
+    }
+
+    private ComparisonOperator readComparisonOperator() {
+        final String tail = input.substring(className.length());
+        ComparisonOperator matchingOperator = null;
+        for(final ComparisonOperator currentOperator : ComparisonOperator.values()) {
+            if(tail.startsWith(currentOperator.stringRepresentation())) {
+                if(matchingOperator == null || matchingOperator.stringRepresentation().length() < currentOperator.stringRepresentation().length()) {
+                    matchingOperator = currentOperator;
+                }
+            }
+        }
+        return matchingOperator;
     }
 
 }

@@ -1,12 +1,8 @@
 package de.dhbw.training_log.de.comparison_operator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public enum ComparisonOperator {
 
-    EQUAL_TO("=", "==") {
+    EQUAL_TO("=") {
         @Override
         public <T extends Comparable<T>> boolean matches(T object1, T object2) {
             return object1.compareTo(object2) == 0;
@@ -27,14 +23,14 @@ public enum ComparisonOperator {
         }
     },
 
-    LESS_OR_EQUAL("<=", "=<") {
+    LESS_OR_EQUAL("<=") {
         @Override
         public <T extends Comparable<T>> boolean matches(T object1, T object2) {
             return object1.compareTo(object2) >= 0;
         }
     },
 
-    GREATER_OR_EQUAL(">=", "=>") {
+    GREATER_OR_EQUAL(">=") {
         @Override
         public <T extends Comparable<T>> boolean matches(T object1, T object2) {
             return object1.compareTo(object2) <= 0;
@@ -48,15 +44,14 @@ public enum ComparisonOperator {
         }
     };
 
-    private final List<String> operatorStrings = new ArrayList<>();
+    private final String stringRepresentation;
 
-    ComparisonOperator(final String operatorString, final String... operatorStrings) {
-        this.operatorStrings.add(operatorString);
-        this.operatorStrings.addAll(Arrays.asList(operatorStrings));
+    ComparisonOperator(final String operatorString) {
+        this.stringRepresentation = operatorString;
     }
 
-    public List<String> stringRepresentations() {
-        return this.operatorStrings;
+    public String stringRepresentation() {
+        return this.stringRepresentation;
     }
 
     /**
