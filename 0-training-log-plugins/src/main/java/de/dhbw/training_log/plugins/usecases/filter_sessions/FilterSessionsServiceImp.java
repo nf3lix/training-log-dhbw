@@ -1,5 +1,6 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
+import de.dhbw.training_log.adapters.resource.FilterCriteriaResource;
 import de.dhbw.training_log.application.filter.FilterCriteria;
 import de.dhbw.training_log.application.filter.FilterSessionsService;
 import de.dhbw.training_log.de.session.Session;

@@ -55,6 +55,10 @@ public enum ComparisonOperator {
         this.operatorStrings.addAll(Arrays.asList(operatorStrings));
     }
 
+    public List<String> stringRepresentations() {
+        return this.operatorStrings;
+    }
+
     /**
      * for a given comparison operator ∘, return whether comparison operation "firstParam ∘ secondParam" is true
      * @param object1 first param of comparison operation
