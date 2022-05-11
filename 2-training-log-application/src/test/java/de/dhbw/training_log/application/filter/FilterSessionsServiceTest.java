@@ -38,19 +38,16 @@ public class FilterSessionsServiceTest {
         return session;
     }
 
-    private static class FilterSessionsServiceMock extends FilterSessionsService {
+    private static class FilterSessionsServiceMock extends FilterSessionsService<Distance> {
 
         public FilterSessionsServiceMock(final SessionRepository repository) {
             super(repository);
         }
 
         @Override
-        protected List<FilterCriteria<?>> getCriteria() {
-            final FilterCriteria<Distance> criteria = new FilterCriteria<>(Session::distance,
+        protected FilterCriteria<Distance> getCriteria() {
+            return new FilterCriteria<>(Session::distance,
                     ComparisonOperator.GREATER_OR_EQUAL, new Distance(10.0, DistanceUnit.KILOMETERS));
-            final ArrayList<FilterCriteria<?>> filterCriteria = new ArrayList<>();
-            filterCriteria.add(criteria);
-            return filterCriteria;
         }
 
         @Override

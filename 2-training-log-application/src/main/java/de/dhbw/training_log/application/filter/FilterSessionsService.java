@@ -6,9 +6,9 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FilterSessionsService {
+public abstract class FilterSessionsService<T extends Comparable<T>> {
 
-    private List<Session> filteredList = new ArrayList<>();
+    private final List<Session> allSessions = new ArrayList<>();
     private final SessionRepository repository;
 
     public FilterSessionsService(final SessionRepository repository) {
@@ -16,14 +16,12 @@ public abstract class FilterSessionsService {
     }
 
     public final void run() {
-        repository.getAll().forEachRemaining(session -> filteredList.add(session));
-        for(FilterCriteria<?> criteria : getCriteria()) {
-            filteredList = criteria.apply(filteredList);
-        }
-        displayFilteredSessions(filteredList);
+        repository.getAll().forEachRemaining(allSessions::add);
+        final List<Session> filteredSessions = getCriteria().apply(allSessions);
+        displayFilteredSessions(filteredSessions);
     }
 
-    protected abstract List<FilterCriteria<?>> getCriteria();
+    protected abstract FilterCriteria<T> getCriteria();
     protected abstract void displayFilteredSessions(List<Session> sessions);
 
 }

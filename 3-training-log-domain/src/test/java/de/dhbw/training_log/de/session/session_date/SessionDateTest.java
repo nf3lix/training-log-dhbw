@@ -8,39 +8,47 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static de.dhbw.training_log.de.session.session_date.SessionDate.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SessionDateTest {
 
     @Test
     public void getYear() {
-        final SessionDate date1 = new SessionDate(new Year(2020), new Month(12), new DayOfMonth(12));
-        final SessionDate date2 = new SessionDate(new Year(2021), new Month(12), new DayOfMonth(12));
-        final SessionDate date3 = new SessionDate(new Year(2022), new Month(12), new DayOfMonth(12));
-        assertEquals(date1.year(), new Year(2020));
-        assertEquals(date2.year(), new Year(2021));
-        assertEquals(date3.year(), new Year(2022));
+        final SessionDate date1 = new SessionDate(new Year(2021), new Month(12), new DayOfMonth(12));
+        assertEquals(date1.year(), new Year(2021));
     }
 
     @Test
     public void getMonth() {
-        final SessionDate date1 = new SessionDate(new Year(2020), new Month(10), new DayOfMonth(12));
-        final SessionDate date2 = new SessionDate(new Year(2021), new Month(11), new DayOfMonth(12));
-        final SessionDate date3 = new SessionDate(new Year(2022), new Month(12), new DayOfMonth(12));
-        assertEquals(date1.month(), new Month(10));
-        assertEquals(date2.month(), new Month(11));
-        assertEquals(date3.month(), new Month(12));
+        final SessionDate date1 = new SessionDate(new Year(2021), new Month(11), new DayOfMonth(12));
+        assertEquals(date1.month(), new Month(11));
     }
 
     @Test
     public void getDayOfMonth() {
-        final SessionDate date1 = new SessionDate(new Year(2020), new Month(10), new DayOfMonth(10));
         final SessionDate date2 = new SessionDate(new Year(2021), new Month(11), new DayOfMonth(11));
-        final SessionDate date3 = new SessionDate(new Year(2022), new Month(12), new DayOfMonth(12));
-        assertEquals(date1.day(), new DayOfMonth(10));
         assertEquals(date2.day(), new DayOfMonth(11));
-        assertEquals(date3.day(), new DayOfMonth(12));
+    }
+
+    @Test
+    public void compareWithLaterDate() {
+        final SessionDate date1 = new SessionDate(new Year(2021), new Month(10), new DayOfMonth(11));
+        final SessionDate date2 = new SessionDate(new Year(2021), new Month(11), new DayOfMonth(11));
+        assertTrue(date1.compareTo(date2) < 0);
+    }
+
+    @Test
+    public void compareWithEarlierDate() {
+        final SessionDate date1 = new SessionDate(new Year(2021), new Month(10), new DayOfMonth(11));
+        final SessionDate date2 = new SessionDate(new Year(2021), new Month(9), new DayOfMonth(11));
+        assertTrue(date1.compareTo(date2) > 0);
+    }
+
+    @Test
+    public void compareWithSameDate() {
+        final SessionDate date1 = new SessionDate(new Year(2021), new Month(10), new DayOfMonth(11));
+        final SessionDate date2 = new SessionDate(new Year(2021), new Month(10), new DayOfMonth(11));
+        assertEquals(0, date1.compareTo(date2));
     }
 
     @Test
