@@ -1,5 +1,6 @@
 package de.dhbw.training_log.application.crud_training_session;
 
+import de.dhbw.training_log.application.Service;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.description.Description;
@@ -8,7 +9,7 @@ import de.dhbw.training_log.de.session.session_date.SessionDate;
 import de.dhbw.training_log.de.session.time.SessionTime;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
-public abstract class CreateSessionService {
+public abstract class CreateSessionService implements Service {
 
     private final SessionRepository repository;
 
@@ -16,7 +17,7 @@ public abstract class CreateSessionService {
         this.repository = repository;
     }
 
-    public final void run() {
+    public void run() {
         final SessionDate sessionDate = askForSessionDate();
         final Distance distance = askForDistance();
         final SessionTime sessionTime = askForSessionTime();

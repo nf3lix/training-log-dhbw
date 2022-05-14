@@ -1,23 +1,23 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.application.Service;
 
 public class UseCase {
 
     private final String description;
-    private final UseCaseInitializer initializer;
+    private final Service service;
 
-    public UseCase(final String description, final UseCaseInitializer initializer) {
+    public UseCase(final String description, final Service service) {
         this.description = description;
-        this.initializer = initializer;
+        this.service = service;
     }
 
     public String description() {
         return description;
     }
 
-    public void initialize(final SessionRepository repository) {
-        initializer.init(repository);
+    public void initialize() {
+        service.run();
     }
 
 }

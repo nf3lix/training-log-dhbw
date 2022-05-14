@@ -4,32 +4,22 @@ import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.application.crud_training_session.ReadSessionService;
 import de.dhbw.training_log.de.session.Session;
-import de.dhbw.training_log.plugins.usecases.UseCaseInitializer;
 import de.dhbw.training_log.de.session.SessionRepository;
 
-public class ReadSession implements UseCaseInitializer {
+public class ReadSession extends ReadSessionService {
 
-    @Override
-    public void init(SessionRepository repository) {
-        new ReadSessionServiceImpl(repository).run();
+    public ReadSession(final SessionRepository repository) {
+        super(repository);
     }
 
-    private static class ReadSessionServiceImpl extends ReadSessionService {
+    @Override
+    protected void displaySession(Session session) {
+        System.out.println(sessionAsString(session));
+    }
 
-        public ReadSessionServiceImpl(final SessionRepository repository) {
-            super(repository);
-        }
-
-        @Override
-        protected void displaySession(Session session) {
-            System.out.println(sessionAsString(session));
-        }
-
-        private String sessionAsString(final Session session) {
-            final SessionResource resource = new SessionEntityMapper().toResource(session);
-            return resource.toString();
-        }
-
+    private String sessionAsString(final Session session) {
+        final SessionResource resource = new SessionEntityMapper().toResource(session);
+        return resource.toString();
     }
 
 }

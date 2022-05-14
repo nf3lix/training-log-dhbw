@@ -1,12 +1,13 @@
 package de.dhbw.training_log.application.filter;
 
+import de.dhbw.training_log.application.Service;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FilterSessionsService<T extends Comparable<T>> {
+public abstract class FilterSessionsService<T extends Comparable<T>> implements Service {
 
     private final List<Session> allSessions = new ArrayList<>();
     private final SessionRepository repository;
@@ -15,7 +16,7 @@ public abstract class FilterSessionsService<T extends Comparable<T>> {
         this.repository = repository;
     }
 
-    public final void run() {
+    public void run() {
         repository.getAll().forEachRemaining(allSessions::add);
         final List<Session> filteredSessions = getCriteria().apply(allSessions);
         displayFilteredSessions(filteredSessions);

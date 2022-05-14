@@ -1,5 +1,6 @@
 package de.dhbw.training_log.application.report;
 
+import de.dhbw.training_log.application.Service;
 import de.dhbw.training_log.application.report.standard_metrics.StandardMetrics;
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.report.Report;
@@ -9,7 +10,7 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GenerateReportService {
+public abstract class GenerateReportService implements Service {
 
     private final SessionRepository repository;
 
@@ -17,7 +18,7 @@ public abstract class GenerateReportService {
         this.repository = repository;
     }
 
-    public final void run() {
+    public void run() {
         List<Metric.MetricResult> results = generateResults();
         displayResults(results);
     }

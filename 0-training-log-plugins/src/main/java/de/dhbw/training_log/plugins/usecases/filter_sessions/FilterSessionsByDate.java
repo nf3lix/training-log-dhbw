@@ -5,26 +5,17 @@ import de.dhbw.training_log.adapters.resource.filter_criteria.SessionDateFilterC
 import de.dhbw.training_log.application.filter.FilterCriteria;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.session_date.SessionDate;
-import de.dhbw.training_log.plugins.usecases.UseCaseInitializer;
 
-public class FilterSessionsByDate implements UseCaseInitializer {
+public class FilterSessionsByDate extends FilterSessionsUseCase<SessionDate> {
 
-    @Override
-    public void init(SessionRepository repository) {
-        new FilterSessionsImpl(repository).run();
+    public FilterSessionsByDate(SessionRepository repository) {
+        super(repository);
     }
 
-    private static class FilterSessionsImpl extends FilterSessionsUseCase<SessionDate> {
-
-        public FilterSessionsImpl(SessionRepository repository) {
-            super(repository);
-        }
-
-        @Override
-        FilterCriteria<SessionDate> parseToFilterCriteria(String input) {
-            final SessionDateFilterCriteria criteria = new SessionDateFilterCriteria(input);
-            return new SessionDateFilterCriteriaMapper().toDomainModel(criteria);
-        }
+    @Override
+    FilterCriteria<SessionDate> parseToFilterCriteria(String input) {
+        final SessionDateFilterCriteria criteria = new SessionDateFilterCriteria(input);
+        return new SessionDateFilterCriteriaMapper().toDomainModel(criteria);
     }
 
 }

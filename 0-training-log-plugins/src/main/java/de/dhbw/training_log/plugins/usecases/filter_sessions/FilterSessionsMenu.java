@@ -9,9 +9,9 @@ public class FilterSessionsMenu extends UseCaseMenu {
 
     public FilterSessionsMenu(SessionRepository repository) {
         super("Filter Sessions", repository);
-        addUseCase("1", new UseCase("Filter sessions by distance", new FilterSessionsByDistance()));
-        addUseCase("2", new UseCase("Filter sessions by time", new FilterSessionsBySessionTime()));
-        addUseCase("3", new UseCase("Filter sessions by date", new FilterSessionsByDate()));
+        addUseCase("1", new UseCase("Filter sessions by distance", new FilterSessionsByDistance(repository)));
+        addUseCase("2", new UseCase("Filter sessions by time", new FilterSessionsBySessionTime(repository)));
+        addUseCase("3", new UseCase("Filter sessions by date", new FilterSessionsByDate(repository)));
     }
 
 }

@@ -10,9 +10,9 @@ public final class MainMenu extends UseCaseMenu {
 
     public MainMenu(final SessionRepository repository) {
         super("Main Menu", true, repository);
-        this.addUseCase("1", new UseCase("Create new training session", new CreateSession()));
-        this.addUseCase("2", new UseCase("Show all training sessions", new ReadSession()));
-        this.addUseCase("3", new UseCase("Generate Report", new GenerateReport()));
+        this.addUseCase("1", new UseCase("Create new training session", new CreateSession(repository)));
+        this.addUseCase("2", new UseCase("Show all training sessions", new ReadSession(repository)));
+        this.addUseCase("3", new UseCase("Generate Report", new GenerateReport(repository)));
         this.addNestedMenu("4", new FilterSessionsMenu(repository));
     }
 

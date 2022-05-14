@@ -70,7 +70,7 @@ public class UseCaseMenu {
             if(selectedNestedMenu != null) {
                 selectedNestedMenu.start();
             } else {
-                selectedUseCase.initialize(repository);
+                selectedUseCase.initialize();
             }
         } while (selectedNestedMenu == null);
     }
