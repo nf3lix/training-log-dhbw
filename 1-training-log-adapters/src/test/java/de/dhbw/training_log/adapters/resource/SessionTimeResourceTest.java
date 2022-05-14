@@ -1,6 +1,5 @@
 package de.dhbw.training_log.adapters.resource;
 
-import de.dhbw.training_log.adapters.resource.SessionTimeResource;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,8 +17,8 @@ public class SessionTimeResourceTest {
 
     @Test
     public void throwExceptionWhenSegmentsCannotBeParsedToString() {
-        assertThrows(NumberFormatException.class, () -> new SessionTimeResource("TEST:TEST"));
-        assertThrows(NumberFormatException.class, () -> new SessionTimeResource("1T:1T"));
+        assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("TEST:TEST"));
+        assertThrows(IllegalArgumentException.class, () -> new SessionTimeResource("1T:1T"));
     }
 
     @Test
