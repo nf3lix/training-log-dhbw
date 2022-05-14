@@ -14,7 +14,7 @@ public class UseCaseCollection {
         this.repository = repository;
     }
 
-    void addUseCase(final String mnemonic, final UseCase useCase) {
+    public void addUseCase(final String mnemonic, final UseCase useCase) {
         this.useCases.put(mnemonic, useCase);
     }
 
