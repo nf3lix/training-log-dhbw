@@ -51,17 +51,6 @@ public final class SessionResource {
         return type;
     }
 
-    public String[] toCsvLine() {
-        final String[] line = new String[6];
-        line[0] = id().toString();
-        line[1] = sessionDate().toString();
-        line[2] = distance().toString();
-        line[3] = sessionTime().toString();
-        line[4] = description();
-        line[5] = type().name();
-        return line;
-    }
-
     @Override
     public String toString() {
         return id().toString() + " - "

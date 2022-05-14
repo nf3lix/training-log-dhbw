@@ -4,8 +4,8 @@ import de.dhbw.training_log.de.session.SessionRepository;
 
 public class UseCase {
 
-    private String description;
-    private UseCaseInitializer initializer;
+    private final String description;
+    private final UseCaseInitializer initializer;
 
     public UseCase(final String description, final UseCaseInitializer initializer) {
         this.description = description;
