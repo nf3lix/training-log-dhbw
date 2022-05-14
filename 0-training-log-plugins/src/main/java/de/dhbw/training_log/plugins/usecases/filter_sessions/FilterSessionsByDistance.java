@@ -7,7 +7,7 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.distance.Distance;
 import de.dhbw.training_log.plugins.usecases.UseCaseInitializer;
 
-public class FilterSessionsByDistance extends UseCaseInitializer {
+public class FilterSessionsByDistance implements UseCaseInitializer {
 
     @Override
     public void init(SessionRepository repository) {

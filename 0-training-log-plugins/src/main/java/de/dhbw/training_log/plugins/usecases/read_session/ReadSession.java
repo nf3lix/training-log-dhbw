@@ -3,7 +3,7 @@ package de.dhbw.training_log.plugins.usecases.read_session;
 import de.dhbw.training_log.plugins.usecases.UseCaseInitializer;
 import de.dhbw.training_log.de.session.SessionRepository;
 
-public class ReadSession extends UseCaseInitializer {
+public class ReadSession implements UseCaseInitializer {
 
     @Override
     public void init(SessionRepository repository) {
