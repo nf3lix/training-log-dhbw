@@ -50,8 +50,8 @@ public class UseCaseMenu {
         } else {
             System.out.println(NESTED_MENU_SEPARATOR);
         }
-        this.useCases.forEach((mnemonic, useCase) -> System.out.println(mnemonic + ") " + useCase.description()));
-        this.nestedMenus.forEach((mnemonic, menu) -> System.out.println(mnemonic + ") " + menu.description));
+        this.useCases.forEach((mnemonic, useCase) -> System.out.println(mnemonic + ": " + useCase.description()));
+        this.nestedMenus.forEach((mnemonic, menu) -> System.out.println(mnemonic + ": " + menu.description));
         System.out.println(SEPARATOR);
     }
 
