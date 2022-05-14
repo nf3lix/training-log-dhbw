@@ -3,7 +3,7 @@ package de.dhbw.training_log.de.session.session_date;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public final class SessionDate {
+public final class SessionDate implements Comparable<SessionDate> {
 
     private final LocalDate localDate;
 
@@ -21,6 +21,11 @@ public final class SessionDate {
 
     public DayOfMonth day() {
         return new DayOfMonth(localDate.getDayOfMonth());
+    }
+
+    @Override
+    public int compareTo(SessionDate sessionDate) {
+        return localDate.compareTo(sessionDate.localDate);
     }
 
     @Override

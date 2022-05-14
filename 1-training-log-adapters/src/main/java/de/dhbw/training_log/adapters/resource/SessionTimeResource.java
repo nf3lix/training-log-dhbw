@@ -6,10 +6,10 @@ public class SessionTimeResource {
     private final Integer seconds;
 
     public SessionTimeResource(final String input) {
-        final String[] split = input.split(":");
-        if(findOccurrencesIn(input, ':') != 1 || split.length != 2) {
+        if(!input.matches("[0-9]*:[0-9]{1,2}")) {
             throw new IllegalArgumentException("Session Time must be in the format mm:ss");
         }
+        final String[] split = input.split(":");
         final int minutes = Integer.parseInt(split[0]);
         final int seconds = Integer.parseInt(split[1]);
         if(seconds >= 60) {
@@ -25,16 +25,6 @@ public class SessionTimeResource {
 
     public Integer seconds() {
         return this.seconds;
-    }
-
-    private Integer findOccurrencesIn(final String input, final Character c) {
-        Integer count = 0;
-        for(int index = 0; index < input.length(); index++) {
-            if(input.charAt(index) == c) {
-                count++;
-            }
-        }
-        return count;
     }
 
     @Override

@@ -23,4 +23,13 @@ public interface SessionResourceMapper<T, K> {
         return mappers.get(c);
     }
 
+    /*
+    static SessionResourceMapper<?, ?> getValueMapperByClassName(final String className) {
+        final Map<String, SessionResourceMapper<?, ?>> mappers = new HashMap<>();
+        mappers.put(Distance.class.getName(), new DistanceMapper());
+        mappers.put(SessionDate.class.getName(), new SessionTimeMapper());
+        mappers.put(SessionTime.class.getName(), new SessionTimeMapper());
+        return mappers.get(className);
+    }*/
+
 }
