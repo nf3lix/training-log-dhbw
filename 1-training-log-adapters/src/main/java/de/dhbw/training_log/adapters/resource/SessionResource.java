@@ -62,17 +62,6 @@ public final class SessionResource {
         return line;
     }
 
-    public static SessionResource fromCsvLine(final String[] line) {
-        return new SessionResource(
-                UUID.fromString(line[0]),
-                new SessionDateResource(line[1]),
-                new DistanceResource(line[2]),
-                new SessionTimeResource(line[3]),
-                line[4],
-                SessionType.valueOf(SessionType.class, line[5])
-        );
-    }
-
     @Override
     public String toString() {
         return id().toString() + " - "

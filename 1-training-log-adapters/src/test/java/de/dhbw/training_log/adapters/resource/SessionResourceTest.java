@@ -10,19 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SessionResourceTest {
 
     @Test
-    public void fromCsvLine() {
-        final String csvContent = "569e2f72-f0f6-4a88-b701-af38e948742b;01.01.2020;10000.0 METERS;45:00;DESCRIPTION;LONG_RUN";
-        final String[] line = csvContent.split(";");
-        final SessionResource resource = SessionResource.fromCsvLine(line);
-        assertEquals(resource.id().toString(), "569e2f72-f0f6-4a88-b701-af38e948742b");
-        assertEquals(resource.sessionDate().toString(), "01.01.2020");
-        assertEquals(resource.distance().toString(), "10000.0 METERS");
-        assertEquals(resource.sessionTime().toString(), "45:00");
-        assertEquals(resource.description(), "DESCRIPTION");
-        assertEquals(resource.type().name(), "LONG_RUN");
-    }
-
-    @Test
     public void toCsvLine() {
         final SessionResource resource = new SessionResource(
                 UUID.fromString("569e2f72-f0f6-4a88-b701-af38e948742b"),
