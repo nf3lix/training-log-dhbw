@@ -6,7 +6,7 @@ public class SessionTimeResource {
     private final Integer seconds;
 
     public SessionTimeResource(final String input) {
-        if(!input.matches("[0-9]*:[0-9]{2}")) {
+        if(!input.matches("[0-9]*:[0-9]{1,2}")) {
             throw new IllegalArgumentException("Session Time must be in the format mm:ss");
         }
         final String[] split = input.split(":");

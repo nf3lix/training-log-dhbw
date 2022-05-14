@@ -4,18 +4,12 @@ import de.dhbw.training_log.de.session.SessionRepository;
 
 public class UseCase {
 
-    private String mnemonic;
     private String description;
     private UseCaseInitializer initializer;
 
-    public UseCase(final String mnemonic, final String description, final UseCaseInitializer initializer) {
-        this.mnemonic = mnemonic;
+    public UseCase(final String description, final UseCaseInitializer initializer) {
         this.description = description;
         this.initializer = initializer;
-    }
-
-    public boolean mnemonicEquals(final String input) {
-        return input.equalsIgnoreCase(mnemonic);
     }
 
     public String description() {

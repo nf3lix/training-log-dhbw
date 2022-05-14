@@ -1,50 +1,35 @@
 package de.dhbw.training_log.plugins.usecases;
 
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.plugins.usecases.create_session.CreateSession;
-import de.dhbw.training_log.plugins.usecases.filter_sessions.FilterSessions;
-import de.dhbw.training_log.plugins.usecases.generate_report.GenerateReport;
-import de.dhbw.training_log.plugins.usecases.read_session.ReadSession;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
-import static java.util.Arrays.stream;
+public class UseCaseCollection {
 
-public enum UseCaseCollection {
+    private final Map<String, UseCase> useCases = new HashMap<>();
+    private final SessionRepository repository;
 
-    CREATE_SESSION("1","Create new training session", new CreateSession()),
-    READ_SESSION("2", "Show all training sessions", new ReadSession()),
-    GENERATE_REPORT("3", "Generate Report", new GenerateReport()),
-    FILTER_SESSIONS("4", "Filter Sessions", new FilterSessions());
-
-    private final String mnemonic;
-    private final String useCaseDescription;
-    private final UseCaseInitializer initializer;
-
-    UseCaseCollection(final String mnemonic, final String useCaseDescription, final UseCaseInitializer initializer) {
-        this.mnemonic = mnemonic;
-        this.useCaseDescription = useCaseDescription;
-        this.initializer = initializer;
+    public UseCaseCollection(final SessionRepository repository) {
+        this.repository = repository;
     }
 
-    public String mnemonic() {
-        return mnemonic;
+    void addUseCase(final String mnemonic, final UseCase useCase) {
+        this.useCases.put(mnemonic, useCase);
     }
 
-    public String description() {
-        return useCaseDescription;
-    }
-
-    public void initialize(SessionRepository repository) {
-        initializer.init(repository);
-    }
-
-    public static UseCaseCollection fromMnemonic(final String mnemonic) throws IllegalArgumentException {
-        final Optional<UseCaseCollection> useCase = stream(values()).filter(uc -> uc.mnemonic.equals(mnemonic)).findFirst();
-        if(!useCase.isPresent()) {
+    public void initUseCase(final String mnemonic) {
+        final UseCase useCase = this.useCases.get(mnemonic);
+        if(useCase == null) {
             throw new IllegalArgumentException("There's no use case for this mnemonic");
         }
-        return useCase.get();
+        useCase.initialize(repository);
+    }
+
+    public void printUseCases() {
+        this.useCases.forEach((mnemonic, useCase) ->
+                System.out.println(mnemonic + ") " + useCase.description())
+        );
     }
 
 }
