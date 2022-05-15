@@ -19,6 +19,7 @@ public abstract class FilterSessionsService<T extends Comparable<T>> implements 
     public void run() {
         repository.getAll().forEachRemaining(allSessions::add);
         final List<Session> filteredSessions = getCriteria().apply(allSessions);
+        allSessions.clear();
         displayFilteredSessions(filteredSessions);
     }
 
