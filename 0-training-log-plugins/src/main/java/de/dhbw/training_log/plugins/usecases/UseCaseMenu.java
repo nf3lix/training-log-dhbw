@@ -1,7 +1,7 @@
 package de.dhbw.training_log.plugins.usecases;
 
-import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
+import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,19 +10,19 @@ public class UseCaseMenu {
 
     private final Map<String, UseCase> useCases = new HashMap<>();
     private final Map<String, UseCaseMenu> nestedMenus = new HashMap<>();
-    private final SessionRepository repository;
+    private final SessionRepositoryImpl repository;
     private final String description;
     private boolean isMainMenu = false;
 
     private final static String NESTED_MENU_SEPARATOR = "========= Type \"exit\" to go back to main menu =========";
     private final static String SEPARATOR = "=========================================================";
 
-    public UseCaseMenu(final String description, final SessionRepository repository) {
+    public UseCaseMenu(final String description, final SessionRepositoryImpl repository) {
         this.description = description;
         this.repository = repository;
     }
 
-    public UseCaseMenu(final String description, final boolean isMainMenu, final SessionRepository repository) {
+    public UseCaseMenu(final String description, final boolean isMainMenu, final SessionRepositoryImpl repository) {
         this.description = description;
         this.isMainMenu = isMainMenu;
         this.repository = repository;
