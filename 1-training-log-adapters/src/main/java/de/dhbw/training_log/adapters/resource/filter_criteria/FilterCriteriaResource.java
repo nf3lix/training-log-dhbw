@@ -15,12 +15,9 @@ public abstract class FilterCriteriaResource<T> {
     }
 
     private ComparisonOperator readComparisonOperator() {
-        for(final ComparisonOperator currentOperator : ComparisonOperator.values()) {
-            // if current comparison operator matches larger range of input than matchingOperator
-            if(input.startsWith(currentOperator.stringRepresentation())) {
-                if(comparisonOperator == null || comparisonOperator.stringRepresentation().length() < currentOperator.stringRepresentation().length()) {
-                    comparisonOperator = currentOperator;
-                }
+        for(final ComparisonOperator operator : ComparisonOperator.values()) {
+            if(currentOperatorMatchesLessThan(operator)) {
+                comparisonOperator = operator;
             }
         }
         return comparisonOperator;
@@ -39,6 +36,13 @@ public abstract class FilterCriteriaResource<T> {
 
     public T getFilterValue() {
         return resource;
+    }
+
+    private boolean currentOperatorMatchesLessThan(final ComparisonOperator operator) {
+        if(!input.startsWith(operator.stringRepresentation())) {
+            return false;
+        }
+        return comparisonOperator == null || comparisonOperator.stringRepresentation().length() < operator.stringRepresentation().length();
     }
 
 }
