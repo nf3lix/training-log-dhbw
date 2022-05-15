@@ -56,8 +56,6 @@ public class UseCaseMenu {
     }
 
     public void start() {
-        UseCase selectedUseCase;
-        UseCaseMenu selectedNestedMenu;
         do {
             printUseCases();
             final String mnemonic = CommandLine.readLine();
@@ -65,14 +63,15 @@ public class UseCaseMenu {
                 new MainMenu(repository).start();
                 break;
             }
-            selectedUseCase = getUseCase(mnemonic);
-            selectedNestedMenu = getNestedMenu(mnemonic);
+            UseCase selectedUseCase = getUseCase(mnemonic);
+            UseCaseMenu selectedNestedMenu = getNestedMenu(mnemonic);
             if(selectedNestedMenu != null) {
                 selectedNestedMenu.start();
+                break;
             } else {
                 selectedUseCase.initialize();
             }
-        } while (selectedNestedMenu == null);
+        } while (true);
     }
 
 }
