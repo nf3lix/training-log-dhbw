@@ -5,7 +5,7 @@ import de.dhbw.training_log.de.comparison_operator.ComparisonOperator;
 public abstract class FilterCriteriaResource<T> {
 
     private final String input;
-    private final ComparisonOperator comparisonOperator;
+    private ComparisonOperator comparisonOperator;
     private final T resource;
 
     public FilterCriteriaResource(final String input) {
@@ -15,15 +15,15 @@ public abstract class FilterCriteriaResource<T> {
     }
 
     private ComparisonOperator readComparisonOperator() {
-        ComparisonOperator matchingOperator = null;
         for(final ComparisonOperator currentOperator : ComparisonOperator.values()) {
+            // if current comparison operator matches larger range of input than matchingOperator
             if(input.startsWith(currentOperator.stringRepresentation())) {
-                if(matchingOperator == null || matchingOperator.stringRepresentation().length() < currentOperator.stringRepresentation().length()) {
-                    matchingOperator = currentOperator;
+                if(comparisonOperator == null || comparisonOperator.stringRepresentation().length() < currentOperator.stringRepresentation().length()) {
+                    comparisonOperator = currentOperator;
                 }
             }
         }
-        return matchingOperator;
+        return comparisonOperator;
     }
 
     private T readComparedObject() {
