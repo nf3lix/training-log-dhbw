@@ -12,7 +12,7 @@ public class FilterCriteriaResourceTest {
         }
 
         @Override
-        public String parseStringValue(String input) {
+        public String readComparedObject(String input) {
             return input;
         }
     }

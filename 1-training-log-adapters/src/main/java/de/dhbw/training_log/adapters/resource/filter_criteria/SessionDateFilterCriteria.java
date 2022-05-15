@@ -9,7 +9,7 @@ public class SessionDateFilterCriteria extends FilterCriteriaResource<SessionDat
     }
 
     @Override
-    SessionDateResource parseStringValue(String input) {
+    SessionDateResource readComparedObject(String input) {
         return new SessionDateResource(input);
     }
 }

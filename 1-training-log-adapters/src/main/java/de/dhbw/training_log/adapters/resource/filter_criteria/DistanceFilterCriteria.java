@@ -9,7 +9,7 @@ public class DistanceFilterCriteria extends FilterCriteriaResource<DistanceResou
     }
 
     @Override
-    DistanceResource parseStringValue(String input) {
+    DistanceResource readComparedObject(String input) {
         return new DistanceResource(input);
     }
 

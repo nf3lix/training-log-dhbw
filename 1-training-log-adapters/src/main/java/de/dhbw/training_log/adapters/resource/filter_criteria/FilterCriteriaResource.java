@@ -11,7 +11,7 @@ public abstract class FilterCriteriaResource<T> {
     public FilterCriteriaResource(final String input) {
         this.input = input;
         this.comparisonOperator = readComparisonOperator();
-        this.resource = parseStringValue();
+        this.resource = readComparedObject();
     }
 
     private ComparisonOperator readComparisonOperator() {
@@ -26,12 +26,12 @@ public abstract class FilterCriteriaResource<T> {
         return matchingOperator;
     }
 
-    private T parseStringValue() {
+    private T readComparedObject() {
         final String tail = input.substring(comparisonOperator.stringRepresentation().length());
-        return parseStringValue(tail);
+        return readComparedObject(tail);
     }
 
-    abstract T parseStringValue(String input);
+    abstract T readComparedObject(String input);
 
     public final ComparisonOperator getComparisonOperator() {
         return comparisonOperator;

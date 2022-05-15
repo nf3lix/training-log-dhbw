@@ -9,7 +9,7 @@ public class SessionTimeFilterCriteria extends FilterCriteriaResource<SessionTim
     }
 
     @Override
-    SessionTimeResource parseStringValue(final String input) {
+    SessionTimeResource readComparedObject(final String input) {
         return new SessionTimeResource(input);
     }
 
