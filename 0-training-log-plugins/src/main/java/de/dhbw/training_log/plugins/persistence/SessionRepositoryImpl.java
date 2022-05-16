@@ -4,10 +4,7 @@ import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.training_session_id.SessionId;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class SessionRepositoryImpl implements SessionRepository {
 
@@ -33,6 +30,20 @@ public class SessionRepositoryImpl implements SessionRepository {
     @Override
     public void insert(final Session session) {
         sessionsList.add(session);
+    }
+
+    @Override
+    public void delete(SessionId sessionId) {
+        final Session session = findById(sessionId);
+        sessionsList.remove(session);
+    }
+
+    private Session findById(SessionId sessionId) {
+        final Optional<Session> result = sessionsList.stream().filter(session -> session.id().equals(sessionId)).findFirst();
+        if(result.isPresent()) {
+            return result.get();
+        }
+        throw new NoSuchElementException();
     }
 
 }

@@ -15,8 +15,10 @@ public abstract class DeleteSessionService implements Service {
     public void run() {
         final SessionId id = askForSessionId();
         repository.delete(id);
+        confirmDeletion();
     }
 
-    abstract SessionId askForSessionId();
+    protected abstract SessionId askForSessionId();
+    protected abstract void confirmDeletion();
 
 }

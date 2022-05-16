@@ -1,4 +1,4 @@
-package de.dhbw.training_log.plugins.usecases.create_session;
+package de.dhbw.training_log.plugins.usecases.crud_session;
 
 import de.dhbw.training_log.adapters.mapper.DistanceMapper;
 import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
