@@ -9,5 +9,6 @@ public interface SessionRepository {
     SessionId nextId();
     Iterator<Session> getAll();
     void insert(final Session trainingSession);
+    void delete(final SessionId sessionId);
 
 }
