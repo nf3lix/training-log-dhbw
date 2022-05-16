@@ -3,13 +3,13 @@ package de.dhbw.training_log.plugins.usecases.generate_report;
 import de.dhbw.training_log.adapters.mapper.MetricResultMapper;
 import de.dhbw.training_log.application.report.GenerateReportService;
 import de.dhbw.training_log.de.metric.Metric;
-import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 
 import java.util.List;
 
 public class GenerateReport extends GenerateReportService {
 
-    public GenerateReport(SessionRepository repository) {
+    public GenerateReport(SessionRepositoryImpl repository) {
         super(repository);
     }
 

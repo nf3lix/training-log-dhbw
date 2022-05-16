@@ -25,4 +25,12 @@ public class FilterCriteriaResourceTest {
         Assertions.assertEquals(criteria2.getComparisonOperator(), ComparisonOperator.LESS_OR_EQUAL);
     }
 
+    @Test
+    public void readComparisonOperators() {
+        for(final ComparisonOperator operator : ComparisonOperator.values()) {
+            final FilterCriteriaResourceFake criteria = new FilterCriteriaResourceFake(operator.stringRepresentation() + "TEST");
+            Assertions.assertEquals(criteria.getComparisonOperator(), operator);
+        }
+    }
+
 }
