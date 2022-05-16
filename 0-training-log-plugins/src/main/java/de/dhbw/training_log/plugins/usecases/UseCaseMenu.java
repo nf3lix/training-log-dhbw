@@ -6,7 +6,7 @@ import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UseCaseMenu {
+public abstract class UseCaseMenu {
 
     private final Map<String, UseCase> useCases = new HashMap<>();
     private final Map<String, UseCaseMenu> nestedMenus = new HashMap<>();
