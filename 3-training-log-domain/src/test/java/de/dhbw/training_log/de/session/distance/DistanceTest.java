@@ -55,7 +55,7 @@ public class DistanceTest {
     }
 
     @Test
-    public void secondsValueObjectBehavior() {
+    public void distanceValueObjectBehavior() {
         final List<Supplier<Distance>> distances = Arrays.asList(
                 () -> new Distance(1.0, METERS),
                 () -> new Distance(3.0, METERS)

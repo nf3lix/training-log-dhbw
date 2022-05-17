@@ -10,13 +10,15 @@ import static de.dhbw.training_log.de.aggregate_function.AggregateSubject.Summab
 public final class Distance implements Summable<Distance>, Averageable<Distance>, Comparable<Distance> {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
+    private static final double FLOATING_POINT_PRECISION = 1e-6;
+
     private final double distance;
 
     public Distance(final double distance, final DistanceUnit unit) {
         if(distance < 0) {
             throw new InvalidDistance("Distances must be zero or positive");
         }
-        this.distance = Round.round(distance * unit.ratioTo(DEFAULT_UNIT), 6);
+        this.distance = distance * unit.ratioTo(DEFAULT_UNIT);
     }
 
     @Override
@@ -44,7 +46,7 @@ public final class Distance implements Summable<Distance>, Averageable<Distance>
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Distance distance1 = (Distance) o;
-        return Objects.equals(distance, distance1.distance);
+        return Math.abs(distance - distance1.distance) < FLOATING_POINT_PRECISION;
     }
 
     @Override
