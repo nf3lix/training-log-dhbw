@@ -1,20 +1,31 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
-import de.dhbw.training_log.adapters.mapper.filter_criteria.DistanceFilterCriteriaMapper;
-import de.dhbw.training_log.adapters.resource.filter_criteria.DistanceFilterCriteria;
-import de.dhbw.training_log.application.filter.FilterCriteria;
+import de.dhbw.training_log.adapters.resource.SessionResource;
+import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterByDistanceUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.de.session.distance.Distance;
+import de.dhbw.training_log.plugins.CommandLine;
+import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class FilterSessionsByDistance extends FilterSessionsUseCase<Distance> {
+import java.util.List;
 
-    public FilterSessionsByDistance(SessionRepository repository) {
-        super(repository);
+public class FilterSessionsByDistance implements UseCase {
+
+    private final FilterByDistanceUseCase service;
+
+    public FilterSessionsByDistance(final SessionRepository repository) {
+        this.service = new FilterByDistanceUseCase(repository);
     }
 
     @Override
-    FilterCriteria<Distance> parseToFilterCriteria(String input) {
-        final DistanceFilterCriteria criteria = new DistanceFilterCriteria(input);
-        return new DistanceFilterCriteriaMapper().toDomainModel(criteria);
+    public void initialize() {
+        final String filterCriteria = CommandLine.readLine();
+        final List<SessionResource> resourceList = service.getFilteredSessions(filterCriteria);
+        resourceList.forEach(System.out::println);
     }
+
+    @Override
+    public String getDescription() {
+        return "Filter sessions by distance";
+    }
+
 }

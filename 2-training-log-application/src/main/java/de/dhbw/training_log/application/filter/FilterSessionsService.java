@@ -9,7 +9,6 @@ import java.util.List;
 
 public abstract class FilterSessionsService<T extends Comparable<T>> implements Service {
 
-    private final List<Session> allSessions = new ArrayList<>();
     private final SessionRepository repository;
 
     public FilterSessionsService(final SessionRepository repository) {
@@ -17,7 +16,7 @@ public abstract class FilterSessionsService<T extends Comparable<T>> implements 
     }
 
     public void run() {
-        repository.getAll().forEachRemaining(allSessions::add);
+        final List<Session> allSessions = repository.getAll();
         final List<Session> filteredSessions = getCriteria().apply(allSessions);
         allSessions.clear();
         displayFilteredSessions(filteredSessions);

@@ -26,7 +26,7 @@ public class FilterSessionsServiceTest {
         sessionList.add(session2);
         filteredList.add(session1);
         filteredList.add(session2);
-        when(repository.getAll()).thenReturn(sessionList.iterator());
+        when(repository.getAll()).thenReturn(sessionList);
         final FilterSessionsServiceMock service = new FilterSessionsServiceMock(repository);
         spy(service).getCriteria();
         spy(service).displayFilteredSessions(filteredList);

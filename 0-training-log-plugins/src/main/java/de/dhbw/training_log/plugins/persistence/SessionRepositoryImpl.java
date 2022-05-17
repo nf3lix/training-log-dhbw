@@ -23,8 +23,8 @@ public class SessionRepositoryImpl implements SessionRepository {
     }
 
     @Override
-    public Iterator<Session> getAll() {
-        return sessionsList.listIterator();
+    public List<Session> getAll() {
+        return sessionsList;
     }
 
     @Override

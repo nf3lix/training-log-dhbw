@@ -28,7 +28,7 @@ public class GenerateReportServiceTest {
         allSessions.add(sessionMock());
         allSessions.add(sessionMock());
         allSessions.add(sessionMock());
-        when(repository.getAll()).thenReturn(allSessions.iterator());
+        when(repository.getAll()).thenReturn(allSessions);
         service.run();
         verify(repository).getAll();
         spy(service).displayResults(anyList());

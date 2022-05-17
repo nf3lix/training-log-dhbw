@@ -24,8 +24,7 @@ public abstract class GenerateReportService implements Service {
     }
 
     private List<Metric.MetricResult> generateResults() {
-        final List<Session> sessionList = new ArrayList<>();
-        repository.getAll().forEachRemaining(sessionList::add);
+        final List<Session> sessionList = repository.getAll();
         final Report report = new Report.ReportBuilder()
                 .setSessionList(sessionList)
                 .addAllMetrics(StandardMetrics.all()).build();
