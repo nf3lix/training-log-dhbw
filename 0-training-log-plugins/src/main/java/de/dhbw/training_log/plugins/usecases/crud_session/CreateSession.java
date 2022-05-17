@@ -1,10 +1,7 @@
 package de.dhbw.training_log.plugins.usecases.crud_session;
 
 import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
-import de.dhbw.training_log.adapters.resource.DistanceResource;
-import de.dhbw.training_log.adapters.resource.SessionDateResource;
-import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.adapters.resource.SessionTimeResource;
+import de.dhbw.training_log.adapters.resource.*;
 import de.dhbw.training_log.adapters.usecase.crud.CreateSessionUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
@@ -38,18 +35,24 @@ public class CreateSession implements UseCase {
         service.run(resource);
     }
 
-
-
     private DistanceResource getDistance() {
-        System.out.print("Enter distance (format: " + DistanceResource.DISPLAYED_FORMAT + "): ");
+        System.out.print("Enter distance (format: <distance> <METERS|KILOMETERS|MILES>): ");
         final String input = CommandLine.readLine();
         return new DistanceResource(input);
     }
 
     private SessionDateResource getDate() {
-        System.out.print("Enter the date of session (format: " + SessionDateResource.DATE_FORMAT + "): ");
-        final String input = CommandLine.readLine();
-        return new SessionDateResource(input);
+        SessionDateResource sessionDateResource = null;
+        while (sessionDateResource == null) {
+            System.out.print("Enter the date of session (format: " + SessionDateResource.DATE_FORMAT + "): ");
+            final String input = CommandLine.readLine();
+            try {
+                sessionDateResource = new SessionDateResource(input);
+            } catch (InvalidDateFormat e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return sessionDateResource;
     }
 
     private SessionTimeResource getSessionTime() {
