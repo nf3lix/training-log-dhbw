@@ -23,9 +23,9 @@ public class SessionDateMapper implements SessionResourceMapper<SessionDateResou
 
     @Override
     public SessionDate toDomainModel(SessionDateResource resource) {
-        final Integer year = resource.year();
-        final Integer month = resource.month();
-        final Integer day = resource.day();
+        final int year = resource.year();
+        final int month = resource.month();
+        final int day = resource.day();
         return new SessionDate(new Year(year), new Month(month), new DayOfMonth(day));
     }
 

@@ -51,8 +51,8 @@ public class AggregateMinTest {
     }
 
     private static class ComparableMock implements Comparable<ComparableMock> {
-        private final Integer value;
-        public ComparableMock(final Integer value) {
+        private final int value;
+        public ComparableMock(final int value) {
             this.value = value;
         }
 

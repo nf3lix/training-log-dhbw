@@ -33,8 +33,8 @@ public class AggregateAvgTest {
 
     private static class AvgMock implements AggregateSubject.Averageable<AvgMock> {
 
-        private final Double value;
-        public AvgMock(Double value) {
+        private final double value;
+        public AvgMock(double value) {
             this.value = value;
         }
 
@@ -44,7 +44,7 @@ public class AggregateAvgTest {
         }
 
         @Override
-        public AvgMock divideBy(Double divisor) {
+        public AvgMock divideBy(double divisor) {
             return new AvgMock(this.value / divisor);
         }
     }

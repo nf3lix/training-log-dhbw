@@ -29,7 +29,7 @@ public class SessionTimeTest {
     @Test
     public void assignMinutesAndSecondsToSessionTime() {
         for(int minutes = 0; minutes < 6; minutes++) {
-            final Integer seconds = 10 * minutes;
+            final int seconds = 10 * minutes;
             final SessionTime sessionTime = new SessionTime(new Minutes(minutes), new Seconds(seconds));
             assertThat(sessionTime, hasTime(minutes, seconds));
         }

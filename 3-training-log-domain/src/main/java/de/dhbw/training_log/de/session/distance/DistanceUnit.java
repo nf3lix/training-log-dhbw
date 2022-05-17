@@ -6,9 +6,9 @@ public enum DistanceUnit {
     KILOMETERS(1e6),
     MILES(1.609344e6);
 
-    private final Double inMillimeters;
+    private final double inMillimeters;
 
-    DistanceUnit(final Double inMillimeters) {
+    DistanceUnit(final double inMillimeters) {
         this.inMillimeters = inMillimeters;
     }
 
@@ -17,7 +17,7 @@ public enum DistanceUnit {
      * @param unit the distance unit to convert to
      * @return ratio to given unit
      */
-    public Double ratioTo(final DistanceUnit unit) {
+    public double ratioTo(final DistanceUnit unit) {
         return this.inMillimeters / unit.inMillimeters;
     }
 

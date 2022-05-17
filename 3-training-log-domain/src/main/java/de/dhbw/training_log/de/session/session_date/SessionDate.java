@@ -42,8 +42,8 @@ public final class SessionDate implements Comparable<SessionDate> {
     }
 
     public static final class Year {
-        private final Integer year;
-        public Year(final Integer year) {
+        private final int year;
+        public Year(final int year) {
             this.year = year;
         }
 
@@ -56,7 +56,7 @@ public final class SessionDate implements Comparable<SessionDate> {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Year year1 = (Year) o;
-            return year.equals(year1.year);
+            return year == year1.year;
         }
 
         @Override
@@ -67,8 +67,8 @@ public final class SessionDate implements Comparable<SessionDate> {
     }
 
     public static final class Month {
-        private final Integer month;
-        public Month(final Integer month) {
+        private final int month;
+        public Month(final int month) {
             if(month < 1 || month > 12) {
                 throw new IllegalArgumentException();
             }
@@ -84,7 +84,7 @@ public final class SessionDate implements Comparable<SessionDate> {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Month month1 = (Month) o;
-            return month.equals(month1.month);
+            return month == month1.month;
         }
 
         @Override
@@ -94,8 +94,8 @@ public final class SessionDate implements Comparable<SessionDate> {
     }
 
     public static final class DayOfMonth {
-        private final Integer day;
-        public DayOfMonth(final Integer day) {
+        private final int day;
+        public DayOfMonth(final int day) {
             if(day < 1 || day > 31) {
                 throw new IllegalArgumentException();
             }
@@ -111,7 +111,7 @@ public final class SessionDate implements Comparable<SessionDate> {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             DayOfMonth that = (DayOfMonth) o;
-            return day.equals(that.day);
+            return day == that.day;
         }
 
         @Override

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 public class DistanceUnitTest {
 
-    private static final Double KILOMETERS_IN_METERS = 1e3;
-    private static final Double MILES_IN_METERS = 1.609344e3;
+    private static final double KILOMETERS_IN_METERS = 1e3;
+    private static final double MILES_IN_METERS = 1.609344e3;
 
     @Test
     public void calculateCorrectRatioBetweenUnits() {

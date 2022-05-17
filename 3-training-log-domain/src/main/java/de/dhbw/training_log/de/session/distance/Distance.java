@@ -10,9 +10,9 @@ import static de.dhbw.training_log.de.aggregate_function.AggregateSubject.Summab
 public final class Distance implements Summable<Distance>, Averageable<Distance>, Comparable<Distance> {
 
     private static final DistanceUnit DEFAULT_UNIT = DistanceUnit.METERS;
-    private final Double distance;
+    private final double distance;
 
-    public Distance(final Double distance, final DistanceUnit unit) {
+    public Distance(final double distance, final DistanceUnit unit) {
         if(distance < 0) {
             throw new InvalidDistance("Distances must be zero or positive");
         }
@@ -25,17 +25,17 @@ public final class Distance implements Summable<Distance>, Averageable<Distance>
     }
 
     @Override
-    public Distance divideBy(Double divisor) {
+    public Distance divideBy(double divisor) {
         return new Distance(this.distance / divisor, DEFAULT_UNIT);
     }
 
-    public Double getIn(final DistanceUnit unit) {
+    public double getIn(final DistanceUnit unit) {
         return Round.round(this.distance * DEFAULT_UNIT.ratioTo(unit), 6);
     }
 
     @Override
     public int compareTo(Distance o) {
-        final Double diff = (this.getIn(DEFAULT_UNIT) - o.getIn(DEFAULT_UNIT));
+        final double diff = (this.getIn(DEFAULT_UNIT) - o.getIn(DEFAULT_UNIT));
         return Round.roundUpToInt(diff);
     }
 

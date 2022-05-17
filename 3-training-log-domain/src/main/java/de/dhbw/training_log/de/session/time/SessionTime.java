@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public final class SessionTime implements AggregateSubject.Summable<SessionTime>, Comparable<SessionTime>, AggregateSubject.Averageable<SessionTime> {
 
-    private final Integer minutes;
-    private final Integer seconds;
+    private final int minutes;
+    private final int seconds;
 
     public SessionTime(final Minutes minutes, final Seconds seconds) {
         this.minutes = minutes.value() + seconds.getFullMinutes();
@@ -22,11 +22,11 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
         );
     }
 
-    public Integer minutes() {
+    public int minutes() {
         return minutes;
     }
 
-    public Integer seconds() {
+    public int seconds() {
         return seconds;
     }
 
@@ -35,7 +35,7 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
         return this.totalSeconds() - o.totalSeconds();
     }
 
-    public Integer totalSeconds() {
+    public int totalSeconds() {
         return minutes * 60 + seconds;
     }
 
@@ -53,8 +53,8 @@ public final class SessionTime implements AggregateSubject.Summable<SessionTime>
     }
 
     @Override
-    public SessionTime divideBy(Double divisor) {
-        final Integer seconds = Round.roundToInt(totalSeconds() / divisor);
+    public SessionTime divideBy(double divisor) {
+        final int seconds = Round.roundToInt(totalSeconds() / divisor);
         return new SessionTime(new Minutes(0), new Seconds(seconds));
     }
 

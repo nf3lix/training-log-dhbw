@@ -5,15 +5,15 @@ import org.hamcrest.TypeSafeMatcher;
 
 class HasDistanceMatcher extends TypeSafeMatcher<Distance> {
 
-    static HasDistanceMatcher hasDistance(final Double distanceValue, final DistanceUnit unit, final Double delta) {
+    static HasDistanceMatcher hasDistance(final double distanceValue, final DistanceUnit unit, final double delta) {
         return new HasDistanceMatcher(distanceValue, unit, delta);
     }
 
-    private final Double distanceValue;
+    private final double distanceValue;
     private final DistanceUnit unit;
-    private final Double delta;
+    private final double delta;
 
-    HasDistanceMatcher(final Double distance, final DistanceUnit unit, final Double delta) {
+    HasDistanceMatcher(final double distance, final DistanceUnit unit, final double delta) {
         this.distanceValue = distance;
         this.unit = unit;
         this.delta = delta;

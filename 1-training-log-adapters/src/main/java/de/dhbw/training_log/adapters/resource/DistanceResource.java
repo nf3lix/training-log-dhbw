@@ -6,7 +6,7 @@ public final class DistanceResource {
 
     public static final String DISPLAYED_FORMAT = "<distance> <unit>";
 
-    private final Double distance;
+    private final double distance;
     private final DistanceUnit unit;
 
     public DistanceResource(final String input) {
@@ -17,7 +17,7 @@ public final class DistanceResource {
         this.unit = getUnit(input);
     }
 
-    private Double getDistance(final String input) {
+    private double getDistance(final String input) {
         final String distanceInput = input.split(" ")[0];
         final String parsableString = distanceInput.replace(",", ".");
         return Double.parseDouble(parsableString);
@@ -37,7 +37,7 @@ public final class DistanceResource {
         return input.matches("[0-9]*[,.]?[0-9]*\\s[A-Za-z_]*");
     }
 
-    public Double distance() {
+    public double distance() {
         return distance;
     }
 
