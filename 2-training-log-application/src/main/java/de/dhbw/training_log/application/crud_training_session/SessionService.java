@@ -1,11 +1,9 @@
 package de.dhbw.training_log.application.crud_training_session;
 
-import de.dhbw.training_log.application.filter.FilterCriteria;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.training_session_id.SessionId;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class SessionService {

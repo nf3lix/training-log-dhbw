@@ -2,7 +2,7 @@ package de.dhbw.training_log.adapters.usecase.filter_sessions;
 
 import de.dhbw.training_log.adapters.mapper.filter_criteria.SessionDateFilterCriteriaMapper;
 import de.dhbw.training_log.adapters.resource.filter_criteria.SessionDateFilterCriteria;
-import de.dhbw.training_log.application.filter.FilterCriteria;
+import de.dhbw.training_log.application.crud_training_session.FilterCriteria;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.session_date.SessionDate;
 

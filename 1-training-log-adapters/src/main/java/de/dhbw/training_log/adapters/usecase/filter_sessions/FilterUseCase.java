@@ -3,7 +3,7 @@ package de.dhbw.training_log.adapters.usecase.filter_sessions;
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.application.crud_training_session.SessionService;
-import de.dhbw.training_log.application.filter.FilterCriteria;
+import de.dhbw.training_log.application.crud_training_session.FilterCriteria;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 
