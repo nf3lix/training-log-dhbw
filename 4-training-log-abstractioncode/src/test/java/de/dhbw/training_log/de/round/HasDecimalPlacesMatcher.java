@@ -5,19 +5,19 @@ import org.hamcrest.TypeSafeMatcher;
 
 class HasDecimalPlacesMatcher extends TypeSafeMatcher<Double> {
 
-    static HasDecimalPlacesMatcher hasPlaces(final Integer places) {
+    static HasDecimalPlacesMatcher hasPlaces(final int places) {
         return new HasDecimalPlacesMatcher(places);
     }
 
-    private final Integer places;
+    private final int places;
 
-    HasDecimalPlacesMatcher(final Integer places) {
+    HasDecimalPlacesMatcher(final int places) {
         this.places = places;
     }
 
     @Override
     protected boolean matchesSafely(Double value) {
-        return getDecimalPartLength(value).equals(places);
+        return getDecimalPartLength(value) == places;
     }
 
     @Override
@@ -30,7 +30,7 @@ class HasDecimalPlacesMatcher extends TypeSafeMatcher<Double> {
         mismatchDescription.appendText("has " + getDecimalPartLength(item) + " places");
     }
 
-    private Integer getDecimalPartLength(Double value) {
+    private int getDecimalPartLength(double value) {
         final String decimalPart = String.valueOf(value).split("\\.")[1];
         return decimalPart.length();
     }

@@ -29,8 +29,8 @@ public class AggregateSumTest {
     }
 
     private static class SummableMock implements AggregateSubject.Summable<SummableMock> {
-        private final Integer value;
-        SummableMock(final Integer value) {
+        private final int value;
+        SummableMock(final int value) {
             this.value = value;
         }
 

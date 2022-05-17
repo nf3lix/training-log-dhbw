@@ -55,7 +55,7 @@ public class DistanceTest {
     }
 
     @Test
-    public void secondsValueObjectBehavior() {
+    public void distanceValueObjectBehavior() {
         final List<Supplier<Distance>> distances = Arrays.asList(
                 () -> new Distance(1.0, METERS),
                 () -> new Distance(3.0, METERS)
@@ -93,21 +93,17 @@ public class DistanceTest {
         assertNotEquals(0, distance1.compareTo(distance2));
     }
 
-    private void compareToOtherUnits(final Double distanceValue, final DistanceUnit unit) {
+    private void compareToOtherUnits(final double distanceValue, final DistanceUnit unit) {
         final Iterator<DistanceUnit> iterator = DISTANCE_UNITS.keySet().stream().iterator();
         while (iterator.hasNext()) {
             final DistanceUnit currentUnit = iterator.next();
-            final Double comparedUnit = DISTANCE_UNITS.get(unit);
-            if(comparedUnit == null) {
-                throw new AssertionFailedError("No entry for this unit " + unit + " in local distance unit map");
-            }
             checkConversionOfDistance(distanceValue, unit, currentUnit);
         }
     }
 
-    private void checkConversionOfDistance(final Double distanceValue, final DistanceUnit baseUnit, final DistanceUnit newUnit) {
+    private void checkConversionOfDistance(final double distanceValue, final DistanceUnit baseUnit, final DistanceUnit newUnit) {
         final Distance distance = new Distance(distanceValue, baseUnit);
-        final Double expectedDistance = distanceValue * DISTANCE_UNITS.get(baseUnit) / DISTANCE_UNITS.get(newUnit);
+        final double expectedDistance = distanceValue * DISTANCE_UNITS.get(baseUnit) / DISTANCE_UNITS.get(newUnit);
         MatcherAssert.assertThat(distance, HasDistanceMatcher.hasDistance(expectedDistance, newUnit, 1e-3));
     }
 

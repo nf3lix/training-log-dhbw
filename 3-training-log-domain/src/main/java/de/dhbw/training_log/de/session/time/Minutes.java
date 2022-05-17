@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public final class Minutes {
 
-    private final Integer value;
+    private final int value;
 
-    public Minutes(final Integer minutes) {
+    public Minutes(final int minutes) {
         if(minutes < 0) {
             throw new IllegalStateException("Minutes must always be non-negative");
         }
         this.value = minutes;
     }
 
-    public Integer value() {
+    public int value() {
         return value;
     }
 

@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public final class Seconds {
 
-    private final Integer value;
+    private final int value;
 
-    public Seconds(final Integer seconds) {
+    public Seconds(final int seconds) {
         if(seconds < 0) {
             throw new IllegalStateException("Seconds must always be non-negative");
         }
         this.value = seconds;
     }
 
-    Integer getFullMinutes() {
+    int getFullMinutes() {
         int seconds = value;
-        Integer fullMinutes = 0;
+        int fullMinutes = 0;
         while(seconds >= 60) {
             fullMinutes++;
             seconds -= 60;
@@ -23,7 +23,7 @@ public final class Seconds {
         return fullMinutes;
     }
 
-    Integer residualSeconds() {
+    int residualSeconds() {
         return value % 60;
     }
 

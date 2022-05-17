@@ -11,7 +11,7 @@ public final class Round {
      * @param places decimal places to round to
      * @return rounded value
      */
-    public static Double round(final Double value, final Integer places) {
+    public static double round(final double value, final int places) {
         if(places <= 0) {
             throw new IllegalStateException("Cannot round Double value to less than one places");
         }
@@ -19,12 +19,12 @@ public final class Round {
         return decimal.setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 
-    public static Integer roundToInt(final Double value) {
+    public static int roundToInt(final double value) {
         BigDecimal decimal = new BigDecimal(Double.toString(value));
         return (int) decimal.setScale(0, RoundingMode.HALF_UP).doubleValue();
     }
 
-    public static Integer roundUpToInt(final Double value) {
+    public static int roundUpToInt(final double value) {
         BigDecimal decimal = new BigDecimal(Double.toString(value));
         return (int) decimal.setScale(0, RoundingMode.UP).doubleValue();
     }

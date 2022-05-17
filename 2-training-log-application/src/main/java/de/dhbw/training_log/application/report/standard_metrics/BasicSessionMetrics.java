@@ -82,7 +82,7 @@ class BasicSessionMetrics {
         private SessionTime timePerKilometer(final List<Session> sessionList) {
             final Distance totalDistance = totalDistance(sessionList);
             final SessionTime totalTime = totalTime(sessionList);
-            final Integer seconds = totalTime.seconds() + totalTime.minutes() * 60;
+            final int seconds = totalTime.seconds() + totalTime.minutes() * 60;
             return new SessionTime(new Minutes(0), new Seconds(Round.roundToInt(seconds / totalDistance.getIn(KILOMETERS))));
         }
 

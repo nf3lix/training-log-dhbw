@@ -2,8 +2,8 @@ package de.dhbw.training_log.adapters.resource;
 
 public class SessionTimeResource {
 
-    private final Integer minutes;
-    private final Integer seconds;
+    private final int minutes;
+    private final int seconds;
 
     public SessionTimeResource(final String input) {
         if(!input.matches("[0-9]*:[0-9]{1,2}")) {
@@ -19,11 +19,11 @@ public class SessionTimeResource {
         this.seconds = seconds;
     }
 
-    public Integer minutes() {
+    public int minutes() {
         return this.minutes;
     }
 
-    public Integer seconds() {
+    public int seconds() {
         return this.seconds;
     }
 
@@ -31,7 +31,7 @@ public class SessionTimeResource {
     public String toString() {
         String displayedSeconds;
         if(seconds > 9) {
-            displayedSeconds = seconds.toString();
+            displayedSeconds = String.valueOf(seconds);
         } else {
             displayedSeconds = "0" + seconds;
         }

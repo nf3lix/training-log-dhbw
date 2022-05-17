@@ -1,4 +1,4 @@
-package de.dhbw.training_log.plugins.usecases.read_session;
+package de.dhbw.training_log.plugins.usecases.crud_session;
 
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;

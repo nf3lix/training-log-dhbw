@@ -5,21 +5,21 @@ import org.hamcrest.TypeSafeMatcher;
 
 public class SessionTimeMatcher extends TypeSafeMatcher<SessionTime> {
 
-    static SessionTimeMatcher hasTime(final Integer minutes, final Integer seconds) {
+    static SessionTimeMatcher hasTime(final int minutes, final int seconds) {
         return new SessionTimeMatcher(minutes, seconds);
     }
 
-    private final Integer minutes;
-    private final Integer seconds;
+    private final int minutes;
+    private final int seconds;
 
-    SessionTimeMatcher(final Integer minutes, final Integer seconds) {
+    SessionTimeMatcher(final int minutes, final int seconds) {
         this.minutes = minutes;
         this.seconds = seconds;
     }
 
     @Override
     protected boolean matchesSafely(SessionTime sessionTime) {
-        return sessionTime.minutes().equals(this.minutes) && sessionTime.seconds().equals(this.seconds);
+        return sessionTime.minutes() == this.minutes && sessionTime.seconds() == this.seconds;
     }
 
     @Override

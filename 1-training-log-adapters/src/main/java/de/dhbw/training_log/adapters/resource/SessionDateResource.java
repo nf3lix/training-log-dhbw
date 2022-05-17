@@ -14,15 +14,15 @@ public final class SessionDateResource {
         localDate = LocalDate.parse(date, formatter);
     }
 
-    public Integer year() {
+    public int year() {
         return localDate.getYear();
     }
 
-    public Integer month() {
+    public int month() {
         return localDate.getMonthValue();
     }
 
-    public Integer day() {
+    public int day() {
         return localDate.getDayOfMonth();
     }
 

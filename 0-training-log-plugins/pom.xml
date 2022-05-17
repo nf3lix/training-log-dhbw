@@ -25,4 +25,16 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>de.dhbw.training_log.plugins.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -54,7 +54,7 @@ public abstract class AggregateFunction<T, K> {
         @Override
         public T compute(List<T> list) {
             final T sum = new SUM<T>().compute(list);
-            return sum.divideBy((double) list.size());
+            return sum.divideBy(list.size());
         }
     }
 

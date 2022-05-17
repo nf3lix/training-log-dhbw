@@ -7,7 +7,7 @@ public interface AggregateSubject {
     }
 
     interface Averageable<T> extends Summable<T> {
-        T divideBy(final Double divisor);
+        T divideBy(final double divisor);
     }
 
 }
