@@ -1,4 +1,4 @@
-package de.dhbw.training_log.application.filter;
+package de.dhbw.training_log.application.crud_training_session;
 
 import de.dhbw.training_log.de.comparison_operator.ComparisonOperator;
 import de.dhbw.training_log.de.session.Session;

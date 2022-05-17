@@ -1,23 +1,24 @@
 package de.dhbw.training_log.plugins.usecases.generate_report;
 
-import de.dhbw.training_log.adapters.mapper.MetricResultMapper;
-import de.dhbw.training_log.application.report.GenerateReportService;
-import de.dhbw.training_log.de.metric.Metric;
-import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
+import de.dhbw.training_log.adapters.usecase.GenerateReportUseCase;
+import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.plugins.usecases.UseCase;
 
-import java.util.List;
+public class GenerateReport implements UseCase {
 
-public class GenerateReport extends GenerateReportService {
+    private final GenerateReportUseCase service;
 
-    public GenerateReport(SessionRepositoryImpl repository) {
-        super(repository);
+    public GenerateReport(final SessionRepository repository) {
+        this.service = new GenerateReportUseCase(repository);
     }
 
     @Override
-    protected void displayResults(List<Metric.MetricResult> metricResults) {
-        for(Metric.MetricResult result : metricResults) {
-            System.out.println(new MetricResultMapper().toResource(result).toString());
-        }
+    public void initialize() {
+        service.getResults().forEach(System.out::println);
     }
 
+    @Override
+    public String getDescription() {
+        return "Generate Report";
+    }
 }

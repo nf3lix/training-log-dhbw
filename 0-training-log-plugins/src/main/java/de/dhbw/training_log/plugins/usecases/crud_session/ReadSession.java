@@ -1,25 +1,32 @@
 package de.dhbw.training_log.plugins.usecases.crud_session;
 
-import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.application.crud_training_session.ReadSessionService;
-import de.dhbw.training_log.de.session.Session;
+import de.dhbw.training_log.adapters.usecase.crud.ReadSessionsUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
+import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class ReadSession extends ReadSessionService {
+import java.util.List;
+
+public class ReadSession implements UseCase {
+
+    private final ReadSessionsUseCase service;
 
     public ReadSession(final SessionRepository repository) {
-        super(repository);
+        this.service = new ReadSessionsUseCase(repository);
     }
 
     @Override
-    protected void displaySession(Session session) {
-        System.out.println(sessionAsString(session));
+    public void initialize() {
+        final List<SessionResource> resourceList = service.getSessions();
+        for(SessionResource resource : resourceList) {
+            System.out.println(resource);
+        }
     }
 
-    private String sessionAsString(final Session session) {
-        final SessionResource resource = new SessionEntityMapper().toResource(session);
-        return resource.toString();
+    @Override
+    public String getDescription() {
+        return "Show all training sessions";
     }
+
 
 }

@@ -1,63 +1,75 @@
 package de.dhbw.training_log.plugins.usecases.crud_session;
 
-import de.dhbw.training_log.adapters.mapper.DistanceMapper;
-import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
-import de.dhbw.training_log.adapters.mapper.SessionTimeMapper;
 import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
-import de.dhbw.training_log.adapters.resource.DistanceResource;
-import de.dhbw.training_log.adapters.resource.SessionDateResource;
-import de.dhbw.training_log.adapters.resource.SessionTimeResource;
-import de.dhbw.training_log.application.crud_training_session.CreateSessionService;
+import de.dhbw.training_log.adapters.resource.*;
+import de.dhbw.training_log.adapters.usecase.crud.CreateSessionUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.de.session.description.Description;
-import de.dhbw.training_log.de.session.distance.Distance;
-import de.dhbw.training_log.de.session.session_date.SessionDate;
-import de.dhbw.training_log.de.session.time.SessionTime;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import de.dhbw.training_log.plugins.CommandLine;
+import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class CreateSession extends CreateSessionService {
+public class CreateSession implements UseCase {
 
-    public CreateSession(SessionRepository repository) {
-        super(repository);
+    private final CreateSessionUseCase service;
+    private final SessionRepository repository;
+
+    public CreateSession(final SessionRepository repository) {
+        this.service = new CreateSessionUseCase(repository);
+        this.repository = repository;
     }
 
     @Override
-    protected Distance askForDistance() {
-        System.out.print("Enter distance (format: " + DistanceResource.DISPLAYED_FORMAT + "): ");
+    public String getDescription() {
+        return "Create new training session";
+    }
+
+    @Override
+    public void initialize() {
+        final SessionDateResource sessionDate = getDate();
+        final DistanceResource distance = getDistance();
+        final SessionTimeResource sessionTime = getSessionTime();
+        final SessionType sessionType = getSessionType();
+        final String description = getSessionDescription();
+        final SessionResource resource = new SessionResource(repository.nextId().uuid(), sessionDate, distance,
+                sessionTime, description, sessionType);
+        service.run(resource);
+    }
+
+    private DistanceResource getDistance() {
+        System.out.print("Enter distance (format: <distance> <METERS|KILOMETERS|MILES>): ");
         final String input = CommandLine.readLine();
-        final DistanceResource distanceResource = new DistanceResource(input);
-        return new DistanceMapper().toDomainModel(distanceResource);
+        return new DistanceResource(input);
     }
 
-    @Override
-    protected SessionDate askForSessionDate() {
-        System.out.print("Enter the date of session (format: " + SessionDateResource.DATE_FORMAT + "): ");
-        final String input = CommandLine.readLine();
-        final SessionDateResource sessionDateResource = new SessionDateResource(input);
-        return new SessionDateMapper().toDomainModel(sessionDateResource);
+    private SessionDateResource getDate() {
+        SessionDateResource sessionDateResource = null;
+        while (sessionDateResource == null) {
+            System.out.print("Enter the date of session (format: " + SessionDateResource.DATE_FORMAT + "): ");
+            final String input = CommandLine.readLine();
+            try {
+                sessionDateResource = new SessionDateResource(input);
+            } catch (InvalidDateFormat e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return sessionDateResource;
     }
 
-    @Override
-    protected SessionTime askForSessionTime() {
+    private SessionTimeResource getSessionTime() {
         System.out.print("Enter time (format: <mm>:<ss>): ");
         final String input = CommandLine.readLine();
-        final SessionTimeResource sessionTimeResource = new SessionTimeResource(input);
-        return new SessionTimeMapper().toDomainModel(sessionTimeResource);
+        return new SessionTimeResource(input);
     }
 
-    @Override
-    protected SessionType askForSessionType() {
+    private SessionType getSessionType() {
         System.out.print("Enter type: ");
         System.out.println(sessionTypeOptions());
         return SessionTypeMapper.mapToType(CommandLine.readLine());
     }
 
-    @Override
-    protected Description askForDescription() {
+    private String getSessionDescription() {
         System.out.print("Enter a description: ");
-        final String input = CommandLine.readLine();
-        return new Description(input);
+        return CommandLine.readLine();
     }
 
     private String sessionTypeOptions() {

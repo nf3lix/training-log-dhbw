@@ -2,6 +2,7 @@ package de.dhbw.training_log.adapters.resource;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public final class SessionDateResource {
 
@@ -9,9 +10,13 @@ public final class SessionDateResource {
 
     private final LocalDate localDate;
 
-    public SessionDateResource(final String date) {
+    public SessionDateResource(final String date) throws InvalidDateFormat {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        localDate = LocalDate.parse(date, formatter);
+        try {
+            localDate = LocalDate.parse(date, formatter);
+        } catch (Exception e) {
+            throw new InvalidDateFormat("Date must have the format " + DATE_FORMAT);
+        }
     }
 
     public int year() {

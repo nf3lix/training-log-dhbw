@@ -1,5 +1,6 @@
 package de.dhbw.training_log.application.filter;
 
+import de.dhbw.training_log.application.crud_training_session.FilterCriteria;
 import de.dhbw.training_log.de.comparison_operator.ComparisonOperator;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;

@@ -1,21 +1,31 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
-import de.dhbw.training_log.adapters.mapper.filter_criteria.SessionDateFilterCriteriaMapper;
-import de.dhbw.training_log.adapters.resource.filter_criteria.SessionDateFilterCriteria;
-import de.dhbw.training_log.application.filter.FilterCriteria;
+import de.dhbw.training_log.adapters.resource.SessionResource;
+import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterByDateUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.de.session.session_date.SessionDate;
+import de.dhbw.training_log.plugins.CommandLine;
+import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class FilterSessionsByDate extends FilterSessionsUseCase<SessionDate> {
+import java.util.List;
 
-    public FilterSessionsByDate(SessionRepository repository) {
-        super(repository);
+public class FilterSessionsByDate implements UseCase {
+
+    private final FilterByDateUseCase service;
+
+    public FilterSessionsByDate(final SessionRepository repository) {
+        this.service = new FilterByDateUseCase(repository);
     }
 
     @Override
-    FilterCriteria<SessionDate> parseToFilterCriteria(String input) {
-        final SessionDateFilterCriteria criteria = new SessionDateFilterCriteria(input);
-        return new SessionDateFilterCriteriaMapper().toDomainModel(criteria);
+    public void initialize() {
+        final String filterCriteria = CommandLine.readLine();
+        final List<SessionResource> resourceList = service.getFilteredSessions(filterCriteria);
+        resourceList.forEach(System.out::println);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Filter sessions by date";
     }
 
 }
