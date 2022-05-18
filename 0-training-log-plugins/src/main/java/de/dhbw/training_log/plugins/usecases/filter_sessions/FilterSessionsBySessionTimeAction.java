@@ -1,19 +1,19 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterByDateUseCase;
+import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterBySessionTimeUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.plugins.usecases.UseCase;
 
 import java.util.List;
 
-public class FilterSessionsByDate implements UseCase {
+public class FilterSessionsBySessionTimeAction implements UseCase {
 
-    private final FilterByDateUseCase service;
+    private final FilterBySessionTimeUseCase service;
 
-    public FilterSessionsByDate(final SessionRepository repository) {
-        this.service = new FilterByDateUseCase(repository);
+    public FilterSessionsBySessionTimeAction(final SessionRepository repository) {
+        this.service = new FilterBySessionTimeUseCase(repository);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class FilterSessionsByDate implements UseCase {
 
     @Override
     public String getDescription() {
-        return "Filter sessions by date";
+        return "Filter sessions by time";
     }
 
 }

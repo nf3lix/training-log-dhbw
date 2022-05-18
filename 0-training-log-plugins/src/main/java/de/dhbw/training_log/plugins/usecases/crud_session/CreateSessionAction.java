@@ -8,12 +8,12 @@ import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class CreateSession implements UseCase {
+public class CreateSessionAction implements UseCase {
 
     private final CreateSessionUseCase service;
     private final SessionRepository repository;
 
-    public CreateSession(final SessionRepository repository) {
+    public CreateSessionAction(final SessionRepository repository) {
         this.service = new CreateSessionUseCase(repository);
         this.repository = repository;
     }

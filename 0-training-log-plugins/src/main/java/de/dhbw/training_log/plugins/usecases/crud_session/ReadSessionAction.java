@@ -7,11 +7,11 @@ import de.dhbw.training_log.plugins.usecases.UseCase;
 
 import java.util.List;
 
-public class ReadSession implements UseCase {
+public class ReadSessionAction implements UseCase {
 
     private final ReadSessionsUseCase service;
 
-    public ReadSession(final SessionRepository repository) {
+    public ReadSessionAction(final SessionRepository repository) {
         this.service = new ReadSessionsUseCase(repository);
     }
 

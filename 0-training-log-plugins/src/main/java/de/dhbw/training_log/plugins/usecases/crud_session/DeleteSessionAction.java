@@ -5,11 +5,11 @@ import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class DeleteSession implements UseCase {
+public class DeleteSessionAction implements UseCase {
 
     private final DeleteSessionUseCase service;
 
-    public DeleteSession(final SessionRepository repository) {
+    public DeleteSessionAction(final SessionRepository repository) {
         this.service = new DeleteSessionUseCase(repository);
     }
 

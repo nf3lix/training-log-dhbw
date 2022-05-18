@@ -4,11 +4,11 @@ import de.dhbw.training_log.adapters.usecase.GenerateReportUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.usecases.UseCase;
 
-public class GenerateReport implements UseCase {
+public class GenerateReportAction implements UseCase {
 
     private final GenerateReportUseCase service;
 
-    public GenerateReport(final SessionRepository repository) {
+    public GenerateReportAction(final SessionRepository repository) {
         this.service = new GenerateReportUseCase(repository);
     }
 
