@@ -1,12 +1,14 @@
-package de.dhbw.training_log.plugins.usecases;
+package de.dhbw.training_log.plugins.action;
 
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-public abstract class ActionMenu {
+public abstract class ActionMenu implements ActionObservable {
 
     private final Map<String, UserAction> useCases = new HashMap<>();
     private final Map<String, ActionMenu> nestedMenus = new HashMap<>();
@@ -14,8 +16,10 @@ public abstract class ActionMenu {
     private final String description;
     private boolean isMainMenu = false;
 
-    private final static String NESTED_MENU_SEPARATOR = "========= Type \"exit\" to go back to main menu =========";
-    private final static String SEPARATOR = "=========================================================";
+    private Set<ExitMenuListener> observers = new HashSet<>();
+
+    private final static String FIRST_SEPARATOR = "========= Type \"exit\" to close menu =========";
+    private final static String SECOND_SEPARATOR =             "===============================================";
 
     public ActionMenu(final String description, final SessionRepositoryImpl repository) {
         this.description = description;
@@ -45,14 +49,10 @@ public abstract class ActionMenu {
     }
 
     private void printUseCases() {
-        if(isMainMenu) {
-            System.out.println(SEPARATOR);
-        } else {
-            System.out.println(NESTED_MENU_SEPARATOR);
-        }
+        System.out.println(FIRST_SEPARATOR);
         this.useCases.forEach((mnemonic, useCase) -> System.out.println(mnemonic + ": " + useCase.getDescription()));
         this.nestedMenus.forEach((mnemonic, menu) -> System.out.println(mnemonic + ": " + menu.description));
-        System.out.println(SEPARATOR);
+        System.out.println(SECOND_SEPARATOR);
     }
 
     public void start() {
@@ -60,7 +60,8 @@ public abstract class ActionMenu {
             printUseCases();
             final String mnemonic = CommandLine.readLine();
             if(mnemonic.equalsIgnoreCase("exit")) {
-                new MainMenu(repository).start();
+                notifyObserver();
+                // new MainMenu(repository).start();
                 break;
             }
             UserAction selectedUseCase = getUseCase(mnemonic);
@@ -72,6 +73,18 @@ public abstract class ActionMenu {
                 selectedUseCase.initialize();
             }
         } while (true);
+    }
+
+    @Override
+    public void addExitMenuListener(ExitMenuListener observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for(ExitMenuListener observer : observers) {
+            observer.onExit();
+        }
     }
 
 }

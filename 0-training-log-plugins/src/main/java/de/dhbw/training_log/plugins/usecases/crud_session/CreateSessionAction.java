@@ -6,7 +6,7 @@ import de.dhbw.training_log.adapters.usecase.crud.CreateSessionUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import de.dhbw.training_log.plugins.CommandLine;
-import de.dhbw.training_log.plugins.usecases.UserAction;
+import de.dhbw.training_log.plugins.action.UserAction;
 
 public class CreateSessionAction implements UserAction {
 

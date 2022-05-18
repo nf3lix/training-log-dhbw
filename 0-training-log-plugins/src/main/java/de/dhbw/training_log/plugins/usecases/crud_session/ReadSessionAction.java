@@ -3,7 +3,7 @@ package de.dhbw.training_log.plugins.usecases.crud_session;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.usecase.crud.ReadSessionsUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.plugins.usecases.UserAction;
+import de.dhbw.training_log.plugins.action.UserAction;
 
 import java.util.List;
 

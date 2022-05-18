@@ -2,7 +2,7 @@ package de.dhbw.training_log.plugins.usecases.generate_report;
 
 import de.dhbw.training_log.adapters.usecase.GenerateReportUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.plugins.usecases.UserAction;
+import de.dhbw.training_log.plugins.action.UserAction;
 
 public class GenerateReportAction implements UserAction {
 
