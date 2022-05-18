@@ -6,10 +6,10 @@ import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class UseCaseMenu {
+public abstract class ActionMenu {
 
-    private final Map<String, UseCase> useCases = new HashMap<>();
-    private final Map<String, UseCaseMenu> nestedMenus = new HashMap<>();
+    private final Map<String, UserAction> useCases = new HashMap<>();
+    private final Map<String, ActionMenu> nestedMenus = new HashMap<>();
     private final SessionRepositoryImpl repository;
     private final String description;
     private boolean isMainMenu = false;
@@ -17,30 +17,30 @@ public abstract class UseCaseMenu {
     private final static String NESTED_MENU_SEPARATOR = "========= Type \"exit\" to go back to main menu =========";
     private final static String SEPARATOR = "=========================================================";
 
-    public UseCaseMenu(final String description, final SessionRepositoryImpl repository) {
+    public ActionMenu(final String description, final SessionRepositoryImpl repository) {
         this.description = description;
         this.repository = repository;
     }
 
-    public UseCaseMenu(final String description, final boolean isMainMenu, final SessionRepositoryImpl repository) {
+    public ActionMenu(final String description, final boolean isMainMenu, final SessionRepositoryImpl repository) {
         this.description = description;
         this.isMainMenu = isMainMenu;
         this.repository = repository;
     }
 
-    public void addUseCase(final String mnemonic, final UseCase useCase) {
+    public void addUseCase(final String mnemonic, final UserAction useCase) {
         this.useCases.put(mnemonic, useCase);
     }
 
-    public void addNestedMenu(final String mnemonic, final UseCaseMenu menu) {
+    public void addNestedMenu(final String mnemonic, final ActionMenu menu) {
         this.nestedMenus.put(mnemonic, menu);
     }
 
-    private UseCase getUseCase(final String mnemonic) {
+    private UserAction getUseCase(final String mnemonic) {
         return this.useCases.get(mnemonic);
     }
 
-    private UseCaseMenu getNestedMenu(final String mnemonic) {
+    private ActionMenu getNestedMenu(final String mnemonic) {
         return this.nestedMenus.get(mnemonic);
     }
 
@@ -63,8 +63,8 @@ public abstract class UseCaseMenu {
                 new MainMenu(repository).start();
                 break;
             }
-            UseCase selectedUseCase = getUseCase(mnemonic);
-            UseCaseMenu selectedNestedMenu = getNestedMenu(mnemonic);
+            UserAction selectedUseCase = getUseCase(mnemonic);
+            ActionMenu selectedNestedMenu = getNestedMenu(mnemonic);
             if(selectedNestedMenu != null) {
                 selectedNestedMenu.start();
                 break;

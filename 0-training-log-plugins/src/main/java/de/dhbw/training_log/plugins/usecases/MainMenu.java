@@ -7,7 +7,7 @@ import de.dhbw.training_log.plugins.usecases.filter_sessions.FilterSessionsMenuA
 import de.dhbw.training_log.plugins.usecases.generate_report.GenerateReportAction;
 import de.dhbw.training_log.plugins.usecases.crud_session.ReadSessionAction;
 
-public final class MainMenu extends UseCaseMenu {
+public final class MainMenu extends ActionMenu {
 
     public MainMenu(final SessionRepositoryImpl repository) {
         super("Main Menu", true, repository);

@@ -3,9 +3,9 @@ package de.dhbw.training_log.plugins.usecases.crud_session;
 import de.dhbw.training_log.adapters.usecase.crud.DeleteSessionUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
-import de.dhbw.training_log.plugins.usecases.UseCase;
+import de.dhbw.training_log.plugins.usecases.UserAction;
 
-public class DeleteSessionAction implements UseCase {
+public class DeleteSessionAction implements UserAction {
 
     private final DeleteSessionUseCase service;
 

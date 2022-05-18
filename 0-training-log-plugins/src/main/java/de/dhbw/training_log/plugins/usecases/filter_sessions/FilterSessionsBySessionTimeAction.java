@@ -4,11 +4,11 @@ import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterBySessionTimeUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
-import de.dhbw.training_log.plugins.usecases.UseCase;
+import de.dhbw.training_log.plugins.usecases.UserAction;
 
 import java.util.List;
 
-public class FilterSessionsBySessionTimeAction implements UseCase {
+public class FilterSessionsBySessionTimeAction implements UserAction {
 
     private final FilterBySessionTimeUseCase service;
 

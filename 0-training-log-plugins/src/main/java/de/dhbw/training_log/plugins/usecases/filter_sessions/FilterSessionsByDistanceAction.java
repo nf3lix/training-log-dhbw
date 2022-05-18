@@ -4,11 +4,11 @@ import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.usecase.filter_sessions.FilterByDistanceUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
-import de.dhbw.training_log.plugins.usecases.UseCase;
+import de.dhbw.training_log.plugins.usecases.UserAction;
 
 import java.util.List;
 
-public class FilterSessionsByDistanceAction implements UseCase {
+public class FilterSessionsByDistanceAction implements UserAction {
 
     private final FilterByDistanceUseCase service;
 

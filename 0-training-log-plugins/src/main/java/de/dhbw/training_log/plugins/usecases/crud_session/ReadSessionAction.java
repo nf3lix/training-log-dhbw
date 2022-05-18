@@ -3,11 +3,11 @@ package de.dhbw.training_log.plugins.usecases.crud_session;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.adapters.usecase.crud.ReadSessionsUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
-import de.dhbw.training_log.plugins.usecases.UseCase;
+import de.dhbw.training_log.plugins.usecases.UserAction;
 
 import java.util.List;
 
-public class ReadSessionAction implements UseCase {
+public class ReadSessionAction implements UserAction {
 
     private final ReadSessionsUseCase service;
 

@@ -1,9 +1,9 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
 import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
-import de.dhbw.training_log.plugins.usecases.UseCaseMenu;
+import de.dhbw.training_log.plugins.usecases.ActionMenu;
 
-public class FilterSessionsMenuAction extends UseCaseMenu {
+public class FilterSessionsMenuAction extends ActionMenu {
 
     public FilterSessionsMenuAction(SessionRepositoryImpl repository) {
         super("Filter Sessions", repository);
