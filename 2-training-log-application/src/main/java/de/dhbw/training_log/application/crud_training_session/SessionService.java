@@ -22,11 +22,6 @@ public class SessionService {
         return repository.getAll();
     }
 
-    public <T extends Comparable<T>> List<Session> getSessions(final FilterCriteria<T> criteria) {
-        final List<Session> list = repository.getAll();
-        return criteria.apply(list);
-    }
-
     public void deleteSession(final SessionId id) {
         repository.delete(id);
     }

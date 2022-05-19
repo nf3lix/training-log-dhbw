@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.usecase.filter_sessions;
+package de.dhbw.training_log.adapters.usecase.search_sessions;
 
 import de.dhbw.training_log.adapters.mapper.DistanceMapper;
 import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
@@ -6,7 +6,7 @@ import de.dhbw.training_log.adapters.mapper.SessionTimeMapper;
 import de.dhbw.training_log.adapters.resource.DistanceResource;
 import de.dhbw.training_log.adapters.resource.SessionDateResource;
 import de.dhbw.training_log.adapters.resource.SessionTimeResource;
-import de.dhbw.training_log.application.filter.FilterableField;
+import de.dhbw.training_log.application.search_sessions.FilterableField;
 import de.dhbw.training_log.de.session.distance.Distance;
 import de.dhbw.training_log.de.session.distance.DistanceUnit;
 import de.dhbw.training_log.de.session.session_date.SessionDate;

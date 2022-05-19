@@ -1,4 +1,4 @@
-package de.dhbw.training_log.application.filter;
+package de.dhbw.training_log.application.search_sessions;
 
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.DistanceUnit;

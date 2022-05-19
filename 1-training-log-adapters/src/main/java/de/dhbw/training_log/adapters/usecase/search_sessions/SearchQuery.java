@@ -1,8 +1,8 @@
-package de.dhbw.training_log.adapters.resource.filter_criteria;
+package de.dhbw.training_log.adapters.usecase.search_sessions;
 
 import de.dhbw.training_log.de.comparison_operator.ComparisonOperator;
 
-public class QueryResource {
+public class SearchQuery {
 
     private final String input;
     private String fieldName;
@@ -10,7 +10,7 @@ public class QueryResource {
     private String comparedValue;
     private String tail;
 
-    public QueryResource(final String input) {
+    public SearchQuery(final String input) {
         this.input = input;
         readClassName();
         readComparisonOperator();

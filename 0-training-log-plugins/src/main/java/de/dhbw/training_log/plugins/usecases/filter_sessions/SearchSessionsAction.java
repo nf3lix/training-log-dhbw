@@ -1,19 +1,19 @@
 package de.dhbw.training_log.plugins.usecases.filter_sessions;
 
 import de.dhbw.training_log.adapters.resource.SessionResource;
-import de.dhbw.training_log.adapters.usecase.filter_sessions.CompositeFilterUseCase;
+import de.dhbw.training_log.adapters.usecase.search_sessions.SearchSessionsUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.plugins.CommandLine;
 import de.dhbw.training_log.plugins.action.UserAction;
 
 import java.util.List;
 
-public class CompositeFilterAction implements UserAction {
+public class SearchSessionsAction implements UserAction {
 
-    private final CompositeFilterUseCase service;
+    private final SearchSessionsUseCase service;
 
-    public CompositeFilterAction(final SessionRepository repository) {
-        this.service = new CompositeFilterUseCase(repository);
+    public SearchSessionsAction(final SessionRepository repository) {
+        this.service = new SearchSessionsUseCase(repository);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CompositeFilterAction implements UserAction {
 
     @Override
     public String getDescription() {
-        return "Filter sessions";
+        return "Search sessions";
     }
 
 }
