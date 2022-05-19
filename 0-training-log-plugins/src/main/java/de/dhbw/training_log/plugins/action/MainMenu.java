@@ -5,6 +5,7 @@ import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
 import de.dhbw.training_log.plugins.usecases.crud_session.CreateSessionAction;
 import de.dhbw.training_log.plugins.usecases.crud_session.DeleteSessionAction;
 import de.dhbw.training_log.plugins.usecases.crud_session.ReadSessionAction;
+import de.dhbw.training_log.plugins.usecases.filter_sessions.CompositeFilterAction;
 import de.dhbw.training_log.plugins.usecases.generate_report.GenerateReportAction;
 
 public final class MainMenu extends ActionMenu {
@@ -15,7 +16,8 @@ public final class MainMenu extends ActionMenu {
         this.addUseCase("2", new ReadSessionAction(repository));
         this.addUseCase("3", new DeleteSessionAction(repository));
         this.addUseCase("4", new GenerateReportAction(repository));
-        this.addNestedMenu("5", Main.filterSessionsMenu);
+        this.addUseCase("5", new CompositeFilterAction(repository));
+        this.addNestedMenu("6", Main.filterSessionsMenu);
     }
 
 }

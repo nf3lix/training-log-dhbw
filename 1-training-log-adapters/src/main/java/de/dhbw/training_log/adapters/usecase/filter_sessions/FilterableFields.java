@@ -69,6 +69,14 @@ public class FilterableFields {
 
     }
 
+    private FilterableSessionField get(final String fieldName) {
+        return fields.get(fieldName);
+    }
+
+    public static FilterableSessionField getFilterableField(final String fieldName) {
+        final FilterableFields filterableField = new FilterableFields();
+        return filterableField.get(fieldName);
+    }
 
 
 }
