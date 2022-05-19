@@ -34,13 +34,12 @@ public class QueryResource {
         this.fieldName = fieldName.toString();
     }
 
-    private ComparisonOperator readComparisonOperator() {
+    private void readComparisonOperator() {
         for(final ComparisonOperator operator : ComparisonOperator.values()) {
             if(currentOperatorMatchesLessThan(operator)) {
                 comparisonOperator = operator;
             }
         }
-        return comparisonOperator;
     }
 
     private void readComparedValue() {
