@@ -21,7 +21,7 @@ import java.util.List;
 
 public enum FilterableFieldAdapter {
 
-    DISTANCE(FilterableField.DISTANCE, "Distance", "SessionDistance", "SessionDistance") {
+    DISTANCE(FilterableField.DISTANCE, "Distance", "SessionDistance", "Session_Distance") {
         @Override
         public double getComparedValue(final String input) {
             final DistanceResource resource = new DistanceResource(input);

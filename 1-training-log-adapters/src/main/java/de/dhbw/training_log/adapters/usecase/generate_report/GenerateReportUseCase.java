@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.usecase;
+package de.dhbw.training_log.adapters.usecase.generate_report;
 
 import de.dhbw.training_log.adapters.mapper.MetricResultMapper;
 import de.dhbw.training_log.adapters.resource.MetricResultResource;

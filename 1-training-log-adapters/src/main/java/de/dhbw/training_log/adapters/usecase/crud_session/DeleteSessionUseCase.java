@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.usecase.crud;
+package de.dhbw.training_log.adapters.usecase.crud_session;
 
 import de.dhbw.training_log.application.crud_training_session.SessionService;
 import de.dhbw.training_log.de.session.SessionRepository;

@@ -7,6 +7,7 @@ import de.dhbw.training_log.de.session.session_date.SessionDate;
 import de.dhbw.training_log.de.session.time.Minutes;
 import de.dhbw.training_log.de.session.time.Seconds;
 import de.dhbw.training_log.de.session.time.SessionTime;
+import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import org.junit.jupiter.api.Test;
 
 import static de.dhbw.training_log.application.search_sessions.FilterableField.*;
@@ -36,6 +37,13 @@ public class FilterableFieldTest {
         assertEquals(SESSION_DATE.mapper().apply(sessionWithDate(sessionDate)), 1640991600000.0);
     }
 
+    @Test
+    public void getSessionTypeAsOrdinal() {
+        for(final SessionType type : SessionType.values()) {
+            assertEquals(SESSION_TYPE.mapper().apply(sessionWithType(type)), type.ordinal());
+        }
+    }
+
     private Session sessionWithDistance(final double distance, final DistanceUnit unit) {
         final Session session = mock(Session.class);
         when(session.distance()).thenReturn(new Distance(distance, unit));
@@ -51,6 +59,12 @@ public class FilterableFieldTest {
     private Session sessionWithDate(final SessionDate sessionDate) {
         final Session session = mock(Session.class);
         when(session.date()).thenReturn(sessionDate);
+        return session;
+    }
+
+    private Session sessionWithType(final SessionType type) {
+        final Session session = mock(Session.class);
+        when(session.type()).thenReturn(type);
         return session;
     }
 

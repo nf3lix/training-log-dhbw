@@ -2,7 +2,7 @@ package de.dhbw.training_log.plugins.usecases.crud_session;
 
 import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
 import de.dhbw.training_log.adapters.resource.*;
-import de.dhbw.training_log.adapters.usecase.crud.CreateSessionUseCase;
+import de.dhbw.training_log.adapters.usecase.crud_session.CreateSessionUseCase;
 import de.dhbw.training_log.de.session.SessionRepository;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
 import de.dhbw.training_log.plugins.CommandLine;
