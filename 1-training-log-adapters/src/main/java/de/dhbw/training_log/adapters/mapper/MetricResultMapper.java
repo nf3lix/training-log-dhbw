@@ -5,8 +5,7 @@ import de.dhbw.training_log.de.metric.Metric;
 
 public class MetricResultMapper implements SessionResourceMapper<MetricResultResource, Metric.MetricResult> {
 
-    public MetricResultResource toResource(Object domainModelObject) {
-        final Metric.MetricResult metricResult = (Metric.MetricResult) domainModelObject;
+    public MetricResultResource toResource(Metric.MetricResult metricResult) {
         return new MetricResultResource(metricResult.name(), metricResult.result(), metricResult.resultClass());
     }
 

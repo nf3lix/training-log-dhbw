@@ -3,7 +3,6 @@ package de.dhbw.training_log.adapters.usecase.search_sessions;
 import de.dhbw.training_log.adapters.mapper.DistanceMapper;
 import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
 import de.dhbw.training_log.adapters.mapper.SessionTimeMapper;
-import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
 import de.dhbw.training_log.adapters.resource.DistanceResource;
 import de.dhbw.training_log.adapters.resource.SessionDateResource;
 import de.dhbw.training_log.adapters.resource.SessionTimeResource;

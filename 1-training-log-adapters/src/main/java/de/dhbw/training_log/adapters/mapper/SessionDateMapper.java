@@ -11,8 +11,7 @@ import static de.dhbw.training_log.de.session.session_date.SessionDate.*;
 public class SessionDateMapper implements SessionResourceMapper<SessionDateResource, SessionDate> {
 
     @Override
-    public SessionDateResource toResource(Object domainModelObject) {
-        final SessionDate sessionDate = (SessionDate) domainModelObject;
+    public SessionDateResource toResource(SessionDate sessionDate) {
         final LocalDate localDate = LocalDate.of(
                 sessionDate.year().value(),
                 sessionDate.month().value(),

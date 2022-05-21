@@ -37,28 +37,28 @@ public class MetricResultResource {
         SESSION(Session.class) {
             @Override
             String convertValueToString(final Object value) {
-                return new SessionEntityMapper().toResource(value).toString();
+                return new SessionEntityMapper().toResource((Session) value).toString();
             }
         },
 
         DISTANCE(Distance.class) {
             @Override
             String convertValueToString(Object value) {
-                return new DistanceMapper().toResource(value).toString();
+                return new DistanceMapper().toResource((Distance) value).toString();
             }
         },
 
         SESSION_DATE(SessionDate.class) {
             @Override
             String convertValueToString(Object value) {
-                return new SessionDateMapper().toResource(value).toString();
+                return new SessionDateMapper().toResource((SessionDate) value).toString();
             }
         },
 
         SESSION_TIME(SessionTime.class) {
             @Override
             String convertValueToString(Object value) {
-                return new SessionTimeMapper().toResource(value).toString();
+                return new SessionTimeMapper().toResource((SessionTime) value).toString();
             }
         };
 

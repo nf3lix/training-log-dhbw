@@ -8,8 +8,7 @@ import de.dhbw.training_log.de.session.time.SessionTime;
 public class SessionTimeMapper implements SessionResourceMapper<SessionTimeResource, SessionTime> {
 
     @Override
-    public SessionTimeResource toResource(Object domainModelObject) {
-        final SessionTime sessionTime = (SessionTime) domainModelObject;
+    public SessionTimeResource toResource(SessionTime sessionTime) {
         return new SessionTimeResource(sessionTime.minutes() + ":" + sessionTime.seconds());
     }
 

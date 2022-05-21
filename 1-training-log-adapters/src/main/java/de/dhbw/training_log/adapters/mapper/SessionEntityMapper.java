@@ -12,8 +12,7 @@ public class SessionEntityMapper implements SessionResourceMapper<SessionResourc
     private final SessionDateMapper sessionDateMapper = new SessionDateMapper();
 
     @Override
-    public SessionResource toResource(Object domainModelObject) {
-        final Session session = (Session) domainModelObject;
+    public SessionResource toResource(Session session) {
         return new SessionResource(
                 session.id().uuid(),
                 sessionDateMapper.toResource(session.date()),
