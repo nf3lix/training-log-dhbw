@@ -3,6 +3,7 @@ package de.dhbw.training_log.adapters.usecase.search_sessions;
 import de.dhbw.training_log.adapters.mapper.DistanceMapper;
 import de.dhbw.training_log.adapters.mapper.SessionDateMapper;
 import de.dhbw.training_log.adapters.mapper.SessionTimeMapper;
+import de.dhbw.training_log.adapters.mapper.SessionTypeMapper;
 import de.dhbw.training_log.adapters.resource.DistanceResource;
 import de.dhbw.training_log.adapters.resource.SessionDateResource;
 import de.dhbw.training_log.adapters.resource.SessionTimeResource;
@@ -11,6 +12,7 @@ import de.dhbw.training_log.de.session.distance.Distance;
 import de.dhbw.training_log.de.session.distance.DistanceUnit;
 import de.dhbw.training_log.de.session.session_date.SessionDate;
 import de.dhbw.training_log.de.session.time.SessionTime;
+import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -47,6 +49,25 @@ public enum FilterableFieldAdapter {
             ZonedDateTime zdt = ZonedDateTime.of(l, ZoneId.systemDefault());
             return zdt.toInstant().toEpochMilli();
         }
+    },
+
+    SESSION_TYPE(FilterableField.SESSION_TYPE, "Type", "SessionType", "Session_Type") {
+        @Override
+        public double getComparedValue(String input) {
+            for(final SessionType sessionType : SessionType.values()) {
+                if(sessionType.name().equalsIgnoreCase(input)) {
+                    return sessionType.ordinal();
+                }
+            }
+            throw new ComparedValueNotParsable("Value must be one of [" + validSessionTypes() + "]");
+        }
+
+        private String validSessionTypes() {
+            final StringBuilder validSessionTypes = new StringBuilder();
+            Arrays.stream(SessionType.values()).forEach(type -> validSessionTypes.append(type.name()));
+            return validSessionTypes.toString();
+        }
+
     };
 
     private final FilterableField filterableField;

@@ -31,6 +31,13 @@ public enum FilterableField {
                 return (double) zdt.toInstant().toEpochMilli();
             };
         }
+    },
+
+    SESSION_TYPE {
+        @Override
+        Function<? super Session, Double> mapper() {
+            return (Function<Session, Double>) session -> (double) session.type().ordinal();
+        }
     };
 
     abstract Function<? super Session, Double> mapper();
