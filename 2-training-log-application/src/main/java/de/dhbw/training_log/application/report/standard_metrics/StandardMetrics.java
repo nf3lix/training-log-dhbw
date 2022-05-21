@@ -9,67 +9,24 @@ import java.util.List;
 
 public enum StandardMetrics {
 
-    TOTAL_SESSIONS {
-        @Override
-        Metric metric() {
-            return new TotalSessionsMetric();
-        }
-    },
+    TOTAL_SESSIONS(new TotalSessionsMetric()),
+    MAX_DISTANCE(new MaxDistanceMetric()),
+    MIN_DISTANCE(new MinDistanceMetric()),
+    AVG_DISTANCE(new AvgDistanceMetric()),
+    MAX_SESSION_TIME(new MaxSessionTimeMetric()),
+    MIN_SESSION_TIME(new MinSessionTimeMetric()),
+    AVG_SESSION_TIME(new AvgSessionTimeMetric()),
+    AVG_TIME_PER_KILOMETER(new AvgTimePerKilometer());
 
-    MAX_DISTANCE {
-        @Override
-        Metric metric() {
-            return new MaxDistanceMetric();
-        }
-    },
+    private final Metric metric;
 
-    MIN_DISTANCE {
-        @Override
-        Metric metric() {
-            return new MinDistanceMetric();
-        }
-    },
-
-    AVG_DISTANCE {
-        @Override
-        Metric metric() {
-            return new AvgDistanceMetric();
-        }
-    },
-
-    MAX_SESSION_TIME {
-        @Override
-        Metric metric() {
-            return new MaxSessionTimeMetric();
-        }
-    },
-
-    MIN_SESSION_TIME {
-        @Override
-        Metric metric() {
-            return new MinSessionTimeMetric();
-        }
-    },
-
-    AVG_SESSION_TIME {
-        @Override
-        Metric metric() {
-            return new AvgSessionTimeMetric();
-        }
-    },
-
-    AVG_TIME_PER_KILOMETER {
-        @Override
-        Metric metric() {
-            return new AvgTimePerKilometer();
-        }
-    };
-
-    abstract Metric metric();
+    StandardMetrics(final Metric metric) {
+        this.metric = metric;
+    }
 
     public static List<Metric> all() {
         final List<Metric> metricList = new ArrayList<>();
-        Arrays.stream(values()).forEach(standardMetric -> metricList.add(standardMetric.metric()));
+        Arrays.stream(values()).forEach(standardMetric -> metricList.add(standardMetric.metric));
         return metricList;
     }
 
