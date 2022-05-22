@@ -30,6 +30,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
                 <configuration>
                     <mainClass>de.dhbw.training_log.plugins.Main</mainClass>
                 </configuration>
