@@ -30,7 +30,7 @@ class BasicSessionMetrics {
     static final class MaxDistanceMetric extends Metric {
         @Override
         public MetricResult compute(List<Session> list) {
-            return computeMaximumFor("Max distance", list, Session::distance);
+            return computeMaximumFor("Session with max distance", list, Session::distance);
         }
     }
 
