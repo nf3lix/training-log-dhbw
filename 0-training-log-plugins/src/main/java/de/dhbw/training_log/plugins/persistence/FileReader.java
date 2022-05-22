@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class FileReader {
 
-    static final ArrayList<Session> DEFAULT_SESSION_LIST = new ArrayList<>(Arrays.asList(
+    public static final ArrayList<Session> DEFAULT_SESSION_LIST = new ArrayList<>(Arrays.asList(
         fromString("569e2f72-f0f6-4a88-b701-af38e948742b;01.01.2022;10000.0 METERS;39:20;DESCRIPTION;LONG_RUN"),
         fromString("d069e2cf-d02b-4d51-ac50-2946ae88c540;04.01.2022;12.0 KILOMETERS;46:30;DESCRIPTION;LONG_RUN"),
         fromString("eaa5773c-67f3-4b33-81b7-ebed40ea926e;06.01.2022;5000 METERS;16:12;DESCRIPTION;SPEED_RUN"),

@@ -13,8 +13,8 @@ public class SessionRepositoryImpl implements SessionRepository {
     /**
      * Construct SessionRepository with some dummy items
      */
-    public SessionRepositoryImpl() {
-        sessionsList.addAll(FileReader.DEFAULT_SESSION_LIST);
+    public SessionRepositoryImpl(final List<Session> initialList) {
+        sessionsList.addAll(initialList);
     }
 
     @Override
