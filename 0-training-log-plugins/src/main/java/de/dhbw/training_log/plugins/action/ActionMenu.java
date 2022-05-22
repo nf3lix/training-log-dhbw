@@ -13,7 +13,6 @@ public abstract class ActionMenu implements ActionObservable {
     private final Map<String, UserAction> useCases = new HashMap<>();
     private final Map<String, ActionMenu> nestedMenus = new HashMap<>();
     private final String description;
-    private boolean isMainMenu = false;
 
     private Set<ExitMenuListener> observers = new HashSet<>();
 
@@ -22,11 +21,6 @@ public abstract class ActionMenu implements ActionObservable {
 
     public ActionMenu(final String description) {
         this.description = description;
-    }
-
-    public ActionMenu(final String description, final boolean isMainMenu) {
-        this.description = description;
-        this.isMainMenu = isMainMenu;
     }
 
     public void addUseCase(final String mnemonic, final UserAction useCase) {
