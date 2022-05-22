@@ -34,7 +34,7 @@ public class FilterableFieldTest {
     @Test
     public void getSessionDateAsTimestamp() {
         final SessionDate sessionDate = new SessionDate(new Year(2022), new Month(1), new DayOfMonth(1));
-        assertEquals(SESSION_DATE.mapper().apply(sessionWithDate(sessionDate)), 1640991600000.0);
+        assertEquals(SESSION_DATE.mapper().apply(sessionWithDate(sessionDate)), 1640995200000.0);
     }
 
     @Test

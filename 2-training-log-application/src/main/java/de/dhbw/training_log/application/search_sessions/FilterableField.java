@@ -27,8 +27,7 @@ public enum FilterableField {
         Function<? super Session, Double> mapper() {
             return (Function<Session, Double>) session -> {
                 LocalDateTime l = LocalDateTime.of(session.date().year().value(), session.date().month().value(), session.date().day().value(), 0, 0);
-                ZonedDateTime zdt = ZonedDateTime.of(l, ZoneId.systemDefault());
-                return (double) zdt.toInstant().toEpochMilli();
+                return (double) l.toInstant(ZoneOffset.UTC).toEpochMilli();
             };
         }
     },

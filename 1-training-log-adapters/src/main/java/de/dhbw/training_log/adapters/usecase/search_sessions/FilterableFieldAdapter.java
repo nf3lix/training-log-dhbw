@@ -15,6 +15,7 @@ import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -45,8 +46,7 @@ public enum FilterableFieldAdapter {
             final SessionDateResource resource = new SessionDateResource(input);
             final SessionDate sessionDate = new SessionDateMapper().toDomainModel(resource);
             LocalDateTime l = LocalDateTime.of(sessionDate.year().value(), sessionDate.month().value(), sessionDate.day().value(), 0, 0);
-            ZonedDateTime zdt = ZonedDateTime.of(l, ZoneId.systemDefault());
-            return zdt.toInstant().toEpochMilli();
+            return (double) l.toInstant(ZoneOffset.UTC).toEpochMilli();
         }
     },
 

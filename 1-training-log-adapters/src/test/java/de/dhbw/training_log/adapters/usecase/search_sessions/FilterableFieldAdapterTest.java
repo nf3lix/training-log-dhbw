@@ -50,7 +50,7 @@ public class FilterableFieldAdapterTest {
 
     @Test
     public void getSessionDateAsTimestamp() {
-        assertEquals(SESSION_DATE.getComparedValue("01.01.2022"), 1640991600000.0);
+        assertEquals(SESSION_DATE.getComparedValue("01.01.2022"), 1640995200000.0);
     }
 
     @Test
