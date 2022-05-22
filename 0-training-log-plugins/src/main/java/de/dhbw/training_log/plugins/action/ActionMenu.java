@@ -12,7 +12,6 @@ public abstract class ActionMenu implements ActionObservable {
 
     private final Map<String, UserAction> useCases = new HashMap<>();
     private final Map<String, ActionMenu> nestedMenus = new HashMap<>();
-    private final SessionRepositoryImpl repository;
     private final String description;
     private boolean isMainMenu = false;
 
@@ -21,15 +20,13 @@ public abstract class ActionMenu implements ActionObservable {
     private final static String FIRST_SEPARATOR = "========= Type \"exit\" to close menu =========";
     private final static String SECOND_SEPARATOR =             "===============================================";
 
-    public ActionMenu(final String description, final SessionRepositoryImpl repository) {
+    public ActionMenu(final String description) {
         this.description = description;
-        this.repository = repository;
     }
 
-    public ActionMenu(final String description, final boolean isMainMenu, final SessionRepositoryImpl repository) {
+    public ActionMenu(final String description, final boolean isMainMenu) {
         this.description = description;
         this.isMainMenu = isMainMenu;
-        this.repository = repository;
     }
 
     public void addUseCase(final String mnemonic, final UserAction useCase) {
