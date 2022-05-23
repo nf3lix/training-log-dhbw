@@ -18,8 +18,7 @@ public class ReadSessionsUseCase {
     }
 
     public List<SessionResource> getSessions() {
-        final SessionEntityMapper mapper = new SessionEntityMapper();
-        return this.service.getSessions().stream().map(mapper::toResource).collect(Collectors.toList());
+        return new SessionEntityMapper().toResourceList(this.service.getSessions());
     }
 
 }

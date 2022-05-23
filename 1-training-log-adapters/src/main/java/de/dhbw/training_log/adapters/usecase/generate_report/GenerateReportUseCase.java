@@ -18,9 +18,7 @@ public class GenerateReportUseCase {
     }
 
     public List<MetricResultResource> getResults() {
-        List<Metric.MetricResult> results = service.getResults();
-        final MetricResultMapper mapper = new MetricResultMapper();
-        return results.stream().map(mapper::toResource).collect(Collectors.toList());
+        return new MetricResultMapper().toResourceList(service.getResults());
     }
 
 }

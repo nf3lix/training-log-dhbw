@@ -3,14 +3,13 @@ package de.dhbw.training_log.adapters.usecase.search_sessions;
 import de.dhbw.training_log.adapters.mapper.SessionEntityMapper;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.application.search_sessions.FilterCriteria;
-import de.dhbw.training_log.application.search_sessions.SearchSessionsService;
 import de.dhbw.training_log.application.search_sessions.FilterableField;
+import de.dhbw.training_log.application.search_sessions.SearchSessionsService;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SearchSessionsUseCase {
 
@@ -22,8 +21,7 @@ public class SearchSessionsUseCase {
 
     public List<SessionResource> getFilteredList(final String searchQuery) {
         final List<Session> sessionList = service.getFilteredSessions(getCriteriaList(searchQuery));
-        final SessionEntityMapper mapper = new SessionEntityMapper();
-        return sessionList.stream().map(mapper::toResource).collect(Collectors.toList());
+        return new SessionEntityMapper().toResourceList(sessionList);
     }
 
     private List<FilterCriteria> getCriteriaList(final String searchQuery) {
