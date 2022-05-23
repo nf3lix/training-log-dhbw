@@ -10,7 +10,7 @@ import de.dhbw.training_log.de.session.training_session_type.SessionType;
 public class Session {
 
     private final SessionId id;
-    private final SessionDate date;
+    private SessionDate date;
     private Distance distance;
     private SessionTime time;
     private Description description;
@@ -64,6 +64,10 @@ public class Session {
 
     public void setType(SessionType type) {
         this.type = type;
+    }
+
+    public void setDate(SessionDate sessionDate) {
+        this.date = sessionDate;
     }
 
 }
