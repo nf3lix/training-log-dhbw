@@ -8,7 +8,6 @@ public class SearchQuery {
     private String fieldName;
     private ComparisonOperator comparisonOperator;
     private String comparedValue;
-    private String tail;
 
     public SearchQuery(final String input) {
         this.input = input;
@@ -30,7 +29,6 @@ public class SearchQuery {
             }
             fieldName.append(currentChar);
         }
-        this.tail = input.substring(fieldName.length());
         this.fieldName = fieldName.toString();
     }
 
@@ -47,6 +45,7 @@ public class SearchQuery {
     }
 
     private boolean currentOperatorMatchesLessThan(final ComparisonOperator operator) {
+        final String tail = input.substring(fieldName.length());
         if(!tail.startsWith(operator.stringRepresentation())) {
             return false;
         }
