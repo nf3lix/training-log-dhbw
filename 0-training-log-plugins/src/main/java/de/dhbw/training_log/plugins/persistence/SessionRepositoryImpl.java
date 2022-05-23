@@ -38,6 +38,16 @@ public class SessionRepositoryImpl implements SessionRepository {
         sessionsList.remove(session);
     }
 
+    @Override
+    public void update(Session newSession) {
+        final Session oldSession = findById(newSession.id());
+        oldSession.setDate(newSession.date());
+        oldSession.setDistance(newSession.distance());
+        oldSession.setTime(newSession.time());
+        oldSession.setDescription(newSession.description());
+        oldSession.setType(newSession.type());
+    }
+
     private Session findById(SessionId sessionId) {
         final Optional<Session> result = sessionsList.stream().filter(session -> session.id().equals(sessionId)).findFirst();
         if(result.isPresent()) {

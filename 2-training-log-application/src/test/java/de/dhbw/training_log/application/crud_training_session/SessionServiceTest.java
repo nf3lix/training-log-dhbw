@@ -40,4 +40,11 @@ public class SessionServiceTest {
         verify(repository).delete(id);
     }
 
+    @Test
+    public void editSessionTest() {
+        final Session session = mock(Session.class);
+        service.updateSession(session);
+        verify(repository).update(session);
+    }
+
 }

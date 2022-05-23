@@ -11,5 +11,6 @@ public interface SessionRepository {
     List<Session> getAll();
     void insert(final Session trainingSession);
     void delete(final SessionId sessionId);
+    void update(final Session session);
 
 }

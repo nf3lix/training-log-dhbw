@@ -26,4 +26,8 @@ public class SessionService {
         repository.delete(id);
     }
 
+    public void updateSession(final Session session) {
+        repository.update(session);
+    }
+
 }

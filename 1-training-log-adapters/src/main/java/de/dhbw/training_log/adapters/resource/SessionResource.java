@@ -4,7 +4,7 @@ import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
 import java.util.UUID;
 
-public final class SessionResource {
+public class SessionResource {
 
     private final UUID id;
     private final SessionDateResource sessionDate;
