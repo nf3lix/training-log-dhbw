@@ -43,7 +43,7 @@ public class SessionServiceTest {
     @Test
     public void editSessionTest() {
         final Session session = mock(Session.class);
-        service.editSession(session);
+        service.updateSession(session);
         verify(repository).update(session);
     }
 
