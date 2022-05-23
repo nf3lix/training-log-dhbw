@@ -5,6 +5,9 @@ import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.description.Description;
 import de.dhbw.training_log.de.session.training_session_id.SessionId;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SessionEntityMapper implements SessionResourceMapper<SessionResource, Session> {
 
     private final DistanceMapper distanceMapper = new DistanceMapper();

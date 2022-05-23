@@ -7,24 +7,19 @@ import de.dhbw.training_log.de.session.SessionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReadSessionsUseCase {
 
     private final SessionService service;
-    private final SessionRepository repository;
 
     public ReadSessionsUseCase(final SessionRepository repository) {
-        this.repository = repository;
         this.service = new SessionService(repository);
     }
 
     public List<SessionResource> getSessions() {
-        final List<SessionResource> resourceList = new ArrayList<>();
         final SessionEntityMapper mapper = new SessionEntityMapper();
-        this.service.getSessions().forEach(
-                session -> resourceList.add(mapper.toResource(session))
-        );
-        return resourceList;
+        return this.service.getSessions().stream().map(mapper::toResource).collect(Collectors.toList());
     }
 
 }
