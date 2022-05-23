@@ -49,4 +49,21 @@ public class Session {
     public SessionType type() {
         return type;
     }
+
+    public void setDistance(Distance distance) {
+        this.distance = distance;
+    }
+
+    public void setTime(SessionTime time) {
+        this.time = time;
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
+
+    public void setType(SessionType type) {
+        this.type = type;
+    }
+
 }
