@@ -1,4 +1,4 @@
-package de.dhbw.training_log.adapters.usecase.crud_session;
+package de.dhbw.training_log.adapters;
 
 import de.dhbw.training_log.adapters.resource.DistanceResource;
 import de.dhbw.training_log.adapters.resource.SessionDateResource;
@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 public class SessionResourceMock {
 
-    static SessionResource resourceMockWithId(final String id) {
+    public static SessionResource resourceMockWithId(final String id) {
         final SessionResource sessionResource = mock(SessionResource.class);
         final SessionDateResource sessionDateResource = sessionDateResourceMock();
         final DistanceResource distanceResource = distanceResourceMock();

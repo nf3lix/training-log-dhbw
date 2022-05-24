@@ -1,5 +1,6 @@
 package de.dhbw.training_log.adapters.usecase.crud_session;
 
+import de.dhbw.training_log.adapters.SessionResourceMock;
 import de.dhbw.training_log.adapters.resource.SessionResource;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
