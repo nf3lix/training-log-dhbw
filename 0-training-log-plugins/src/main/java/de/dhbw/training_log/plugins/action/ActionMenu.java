@@ -52,7 +52,6 @@ public abstract class ActionMenu implements ActionObservable {
             final String mnemonic = CommandLine.readLine();
             if(mnemonic.equalsIgnoreCase("exit")) {
                 notifyObserver();
-                // new MainMenu(repository).start();
                 break;
             }
             UserAction selectedUseCase = getUseCase(mnemonic);
