@@ -31,8 +31,12 @@ public class DistanceResourceTest {
         for(DistanceUnit unit : DistanceUnit.values()) {
             final DistanceResource distance1 = new DistanceResource("10 " + unit.name());
             final DistanceResource distance2 = new DistanceResource("10 " + unit.name().toLowerCase());
+            final DistanceResource distance3 = new DistanceResource("1 " + unit.name().toLowerCase());
+            final DistanceResource distance4 = new DistanceResource("100 " + unit.name().toLowerCase());
             assertEquals(distance1.unit(), unit);
             assertEquals(distance2.unit(), unit);
+            assertEquals(distance3.unit(), unit);
+            assertEquals(distance4.unit(), unit);
         }
     }
 
