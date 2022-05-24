@@ -10,8 +10,8 @@ import de.dhbw.training_log.plugins.usecases.generate_report.GenerateReportActio
 
 public final class MainMenu extends ActionMenu {
 
-    public MainMenu(final SessionRepository repository) {
-        super("Main Menu");
+    public MainMenu(final InputReader inputReader, final SessionRepository repository) {
+        super(inputReader, "Main Menu");
         this.addUseCase("1", new CreateSessionAction(repository));
         this.addUseCase("2", new ReadSessionAction(repository));
         this.addUseCase("3", new UpdateSessionAction(repository));
