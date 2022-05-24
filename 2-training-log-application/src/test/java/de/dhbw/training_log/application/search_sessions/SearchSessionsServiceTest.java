@@ -3,6 +3,8 @@ package de.dhbw.training_log.application.search_sessions;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,6 +20,15 @@ public class SearchSessionsServiceTest {
     private final List<Session> criteria1ReturnedList = new ArrayList<>();
     private final List<Session> criteria2ReturnedList = new ArrayList<>();
 
+    public SearchSessionsServiceTest() {
+        repositoryReturnedList.add(mock(Session.class));
+        repositoryReturnedList.add(mock(Session.class));
+        repositoryReturnedList.add(mock(Session.class));
+        criteria1ReturnedList.add(mock(Session.class));
+        criteria1ReturnedList.add(mock(Session.class));
+        criteria2ReturnedList.add(mock(Session.class));
+    }
+
     @Test
     public void applyEachFilterCriteriaToListOfAllSessions() {
         final SearchSessionsService service = new SearchSessionsService(repositoryMock(repositoryReturnedList));
@@ -27,8 +38,8 @@ public class SearchSessionsServiceTest {
         filterCriteriaList.add(criteria1);
         filterCriteriaList.add(criteria2);
         final List<Session> serviceReturnedList = service.getFilteredSessions(filterCriteriaList);
-        spy(criteria1).apply(repositoryReturnedList);
-        spy(criteria2).apply(criteria1ReturnedList);
+        verify(criteria1).apply(repositoryReturnedList);
+        verify(criteria2).apply(criteria1ReturnedList);
         assertEquals(serviceReturnedList, criteria2ReturnedList);
     }
 

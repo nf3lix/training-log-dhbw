@@ -37,8 +37,10 @@ public class SessionTimeTest {
 
     @Test
     public void rebalanceSecondsOfSessionTime() {
-        final SessionTime sessionTime = new SessionTime(new Minutes(1), new Seconds(61));
-        assertThat(sessionTime, hasTime(2, 1));
+        final SessionTime sessionTime1 = new SessionTime(new Minutes(1), new Seconds(60));
+        final SessionTime sessionTime2 = new SessionTime(new Minutes(1), new Seconds(61));
+        assertThat(sessionTime1, hasTime(2, 0));
+        assertThat(sessionTime2, hasTime(2, 1));
     }
 
     @Test
