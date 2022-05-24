@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public final class SessionDateResource {
+public class SessionDateResource {
 
     public final static String DATE_FORMAT = "dd.MM.yyyy";
 
