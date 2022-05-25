@@ -1,8 +1,7 @@
-package de.dhbw.training_log.de.report;
+package de.dhbw.training_log.application.report;
 
 import de.dhbw.training_log.de.metric.Metric;
 import de.dhbw.training_log.de.metric.Metric.MetricResult;
-import de.dhbw.training_log.de.report.Report.ReportBuilder;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.distance.Distance;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class ReportTest {
 
     @Test
     public void addMetricsToReport() {
-        final ReportBuilder builder = new ReportBuilder();
+        final Report.ReportBuilder builder = new Report.ReportBuilder();
         final List<Session> sessionList = new ArrayList<>();
         sessionList.add(sessionMockWithDistance(new Distance(10.0, KILOMETERS)));
         final Report report = builder.setSessionList(sessionList)
@@ -41,7 +40,7 @@ public class ReportTest {
 
     @Test
     public void addMetricsAsCollectionToReport() {
-        final ReportBuilder builder = new ReportBuilder();
+        final Report.ReportBuilder builder = new Report.ReportBuilder();
         final List<Session> sessionList = new ArrayList<>();
         sessionList.add(sessionMockWithDistance(new Distance(10.0, KILOMETERS)));
         final List<Metric> metrics = new ArrayList<>();
