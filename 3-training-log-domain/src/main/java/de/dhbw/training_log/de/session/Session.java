@@ -7,6 +7,8 @@ import de.dhbw.training_log.de.session.time.SessionTime;
 import de.dhbw.training_log.de.session.training_session_id.SessionId;
 import de.dhbw.training_log.de.session.training_session_type.SessionType;
 
+import java.util.Objects;
+
 public class Session {
 
     private final SessionId id;
@@ -68,6 +70,19 @@ public class Session {
 
     public void setDate(SessionDate sessionDate) {
         this.date = sessionDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return Objects.equals(id, session.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }
