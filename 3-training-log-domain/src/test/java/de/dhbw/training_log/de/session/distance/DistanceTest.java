@@ -1,6 +1,6 @@
 package de.dhbw.training_log.de.session.distance;
 
-import de.dhbw.training_log.de.test_utils.ValueObjectTest;
+import de.dhbw.training_log.de.test_utils.ValueObjectBehaviorTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class DistanceTest {
                 () -> new Distance(1.0, METERS),
                 () -> new Distance(3.0, METERS)
         );
-        ValueObjectTest.performValueObjectTest(distances);
+        ValueObjectBehaviorTest.performValueObjectTests(distances);
     }
 
     @Test

@@ -1,6 +1,6 @@
 package de.dhbw.training_log.de.session.session_date;
 
-import de.dhbw.training_log.de.test_utils.ValueObjectTest;
+import de.dhbw.training_log.de.test_utils.ValueObjectBehaviorTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -69,7 +69,7 @@ public class SessionDateTest {
                 () -> new SessionDate(new Year(2020), new Month(12), new DayOfMonth(12)),
                 () -> new SessionDate(new Year(2021), new Month(10), new DayOfMonth(10))
         );
-        ValueObjectTest.performValueObjectTest(sessionDates);
+        ValueObjectBehaviorTest.performValueObjectTests(sessionDates);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SessionDateTest {
                 () -> new Year(2019),
                 () -> new Year(2020)
         );
-        ValueObjectTest.performValueObjectTest(years);
+        ValueObjectBehaviorTest.performValueObjectTests(years);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class SessionDateTest {
                 () -> new Month(9),
                 () -> new Month(10)
         );
-        ValueObjectTest.performValueObjectTest(months);
+        ValueObjectBehaviorTest.performValueObjectTests(months);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class SessionDateTest {
                 () -> new DayOfMonth(2),
                 () -> new DayOfMonth(3)
         );
-        ValueObjectTest.performValueObjectTest(days);
+        ValueObjectBehaviorTest.performValueObjectTests(days);
     }
 
 }

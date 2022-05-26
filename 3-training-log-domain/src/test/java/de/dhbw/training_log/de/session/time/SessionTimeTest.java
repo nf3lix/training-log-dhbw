@@ -1,6 +1,6 @@
 package de.dhbw.training_log.de.session.time;
 
-import de.dhbw.training_log.de.test_utils.ValueObjectTest;
+import de.dhbw.training_log.de.test_utils.ValueObjectBehaviorTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -84,19 +84,19 @@ public class SessionTimeTest {
                 () -> new SessionTime(new Minutes(2), new Seconds(30)),
                 () -> new SessionTime(new Minutes(3), new Seconds(30))
         );
-        ValueObjectTest.performValueObjectTest(sessionTimes);
+        ValueObjectBehaviorTest.performValueObjectTests(sessionTimes);
     }
 
     @Test
     public void minutesValueObjectBehavior() {
         final List<Supplier<Minutes>> minutes = Arrays.asList(() -> new Minutes(1), () -> new Minutes(2));
-        ValueObjectTest.performValueObjectTest(minutes);
+        ValueObjectBehaviorTest.performValueObjectTests(minutes);
     }
 
     @Test
     public void secondsValueObjectBehavior() {
         final List<Supplier<Seconds>> seconds = Arrays.asList(() -> new Seconds(1), () -> new Seconds(2));
-        ValueObjectTest.performValueObjectTest(seconds);
+        ValueObjectBehaviorTest.performValueObjectTests(seconds);
     }
 
 }
