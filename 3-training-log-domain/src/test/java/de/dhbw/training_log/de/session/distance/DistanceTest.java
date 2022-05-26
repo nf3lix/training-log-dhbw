@@ -1,24 +1,21 @@
 package de.dhbw.training_log.de.session.distance;
 
 import de.dhbw.training_log.de.test_utils.ValueObjectTest;
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static de.dhbw.training_log.de.session.distance.DistanceUnit.*;
+import static de.dhbw.training_log.de.session.distance.HasDistanceMatcher.hasDistance;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DistanceTest {
-
-    private final Map<DistanceUnit, Double> DISTANCE_UNITS = new HashMap<DistanceUnit, Double>() {{
-        put(METERS, 1e3);
-        put(KILOMETERS, 1e6);
-        put(MILES, 1.609344e6);
-    }};
 
     @Test
     public void convertDistanceToUnit() {
@@ -34,15 +31,25 @@ public class DistanceTest {
     @Test
     public void addDistance() {
         final Distance distance = new Distance(3.0, KILOMETERS);
-        MatcherAssert.assertThat(distance.add(new Distance(2.0, KILOMETERS)), HasDistanceMatcher.hasDistance(5.0, KILOMETERS, 1e-3));
-        MatcherAssert.assertThat(distance.add(new Distance(100.0, METERS)), HasDistanceMatcher.hasDistance(3.1, KILOMETERS, 1e-3));
+        assertThat(distance.add(new Distance(2.0, KILOMETERS)), hasDistance(5.0, KILOMETERS, 1e-3));
+        assertThat(distance.add(new Distance(100.0, METERS)), hasDistance(3.1, KILOMETERS, 1e-3));
     }
 
     @Test
     public void throwExceptionWhenDistanceIsNegative() {
-        final Distance distance = new Distance(1.0, METERS);
         assertThrows(InvalidDistance.class, () -> new Distance(-1.0, METERS));
-        assertThrows(InvalidDistance.class, () -> distance.add(new Distance(-2.0, METERS)));
+    }
+
+    @Test
+    public void assignValueWhenDistanceIsNonNegative() {
+        for(final DistanceUnit unit : DistanceUnit.values()) {
+            final Distance distance1 = new Distance(0, unit);
+            final Distance distance2 = new Distance(1, unit);
+            final Distance distance3 = new Distance(3, unit);
+            assertEquals(distance1.getIn(unit), 0);
+            assertEquals(distance2.getIn(unit), 1);
+            assertEquals(distance3.getIn(unit), 3);
+        }
     }
 
     @Test
@@ -94,7 +101,7 @@ public class DistanceTest {
     }
 
     private void compareToOtherUnits(final double distanceValue, final DistanceUnit unit) {
-        final Iterator<DistanceUnit> iterator = DISTANCE_UNITS.keySet().stream().iterator();
+        final Iterator<DistanceUnit> iterator = Arrays.stream(values()).iterator();
         while (iterator.hasNext()) {
             final DistanceUnit currentUnit = iterator.next();
             checkConversionOfDistance(distanceValue, unit, currentUnit);
@@ -103,8 +110,8 @@ public class DistanceTest {
 
     private void checkConversionOfDistance(final double distanceValue, final DistanceUnit baseUnit, final DistanceUnit newUnit) {
         final Distance distance = new Distance(distanceValue, baseUnit);
-        final double expectedDistance = distanceValue * DISTANCE_UNITS.get(baseUnit) / DISTANCE_UNITS.get(newUnit);
-        MatcherAssert.assertThat(distance, HasDistanceMatcher.hasDistance(expectedDistance, newUnit, 1e-3));
+        final double expectedDistance = distanceValue * baseUnit.ratioTo(newUnit);
+        assertThat(distance, hasDistance(expectedDistance, newUnit, 1e-3));
     }
 
 }
