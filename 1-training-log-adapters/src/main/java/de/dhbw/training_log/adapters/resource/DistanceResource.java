@@ -2,7 +2,7 @@ package de.dhbw.training_log.adapters.resource;
 
 import de.dhbw.training_log.de.session.distance.DistanceUnit;
 
-public final class DistanceResource {
+public class DistanceResource {
 
     public static final String DISPLAYED_FORMAT = "<distance> <unit>";
 

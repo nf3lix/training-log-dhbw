@@ -2,7 +2,6 @@ package de.dhbw.training_log.application.report;
 
 import de.dhbw.training_log.application.report.standard_metrics.StandardMetrics;
 import de.dhbw.training_log.de.metric.Metric;
-import de.dhbw.training_log.de.report.Report;
 import de.dhbw.training_log.de.session.Session;
 import de.dhbw.training_log.de.session.SessionRepository;
 

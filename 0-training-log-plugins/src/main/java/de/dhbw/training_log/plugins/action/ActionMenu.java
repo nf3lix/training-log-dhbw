@@ -1,8 +1,5 @@
 package de.dhbw.training_log.plugins.action;
 
-import de.dhbw.training_log.plugins.CommandLine;
-import de.dhbw.training_log.plugins.persistence.SessionRepositoryImpl;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -13,13 +10,15 @@ public abstract class ActionMenu implements ActionObservable {
     private final Map<String, UserAction> useCases = new HashMap<>();
     private final Map<String, ActionMenu> nestedMenus = new HashMap<>();
     private final String description;
+    private final InputReader inputReader;
 
     private Set<ExitMenuListener> observers = new HashSet<>();
 
     private final static String FIRST_SEPARATOR = "========= Type \"exit\" to close menu =========";
     private final static String SECOND_SEPARATOR =             "===============================================";
 
-    public ActionMenu(final String description) {
+    public ActionMenu(final InputReader inputReader, final String description) {
+        this.inputReader = inputReader;
         this.description = description;
     }
 
@@ -49,7 +48,7 @@ public abstract class ActionMenu implements ActionObservable {
     public void start() {
         do {
             printUseCases();
-            final String mnemonic = CommandLine.readLine();
+            final String mnemonic = inputReader.readCommandLine();
             if(mnemonic.equalsIgnoreCase("exit")) {
                 notifyObserver();
                 break;
