@@ -84,19 +84,19 @@ public class SessionTimeTest {
                 () -> new SessionTime(new Minutes(2), new Seconds(30)),
                 () -> new SessionTime(new Minutes(3), new Seconds(30))
         );
-        ValueObjectBehaviorTest.performValueObjectTests(sessionTimes);
+        ValueObjectBehaviorTest.withDisjointList(sessionTimes);
     }
 
     @Test
     public void minutesValueObjectBehavior() {
         final List<Supplier<Minutes>> minutes = Arrays.asList(() -> new Minutes(1), () -> new Minutes(2));
-        ValueObjectBehaviorTest.performValueObjectTests(minutes);
+        ValueObjectBehaviorTest.withDisjointList(minutes);
     }
 
     @Test
     public void secondsValueObjectBehavior() {
         final List<Supplier<Seconds>> seconds = Arrays.asList(() -> new Seconds(1), () -> new Seconds(2));
-        ValueObjectBehaviorTest.performValueObjectTests(seconds);
+        ValueObjectBehaviorTest.withDisjointList(seconds);
     }
 
 }

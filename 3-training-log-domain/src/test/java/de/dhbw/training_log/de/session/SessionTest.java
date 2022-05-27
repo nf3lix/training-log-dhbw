@@ -30,7 +30,7 @@ public class SessionTest {
                 () -> sessionWithId("d069e2cf-d02b-4d51-ac50-2946ae88c540"),
                 () -> sessionWithId("f9b04681-965f-4be9-a184-4e627fc14208")
         );
-        ValueObjectBehaviorTest.performValueObjectTests(sessions);
+        ValueObjectBehaviorTest.withDisjointList(sessions);
     }
 
     private Session sessionWithId(final String id) {

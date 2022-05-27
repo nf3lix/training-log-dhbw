@@ -16,7 +16,7 @@ public class SessionIdTest {
                 () -> new SessionId(uuid("af2f909b-50cb-4fc5-aceb-c9fdc4699c27")),
                 () -> new SessionId(uuid("e79b3ff0-530f-48d3-a8dd-e066fd2190fd")),
                 () -> new SessionId(uuid("b206633a-0516-4d8b-844a-3e4b68557886")));
-        ValueObjectBehaviorTest.performValueObjectTests(trainingSessionIds);
+        ValueObjectBehaviorTest.withDisjointList(trainingSessionIds);
     }
 
     private UUID uuid(final String fromString) {

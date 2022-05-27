@@ -69,7 +69,7 @@ public class SessionDateTest {
                 () -> new SessionDate(new Year(2020), new Month(12), new DayOfMonth(12)),
                 () -> new SessionDate(new Year(2021), new Month(10), new DayOfMonth(10))
         );
-        ValueObjectBehaviorTest.performValueObjectTests(sessionDates);
+        ValueObjectBehaviorTest.withDisjointList(sessionDates);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SessionDateTest {
                 () -> new Year(2019),
                 () -> new Year(2020)
         );
-        ValueObjectBehaviorTest.performValueObjectTests(years);
+        ValueObjectBehaviorTest.withDisjointList(years);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class SessionDateTest {
                 () -> new Month(9),
                 () -> new Month(10)
         );
-        ValueObjectBehaviorTest.performValueObjectTests(months);
+        ValueObjectBehaviorTest.withDisjointList(months);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class SessionDateTest {
                 () -> new DayOfMonth(2),
                 () -> new DayOfMonth(3)
         );
-        ValueObjectBehaviorTest.performValueObjectTests(days);
+        ValueObjectBehaviorTest.withDisjointList(days);
     }
 
 }

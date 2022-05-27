@@ -23,7 +23,7 @@ public class DescriptionTest {
                 () -> new Description("DESCRIPTION_1"),
                 () -> new Description("DESCRIPTION_2"),
                 () -> new Description("DESCRIPTION_3"));
-        ValueObjectBehaviorTest.performValueObjectTests(descriptions);
+        ValueObjectBehaviorTest.withDisjointList(descriptions);
     }
 
 }

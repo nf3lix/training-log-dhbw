@@ -67,7 +67,7 @@ public class DistanceTest {
                 () -> new Distance(1.0, METERS),
                 () -> new Distance(3.0, METERS)
         );
-        ValueObjectBehaviorTest.performValueObjectTests(distances);
+        ValueObjectBehaviorTest.withDisjointList(distances);
     }
 
     @Test

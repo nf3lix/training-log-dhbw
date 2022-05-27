@@ -13,7 +13,7 @@ public class ValueObjectBehaviorTest<T> {
     private final List<ClassContainer<T>> containers;
     private final List<ValueBehavior<T>> tests;
 
-    public static <T> void performValueObjectTests(final List<Supplier<T>> objects) {
+    public static <T> void withDisjointList(final List<Supplier<T>> objects) {
         final ValueObjectBehaviorTest<T> test = new ValueObjectBehaviorTest.Builder<T>()
                 .setDisjointList(objects)
                 .addTest(new ValueEquality<>())
