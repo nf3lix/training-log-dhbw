@@ -38,7 +38,7 @@ public class UpdateSessionAction implements UserAction {
     }
 
     private DistanceResource getDistance() {
-        System.out.print("Enter distance (format: <distance> <METERS|KILOMETERS|MILES>): ");
+        System.out.print("Enter distance (format: \"<distance> <METERS|KILOMETERS|MILES>\" - example: \"10 KILOMETERS\"): ");
         final String input = CommandLine.readLine();
         return new DistanceResource(input);
     }
@@ -58,7 +58,7 @@ public class UpdateSessionAction implements UserAction {
     }
 
     private SessionTimeResource getSessionTime() {
-        System.out.print("Enter time (format: <mm>:<ss>): ");
+        System.out.print("Enter time (format: \"<mm>:<ss>\" - example: \"34:12\"): ");
         final String input = CommandLine.readLine();
         return new SessionTimeResource(input);
     }

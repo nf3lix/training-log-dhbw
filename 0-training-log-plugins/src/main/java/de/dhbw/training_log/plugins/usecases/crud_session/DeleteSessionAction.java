@@ -15,6 +15,7 @@ public class DeleteSessionAction implements UserAction {
 
     @Override
     public void initialize() {
+        System.out.println("Enter id of session to delete (example: \"3e35d8b7-2ddf-4a75-9e8c-b45555188109\"");
         final String id = CommandLine.readLine();
         service.deleteSession(id);
     }
